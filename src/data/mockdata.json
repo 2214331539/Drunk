@@ -1,0 +1,334 @@
+{
+  "wines": [
+    {
+      "id": "moscato",
+      "name": "莫斯卡托起泡酒",
+      "type": "甜白起泡酒",
+      "flavor": "甜而不腻，带有桃子和花香",
+      "alcohol": "5-7%",
+      "image": "🥂"
+    },
+    {
+      "id": "sauvignon_blanc",
+      "name": "长相思",
+      "type": "干白葡萄酒",
+      "flavor": "清爽酸涩，带有青草和柑橘香",
+      "alcohol": "12-13%",
+      "image": "🍷"
+    },
+    {
+      "id": "rose",
+      "name": "桃红葡萄酒",
+      "type": "桃红酒",
+      "flavor": "柔和轻盈，带有草莓和玫瑰香",
+      "alcohol": "11-13%",
+      "image": "🌹"
+    },
+    {
+      "id": "pinot_noir",
+      "name": "黑皮诺",
+      "type": "干红葡萄酒",
+      "flavor": "优雅细腻，带有樱桃和蘑菇香",
+      "alcohol": "13-14%",
+      "image": "🍷"
+    },
+    {
+      "id": "plum_wine",
+      "name": "梅酒",
+      "type": "利口酒",
+      "flavor": "酸甜适中，带有梅子清香",
+      "alcohol": "8-15%",
+      "image": "� plum;"
+    },
+    {
+      "id": "sake",
+      "name": "清酒",
+      "type": "米酒",
+      "flavor": "淡而悠长，带有米香和旨味",
+      "alcohol": "15-17%",
+      "image": "🍶"
+    },
+    {
+      "id": "sparkling",
+      "name": "起泡酒",
+      "type": "起泡酒",
+      "flavor": "清爽活泼，带有苹果和酵母香",
+      "alcohol": "11-12%",
+      "image": "🍾"
+    },
+    {
+      "id": "peach_bubble",
+      "name": "桃子气泡酒",
+      "type": "果味起泡酒",
+      "flavor": "甜美多汁，桃子味浓郁",
+      "alcohol": "4-6%",
+      "image": "🍑"
+    },
+    {
+      "id": "campari",
+      "name": "金巴利苏打",
+      "type": "开胃酒",
+      "flavor": "苦中带甜，带有草药和柑橘香",
+      "alcohol": "10-12%",
+      "image": "🍊"
+    },
+    {
+      "id": "gin_tonic",
+      "name": "金汤力",
+      "type": "鸡尾酒",
+      "flavor": "清爽苦涩，带有杜松子和柠檬香",
+      "alcohol": "8-10%",
+      "image": "🧊"
+    },
+    {
+      "id": "whiskey_highball",
+      "name": "威士忌嗨棒",
+      "type": "鸡尾酒",
+      "flavor": "清爽柔和，带有焦糖和苏打口感",
+      "alcohol": "6-8%",
+      "image": "🥃"
+    },
+    {
+      "id": "cider",
+      "name": "苹果酒",
+      "type": "果酒",
+      "flavor": "清新酸甜，带有苹果和香料香",
+      "alcohol": "4-8%",
+      "image": "🍎"
+    }
+  ],
+  "mbti": {
+    "INFJ": {
+      "name": "提倡者",
+      "desc": "理想主义者，追求意义，喜欢深度交流",
+      "keywords": ["深度", "理想", "独处", "meaning"]
+    },
+    "INFP": {
+      "name": "调停者",
+      "desc": "浪漫主义者，追求真实，情感丰富",
+      "keywords": ["浪漫", "真实", "情感", "creative"]
+    },
+    "ENFJ": {
+      "name": "主人公",
+      "desc": "天生的领导者，温暖有感染力",
+      "keywords": ["温暖", "领导", "感染力", "harmony"]
+    },
+    "ENFP": {
+      "name": "竞选者",
+      "desc": "自由灵魂，充满可能性和热情",
+      "keywords": ["自由", "热情", "可能性", "spontaneous"]
+    },
+    "INTJ": {
+      "name": "建筑师",
+      "desc": "战略家，追求效率，独立思考",
+      "keywords": ["战略", "效率", "独立", "vision"]
+    },
+    "INTP": {
+      "name": "逻辑学家",
+      "desc": "思考者，追求真理，好奇心强",
+      "keywords": ["逻辑", "真理", "好奇", "analytical"]
+    },
+    "ENTJ": {
+      "name": "指挥官",
+      "desc": "果断的领导者，目标导向",
+      "keywords": ["果断", "目标", "领导", "ambitious"]
+    },
+    "ENTP": {
+      "name": "辩论家",
+      "desc": "创新者，喜欢挑战和智力游戏",
+      "keywords": ["创新", "挑战", "智力", "adaptable"]
+    },
+    "ISFJ": {
+      "name": "守卫者",
+      "desc": "温暖可靠，注重细节和关怀",
+      "keywords": ["温暖", "可靠", "细节", "caring"]
+    },
+    "ISFP": {
+      "name": "探险家",
+      "desc": "艺术家，活在当下，追求美感",
+      "keywords": ["艺术", "当下", "美感", "gentle"]
+    },
+    "ESFJ": {
+      "name": "执政官",
+      "desc": "关怀者，喜欢和谐与团聚",
+      "keywords": ["和谐", "团聚", "关怀", "social"]
+    },
+    "ESFP": {
+      "name": "表演者",
+      "desc": "娱乐家，热爱生活，享受当下",
+      "keywords": ["享受", "当下", "活力", "playful"]
+    },
+    "ISTJ": {
+      "name": "物流师",
+      "desc": "可靠稳重，注重传统和秩序",
+      "keywords": ["可靠", "秩序", "传统", "steady"]
+    },
+    "ISTP": {
+      "name": "手艺人",
+      "desc": "实验家，冷静务实，喜欢动手",
+      "keywords": ["务实", "冷静", "动手", "independent"]
+    },
+    "ESTJ": {
+      "name": "总经理",
+      "desc": "管理者，注重效率和结果",
+      "keywords": ["效率", "结果", "管理", "direct"]
+    },
+    "ESTP": {
+      "name": "企业家",
+      "desc": "冒险家，行动派，活在当下",
+      "keywords": ["冒险", "行动", "当下", "bold"]
+    }
+  },
+  "mbtiWineMatches": [
+    {
+      "mbti": "INFJ",
+      "wines": [
+        { "id": "sake", "match": 95, "reason": "像你一样，需要静下心来品味。淡而悠长，适合独处时慢慢感受。" },
+        { "id": "pinot_noir", "match": 88, "reason": "优雅内敛，像你的内心世界一样有层次。" },
+        { "id": "rose", "match": 82, "reason": "外表温柔，内心有故事，和你很像。" }
+      ]
+    },
+    {
+      "mbti": "INFP",
+      "wines": [
+        { "id": "moscato", "match": 93, "reason": "甜而不腻，像你对待世界的温柔方式。" },
+        { "id": "rose", "match": 89, "reason": "浪漫柔和，带着粉色滤镜，很符合你的气质。" },
+        { "id": "plum_wine", "match": 85, "reason": "酸甜之间有故事，像你丰富的内心世界。" }
+      ]
+    },
+    {
+      "mbti": "ENFJ",
+      "wines": [
+        { "id": "sparkling", "match": 94, "reason": "有感染力的气泡，像你温暖的存在感。" },
+        { "id": "rose", "match": 87, "reason": "柔和美好，适合和朋友分享时的你。" },
+        { "id": "gin_tonic", "match": 80, "reason": "社交场合的经典选择，轻松愉快。" }
+      ]
+    },
+    {
+      "mbti": "ENFP",
+      "wines": [
+        { "id": "peach_bubble", "match": 96, "reason": "甜美活泼，像你一样充满可能性！" },
+        { "id": "sparkling", "match": 90, "reason": "跳跃的气泡，和你自由的灵魂很搭。" },
+        { "id": "campari", "match": 83, "reason": "独特的苦甜层次，像你多面的性格。" }
+      ]
+    },
+    {
+      "mbti": "INTJ",
+      "wines": [
+        { "id": "sake", "match": 92, "reason": "克制而精致，需要细细品味，像你的思维方式。" },
+        { "id": "pinot_noir", "match": 88, "reason": "结构清晰、层次分明，符合你的审美。" },
+        { "id": "whiskey_highball", "match": 84, "reason": "简洁高效，不拖泥带水。" }
+      ]
+    },
+    {
+      "mbti": "INTP",
+      "wines": [
+        { "id": "sauvignon_blanc", "match": 91, "reason": "清爽独特，有复杂的草本香气，值得探究。" },
+        { "id": "gin_tonic", "match": 87, "reason": "经典的逻辑搭配，简单而有效。" },
+        { "id": "sake", "match": 82, "reason": "内涵丰富，可以一直研究下去。" }
+      ]
+    },
+    {
+      "mbti": "ENTJ",
+      "wines": [
+        { "id": "pinot_noir", "match": 90, "reason": "有力而优雅，像你的领导风格。" },
+        { "id": "whiskey_highball", "match": 88, "reason": "果断直接，追求效率的选择。" },
+        { "id": "campari", "match": 85, "reason": "强烈的个性，不被定义。" }
+      ]
+    },
+    {
+      "mbti": "ENTP",
+      "wines": [
+        { "id": "campari", "match": 93, "reason": "不按常理出牌的味道，很适合爱挑战的你。" },
+        { "id": "gin_tonic", "match": 89, "reason": "经典但可以变化无穷，和你一样灵活。" },
+        { "id": "sparkling", "match": 84, "reason": "不断冒出的新想法，像跳跃的气泡。" }
+      ]
+    },
+    {
+      "mbti": "ISFJ",
+      "wines": [
+        { "id": "plum_wine", "match": 92, "reason": "温暖治愈，像你给人带来的安全感。" },
+        { "id": "rose", "match": 86, "reason": "温柔可靠，不会出错的选择。" },
+        { "id": "cider", "match": 83, "reason": "平和亲切，日常的好伴侣。" }
+      ]
+    },
+    {
+      "mbti": "ISFP",
+      "wines": [
+        { "id": "rose", "match": 94, "reason": "美感十足，每一个细节都值得欣赏。" },
+        { "id": "moscato", "match": 88, "reason": "轻松愉悦，像你享受当下的态度。" },
+        { "id": "peach_bubble", "match": 85, "reason": "甜美随性，不用太认真。" }
+      ]
+    },
+    {
+      "mbti": "ESFJ",
+      "wines": [
+        { "id": "sparkling", "match": 93, "reason": "聚会首选，能带动气氛，和你一样。" },
+        { "id": "moscato", "match": 87, "reason": "甜美友好，谁都喜欢的类型。" },
+        { "id": "cider", "match": 84, "reason": "亲和力强，适合分享。" }
+      ]
+    },
+    {
+      "mbti": "ESFP",
+      "wines": [
+        { "id": "peach_bubble", "match": 95, "reason": "纯粹的快乐，像你对生活的态度！" },
+        { "id": "sparkling", "match": 91, "reason": "活力满满，每一次都像第一次。" },
+        { "id": "cider", "match": 86, "reason": "简单直接，好喝不累。" }
+      ]
+    },
+    {
+      "mbti": "ISTJ",
+      "wines": [
+        { "id": "sake", "match": 91, "reason": "传统稳定，值得信赖的选择。" },
+        { "id": "pinot_noir", "match": 87, "reason": "经典优雅，不过时的品味。" },
+        { "id": "whiskey_highball", "match": 84, "reason": "可靠实在，每天都能喝。" }
+      ]
+    },
+    {
+      "mbti": "ISTP",
+      "wines": [
+        { "id": "whiskey_highball", "match": 93, "reason": "简洁实用，不花哨但有效。" },
+        { "id": "gin_tonic", "match": 89, "reason": "冷静克制，需要时才拿出来。" },
+        { "id": "sauvignon_blanc", "match": 85, "reason": "清爽独立，有自己的态度。" }
+      ]
+    },
+    {
+      "mbti": "ESTJ",
+      "wines": [
+        { "id": "whiskey_highball", "match": 92, "reason": "直接高效，不浪费时间。" },
+        { "id": "campari", "match": 88, "reason": "明确的个性，不拐弯抹角。" },
+        { "id": "pinot_noir", "match": 85, "reason": "有力可靠，能镇得住场。" }
+      ]
+    },
+    {
+      "mbti": "ESTP",
+      "wines": [
+        { "id": "campari", "match": 94, "reason": "大胆刺激，敢挑战才能懂。" },
+        { "id": "whiskey_highball", "match": 90, "reason": "行动派的选择，喝完就上。" },
+        { "id": "sparkling", "match": 86, "reason": "有冲劲，和你一样直接。" }
+      ]
+    }
+  ],
+  "moodWineMatches": {
+    "relax": { "wines": ["sake", "moscato", "cider"], "boost": 5 },
+    "emotion": { "wines": ["plum_wine", "rose", "pinot_noir"], "boost": 5 },
+    "social": { "wines": ["sparkling", "moscato", "cider"], "boost": 5 },
+    "taste": { "wines": ["sauvignon_blanc", "sake", "pinot_noir"], "boost": 5 },
+    "alone": { "wines": ["sake", "pinot_noir", "plum_wine"], "boost": 5 },
+    "friends": { "wines": ["sparkling", "rose", "moscato"], "boost": 5 },
+    "crowd": { "wines": ["gin_tonic", "campari", "whiskey_highball"], "boost": 5 },
+    "intimate": { "wines": ["rose", "pinot_noir", "sake"], "boost": 5 },
+    "fresh": { "wines": ["sauvignon_blanc", "sparkling", "gin_tonic"], "boost": 5 },
+    "sweet": { "wines": ["moscato", "peach_bubble", "plum_wine"], "boost": 5 },
+    "complex": { "wines": ["pinot_noir", "sake", "campari"], "boost": 5 },
+    "subtle": { "wines": ["sake", "cider", "sauvignon_blanc"], "boost": 5 },
+    "cloud": { "wines": ["moscato", "sake", "rose"], "boost": 5 },
+    "wind": { "wines": ["sauvignon_blanc", "sparkling", "gin_tonic"], "boost": 5 },
+    "water": { "wines": ["sake", "cider", "pinot_noir"], "boost": 5 },
+    "light": { "wines": ["rose", "sparkling", "moscato"], "boost": 5 },
+    "dream": { "wines": ["moscato", "rose", "sake"], "boost": 5 },
+    "hug": { "wines": ["plum_wine", "pinot_noir", "cider"], "boost": 5 },
+    "breath": { "wines": ["sauvignon_blanc", "sparkling", "gin_tonic"], "boost": 5 },
+    "song": { "wines": ["rose", "moscato", "peach_bubble"], "boost": 5 }
+  }
+}

@@ -1,0 +1,203 @@
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1s ease;
+}
+
+/* 装饰圆圈 - 空气感 */
+.home-decoration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  pointer-events: none;
+}
+
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: float 6s ease-in-out infinite;
+}
+
+.deco-1 {
+  width: 200px;
+  height: 200px;
+  top: 0;
+  left: 0;
+  background: var(--color-primary);
+  animation-delay: 0s;
+}
+
+.deco-2 {
+  width: 150px;
+  height: 150px;
+  bottom: 20px;
+  right: 0;
+  background: #e8d4d8;
+  animation-delay: 2s;
+}
+
+.deco-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 40px;
+  left: 30px;
+  background: #d8e4e8;
+  animation-delay: 4s;
+}
+
+/* 标题样式 */
+.home-title {
+  margin-bottom: 32px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+}
+
+.title-main {
+  display: block;
+  font-size: 48px;
+  color: var(--color-text);
+  animation: textReveal 0.8s ease 0.2s both;
+}
+
+.title-sub {
+  display: block;
+  font-size: 36px;
+  color: var(--color-primary);
+  animation: textReveal 0.8s ease 0.4s both;
+}
+
+/* 描述文字 */
+.home-description {
+  font-size: 16px;
+  color: var(--color-text-light);
+  margin-bottom: 48px;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  animation: textReveal 0.8s ease 0.6s both;
+}
+
+/* 开始按钮 - 柔和圆润 */
+.start-button {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--gradient-warm);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  transition: all var(--duration-normal) ease;
+  animation: textReveal 0.8s ease 0.8s both;
+  overflow: hidden;
+}
+
+.start-button:hover {
+  box-shadow: var(--shadow-float);
+  transform: scale(1.05);
+}
+
+.start-button:active {
+  transform: scale(0.98);
+}
+
+.button-text {
+  font-size: 20px;
+  color: var(--color-text);
+  letter-spacing: 0.3em;
+  position: relative;
+  z-index: 2;
+}
+
+.button-shine {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
+
+/* 底部提示 */
+.home-footer {
+  margin-top: 32px;
+  font-size: 13px;
+  color: var(--color-text-light);
+  opacity: 0.7;
+  letter-spacing: 0.1em;
+  animation: textReveal 0.8s ease 1s both;
+}
+
+/* 背景渐变 */
+.home-bg-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-warm);
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* 响应式适配 */
+@media (max-width: 375px) {
+  .title-main {
+    font-size: 40px;
+  }
+
+  .title-sub {
+    font-size: 28px;
+  }
+
+  .start-button {
+    width: 100px;
+    height: 100px;
+  }
+
+  .button-text {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 768px) {
+  .home-page {
+    max-width: 420px;
+    margin: 0 auto;
+    border-radius: 24px;
+    box-shadow: var(--shadow-float);
+  }
+}

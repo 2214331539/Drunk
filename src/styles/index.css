@@ -1,0 +1,69 @@
+/* 全局重置与基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* 柔和的色彩系统 - 低饱和度、粉彩 */
+  --color-bg: #faf6f2;
+  --color-bg-secondary: #f5f0eb;
+  --color-primary: #c9b8a8;
+  --color-primary-dark: #a89888;
+  --color-text: #6b5d52;
+  --color-text-light: #9a8a7a;
+  --color-white: #faf6f2;
+
+  /* 渐变色 */
+  --gradient-warm: linear-gradient(135deg, #fdf6f0 0%, #f5ebe0 50%, #e8d5c4 100%);
+  --gradient-cool: linear-gradient(135deg, #f6f3f0 0%, #e8e4f0 50%, #d8d4e8 100%);
+  --gradient-blush: linear-gradient(135deg, #fdf6f0 0%, #f8e8e8 50%, #f0d8d8 100%);
+
+  /* 阴影 - 柔和的空气感 */
+  --shadow-soft: 0 8px 32px rgba(201, 184, 168, 0.12);
+  --shadow-float: 0 16px 48px rgba(201, 184, 168, 0.18);
+
+  /* 字体 */
+  --font-family-serif: 'Noto Serif SC', serif;
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* 动画时长 */
+  --duration-slow: 0.6s;
+  --duration-normal: 0.4s;
+  --duration-fast: 0.2s;
+}
+
+body {
+  font-family: var(--font-family-serif);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.8;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* 选中状态 */
+::selection {
+  background: rgba(201, 184, 168, 0.3);
+  color: var(--color-text);
+}
