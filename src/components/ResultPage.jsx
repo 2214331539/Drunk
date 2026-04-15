@@ -74,14 +74,7 @@ const ResultPage = ({ result, onRestart }) => {
     }
   };
 
-  const getGradientByRank = (rank) => {
-    const gradients = {
-      1: "linear-gradient(135deg, #fdf6f0 0%, #e8d5e3 100%)",
-      2: "linear-gradient(135deg, #fdf6f0 0%, #d4e8f0 100%)",
-      3: "linear-gradient(135deg, #fdf6f0 0%, #f0e4d4 100%)"
-    };
-    return gradients[rank] || "linear-gradient(135deg, #fdf6f0 0%, #f0f0e8 100%)";
-  };
+  // 移除了旧的渐变函数，使用 CSS data-rank 属性
 
   return (
     <div className={`result-page ${isVisible ? 'visible' : ''}`}>
@@ -104,7 +97,7 @@ const ResultPage = ({ result, onRestart }) => {
           {/* 结果卡片 */}
           <div
             className="result-card"
-            style={{ background: getGradientByRank(currentWine.rank) }}
+            data-rank={currentWine.rank <= 3 ? currentWine.rank : "other"}
             ref={currentIndex === 0 ? cardRef : null}
           >
             <div className="result-header">
