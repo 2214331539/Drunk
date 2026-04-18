@@ -56,10 +56,20 @@
   font-weight: 800;
 }
 
+.mbti-shortdesc {
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  line-height: 1.4;
+}
+
 .mbti-description {
   font-size: 14px;
   color: var(--color-ink-soft);
   line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .cards-container {
@@ -140,6 +150,13 @@
   line-height: 1.02;
 }
 
+.drink-english {
+  font-size: 13px;
+  color: var(--color-ink-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .poster-caption {
   font-size: 14px;
   color: var(--color-ink-muted);
@@ -208,16 +225,29 @@
   stroke: var(--color-blue);
 }
 
+.reason-block {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(247, 247, 247, 0.92);
+}
+
+.reason-heading {
+  display: inline-flex;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--color-lime);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .result-reason {
   font-size: 15px;
   color: var(--color-ink-soft);
   line-height: 1.8;
-  margin-bottom: 14px;
-  position: relative;
-  z-index: 2;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(247, 247, 247, 0.92);
 }
 
 .wine-info {

@@ -1,0 +1,280 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "此刻，你想微醺是因为...",
+      "options": [
+        {
+          "text": "想暂时放空，什么都不想",
+          "value": "relax",
+          "profile": {
+            "preferred_tags": ["治愈", "清爽", "低度数"],
+            "avoid_tags": ["刺激", "断电"],
+            "abv_target": "low",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "先把脑子放空"
+          }
+        },
+        {
+          "text": "有一些情绪想慢慢消化",
+          "value": "emotion",
+          "profile": {
+            "preferred_tags": ["复杂", "酸甜", "微苦"],
+            "avoid_tags": ["简单粗暴"],
+            "abv_target": "medium",
+            "sweetness_target": 3,
+            "complexity_target": 3,
+            "reason_phrase": "把情绪慢慢化开"
+          }
+        },
+        {
+          "text": "和朋友聊聊天，轻轻松松",
+          "value": "social",
+          "profile": {
+            "preferred_tags": ["气泡", "快乐水", "出片"],
+            "avoid_tags": ["冷淡"],
+            "abv_target": "medium",
+            "sweetness_target": 3,
+            "complexity_target": 1,
+            "reason_phrase": "让聊天和气氛更顺"
+          }
+        },
+        {
+          "text": "只是想尝一点味道",
+          "value": "taste",
+          "profile": {
+            "preferred_tags": ["经典", "纯粹", "微苦"],
+            "avoid_tags": ["甜腻"],
+            "abv_target": "medium",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "喝到更高级的味道"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "你觉得最舒服的状态是...",
+      "options": [
+        {
+          "text": "一个人静静待着",
+          "value": "alone",
+          "profile": {
+            "preferred_tags": ["极简", "微苦", "治愈"],
+            "avoid_tags": ["抓马"],
+            "abv_target": "medium",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "适合一个人安静地喝"
+          }
+        },
+        {
+          "text": "和三两好友小聚",
+          "value": "friends",
+          "profile": {
+            "preferred_tags": ["气泡", "果味", "快乐水"],
+            "avoid_tags": ["冷淡"],
+            "abv_target": "medium",
+            "sweetness_target": 4,
+            "complexity_target": 1,
+            "reason_phrase": "最好能把朋友局带热"
+          }
+        },
+        {
+          "text": "在人群中但不被注意",
+          "value": "crowd",
+          "profile": {
+            "preferred_tags": ["冷淡", "经典", "纯粹"],
+            "avoid_tags": ["甜腻"],
+            "abv_target": "medium",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "低调一点但不能没品"
+          }
+        },
+        {
+          "text": "和重要的人独处",
+          "value": "intimate",
+          "profile": {
+            "preferred_tags": ["酸甜", "治愈", "梦幻"],
+            "avoid_tags": ["断电"],
+            "abv_target": "medium",
+            "sweetness_target": 3,
+            "complexity_target": 2,
+            "reason_phrase": "留一点暧昧和情绪空间"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "你偏爱什么样的味道？",
+      "options": [
+        {
+          "text": "清清爽爽，不甜腻",
+          "value": "fresh",
+          "profile": {
+            "preferred_tags": ["清爽", "气泡", "果味"],
+            "avoid_tags": ["甜腻"],
+            "abv_target": "low",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "口感要干净利落"
+          }
+        },
+        {
+          "text": "有点甜，像小确幸",
+          "value": "sweet",
+          "profile": {
+            "preferred_tags": ["甜腻", "甜水", "治愈"],
+            "avoid_tags": ["微苦"],
+            "abv_target": "medium",
+            "sweetness_target": 4,
+            "complexity_target": 1,
+            "reason_phrase": "第一口就要有满足感"
+          }
+        },
+        {
+          "text": "有层次，慢慢品",
+          "value": "complex",
+          "profile": {
+            "preferred_tags": ["复杂", "经典", "微苦"],
+            "avoid_tags": ["简单粗暴"],
+            "abv_target": "medium",
+            "sweetness_target": 2,
+            "complexity_target": 3,
+            "reason_phrase": "味道最好能越喝越有内容"
+          }
+        },
+        {
+          "text": "淡淡的，若有若无",
+          "value": "subtle",
+          "profile": {
+            "preferred_tags": ["极简", "纯粹", "冷淡"],
+            "avoid_tags": ["抓马"],
+            "abv_target": "medium",
+            "sweetness_target": 1,
+            "complexity_target": 1,
+            "reason_phrase": "克制一点反而更高级"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "此刻的心情，更接近...",
+      "options": [
+        {
+          "text": "云一样，飘着",
+          "value": "cloud",
+          "profile": {
+            "preferred_tags": ["梦幻", "出片", "低度数"],
+            "avoid_tags": ["烈酒"],
+            "abv_target": "low",
+            "sweetness_target": 3,
+            "complexity_target": 2,
+            "reason_phrase": "氛围感最好轻一点"
+          }
+        },
+        {
+          "text": "风一样，流动着",
+          "value": "wind",
+          "profile": {
+            "preferred_tags": ["清爽", "气泡", "解压"],
+            "avoid_tags": ["奶香"],
+            "abv_target": "low",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "喝完要有利落的舒展感"
+          }
+        },
+        {
+          "text": "水一样，平静着",
+          "value": "water",
+          "profile": {
+            "preferred_tags": ["极简", "纯粹", "治愈"],
+            "avoid_tags": ["刺激"],
+            "abv_target": "medium",
+            "sweetness_target": 2,
+            "complexity_target": 1,
+            "reason_phrase": "不想被打扰，只想顺滑落地"
+          }
+        },
+        {
+          "text": "光一样，温暖着",
+          "value": "light",
+          "profile": {
+            "preferred_tags": ["酸甜", "果味", "治愈"],
+            "avoid_tags": ["冷淡"],
+            "abv_target": "medium",
+            "sweetness_target": 3,
+            "complexity_target": 2,
+            "reason_phrase": "最好能让情绪亮起来一点"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "你希望微醺的感觉是...",
+      "options": [
+        {
+          "text": "像做了一场温柔的梦",
+          "value": "dream",
+          "profile": {
+            "preferred_tags": ["梦幻", "颜值高", "酸甜"],
+            "avoid_tags": ["极简"],
+            "abv_target": "medium",
+            "sweetness_target": 4,
+            "complexity_target": 2,
+            "reason_phrase": "把今晚喝成一场有记忆点的小型逃离"
+          }
+        },
+        {
+          "text": "像被拥抱了一下",
+          "value": "hug",
+          "profile": {
+            "preferred_tags": ["治愈", "奶香", "安神"],
+            "avoid_tags": ["刺激"],
+            "abv_target": "low",
+            "sweetness_target": 4,
+            "complexity_target": 1,
+            "reason_phrase": "最后还能被温柔接住"
+          }
+        },
+        {
+          "text": "像深呼吸了一口",
+          "value": "breath",
+          "profile": {
+            "preferred_tags": ["清爽", "解压", "气泡"],
+            "avoid_tags": ["甜腻"],
+            "abv_target": "low",
+            "sweetness_target": 2,
+            "complexity_target": 2,
+            "reason_phrase": "一口下去就舒展开来"
+          }
+        },
+        {
+          "text": "像听了一首喜欢的歌",
+          "value": "song",
+          "profile": {
+            "preferred_tags": ["快乐水", "出片", "抓马"],
+            "avoid_tags": ["冷淡"],
+            "abv_target": "medium",
+            "sweetness_target": 3,
+            "complexity_target": 2,
+            "reason_phrase": "让情绪和故事感都往上走一点"
+          }
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "你的 SBTI 是？",
+      "type": "sbti",
+      "options": []
+    }
+  ]
+}

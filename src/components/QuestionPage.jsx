@@ -4,8 +4,9 @@ import './QuestionPage.css';
 const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack }) => {
   const [isVisible, setIsVisible] = useState(false);
   const progressPercent = ((currentIndex + 1) / totalQuestions) * 100;
-  const helperLine = question.type === 'mbti'
-    ? '选最像你的那一个。'
+  const isSbtiQuestion = question.type === 'sbti';
+  const helperLine = isSbtiQuestion
+    ? '直接选你测出的 SBTI。'
     : '按第一反应选。';
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
         <div className="question-card">
           <div className="question-card-head">
             <span className="question-tag">
-              {question.type === 'mbti' ? '人格速配' : '当下心情'}
+              {isSbtiQuestion ? 'SBTI 人格' : '当下心情'}
             </span>
 
             <div className="progress-bar">
@@ -70,9 +71,9 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
           <h2 className="question-text">{question.question}</h2>
           <p className="question-note">{helperLine}</p>
 
-          <div className={`options-list ${question.type === 'mbti' ? 'options-grid' : ''}`}>
+          <div className={`options-list ${isSbtiQuestion ? 'options-grid' : ''}`}>
             {question.options.map((option, index) => {
-              const [optionCode, optionLabel = option.text] = question.type === 'mbti'
+              const [optionCode, optionLabel = option.text] = isSbtiQuestion
                 ? option.text.split(' - ')
                 : [null, option.text];
 
@@ -84,12 +85,12 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
                   onClick={() => handleAnswerClick(option.value)}
                 >
                   <span className="option-marker">
-                    {question.type === 'mbti' ? optionCode : `0${index + 1}`.slice(-2)}
+                    {isSbtiQuestion ? optionCode : `0${index + 1}`.slice(-2)}
                   </span>
 
                   <span className="option-text">{optionLabel}</span>
 
-                  <span className="option-arrow">{question.type === 'mbti' ? '✓' : '→'}</span>
+                  <span className="option-arrow">{isSbtiQuestion ? '✓' : '→'}</span>
                 </button>
               );
             })}

@@ -12,28 +12,21 @@ const ResultPage = ({ result, onRestart }) => {
     setIsVisible(true);
   }, []);
 
-  const currentWine = result.wines[currentIndex];
-  const isLast = currentIndex === result.wines.length - 1;
+  const currentCocktail = result.cocktails[currentIndex];
+  const isLast = currentIndex === result.cocktails.length - 1;
   const isFirst = currentIndex === 0;
-  const posterReason = currentWine.matchReason
-    || `你的情绪答案把 ${currentWine.name} 推进了今天的推荐列表，它会比第一眼看上去更适合你现在的状态。`;
-  const rankTone = currentWine.rank === 1
+  const rankTone = currentCocktail.rank === 1
     ? 'champion'
-    : currentWine.rank === 2
+    : currentCocktail.rank === 2
       ? 'runner'
-      : currentWine.rank === 3
+      : currentCocktail.rank === 3
         ? 'third'
         : 'wild';
-  const rankLabel = currentWine.rank === 1
+  const rankLabel = currentCocktail.rank === 1
     ? '今日最佳匹配'
-    : currentWine.rank <= 3
-      ? `高匹配 No.${currentWine.rank}`
-      : `隐藏惊喜 No.${currentWine.rank}`;
-  const posterCaption = currentWine.rank === 1
-    ? '这杯像是专门替你留的。'
-    : currentWine.rank <= 3
-      ? '风格不同，但气质依然对路。'
-      : '不是第一眼主角，但越看越顺。';
+    : currentCocktail.rank <= 3
+      ? `高匹配 No.${currentCocktail.rank}`
+      : `隐藏惊喜 No.${currentCocktail.rank}`;
 
   const handleTouchStart = (e) => {
     setTouchStart(e.touches[0].clientX);
@@ -78,7 +71,7 @@ const ResultPage = ({ result, onRestart }) => {
         const image = canvas.toDataURL('image/png');
 
         const link = document.createElement('a');
-        link.download = `我的微醺解药-${currentWine.name}.png`;
+        link.download = `我的微醺解药-${currentCocktail.name}.png`;
         link.href = image;
         link.click();
       } catch (error) {
@@ -92,11 +85,12 @@ const ResultPage = ({ result, onRestart }) => {
       <div className="result-content">
         <div className="result-intro">
           <div className="mbti-badge">
-            <span className="mbti-type">{result.mbti}</span>
-            <span className="mbti-name">{result.mbtiInfo.name}</span>
+            <span className="mbti-type">{result.sbti}</span>
+            <span className="mbti-name">{result.sbtiInfo.name}</span>
           </div>
 
-          <p className="mbti-description">{result.mbtiInfo.desc}</p>
+          <p className="mbti-shortdesc">{result.sbtiInfo.shortdesc}</p>
+          <p className="mbti-description">{result.sbtiInfo.desc}</p>
         </div>
 
         <div
@@ -113,18 +107,17 @@ const ResultPage = ({ result, onRestart }) => {
           >
             <div className="result-header">
               <span className="result-label">{rankLabel}</span>
-              <span className="match-score">{currentWine.displayMatch}%</span>
+              <span className="match-score">{currentCocktail.displayMatch}%</span>
             </div>
 
             <div className="poster-headline">
-              <h2 className="drink-name">{currentWine.name}</h2>
-              <p className="poster-caption">
-                {posterCaption} · {currentWine.type}
-              </p>
+              <h2 className="drink-name">{currentCocktail.name}</h2>
+              <p className="drink-english">{currentCocktail.english_name}</p>
+              <p className="poster-caption">{currentCocktail.spotlightTitle}</p>
             </div>
 
             <div className="poster-stage" aria-hidden="true">
-              <span className="poster-emoji">{currentWine.image}</span>
+              <span className="poster-emoji">🍸</span>
 
               <svg className="result-doodle" viewBox="0 0 360 240">
                 <path className="stroke-main" d="M130 82c0-20 16-36 36-36s36 16 36 36-16 36-36 36-36-16-36-36Z" />
@@ -139,28 +132,31 @@ const ResultPage = ({ result, onRestart }) => {
               </svg>
             </div>
 
-            <p className="result-reason">{posterReason}</p>
+            <div className="reason-block">
+              <span className="reason-heading">{currentCocktail.reasonHeading}</span>
+              <p className="result-reason">{currentCocktail.personalizedReason}</p>
+            </div>
 
             <div className="wine-info">
               <div className="info-item">
-                <span className="info-label">风味</span>
-                <span className="info-value">{currentWine.flavor}</span>
+                <span className="info-label">基酒</span>
+                <span className="info-value">{currentCocktail.base_liquor}</span>
               </div>
               <div className="info-item">
-                <span className="info-label">酒精度</span>
-                <span className="info-value">{currentWine.alcohol}</span>
+                <span className="info-label">参考价</span>
+                <span className="info-value">{currentCocktail.priceText}</span>
               </div>
             </div>
 
             <div className="result-footer">
               <span className="footer-logo">白日微醺 / Stick Mood Mix</span>
-              <span>{currentIndex + 1} / {result.wines.length}</span>
+              <span>{currentIndex + 1} / {result.cocktails.length}</span>
             </div>
           </div>
         </div>
 
         <div className="slide-indicators">
-          {result.wines.map((_, index) => (
+          {result.cocktails.map((_, index) => (
             <button
               key={index}
               className={`indicator ${index === currentIndex ? 'active' : ''}`}
@@ -170,9 +166,9 @@ const ResultPage = ({ result, onRestart }) => {
           ))}
         </div>
 
-        {result.wines.length > 1 && (
+        {result.cocktails.length > 1 && (
           <p className="slide-hint">
-            {currentIndex < result.wines.length - 1
+            {currentIndex < result.cocktails.length - 1
               ? '左右划一划，看看火柴人还给你留了哪几杯。'
               : '已经滑到最后一杯了。'}
           </p>

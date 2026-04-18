@@ -259,6 +259,23 @@
 
 .options-grid .option-button {
   min-height: 88px;
+  align-items: flex-start;
+}
+
+.options-grid .option-marker {
+  min-width: 0;
+  padding: 8px 10px;
+  font-size: 12px;
+  line-height: 1.1;
+  word-break: break-all;
+}
+
+.options-grid .option-text {
+  width: 100%;
+}
+
+.options-grid .option-arrow {
+  margin-left: auto;
 }
 
 @media (max-width: 375px) {
