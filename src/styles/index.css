@@ -6,8 +6,6 @@
 
 :root {
   --color-paper: #fffaf1;
-  --color-paper-strong: #fff1be;
-  --color-paper-deep: #ffe39a;
   --color-ink: #141414;
   --color-ink-soft: #342e29;
   --color-ink-muted: #6d665e;
@@ -15,13 +13,11 @@
   --color-pink: #ff5d8f;
   --color-lime: #cbff49;
   --color-blue: #5ad8ff;
-  --color-orange: #ff9f43;
   --color-yellow: #ffe669;
-  --color-peach: #ffd5c2;
 
   --shadow-soft: 0 16px 40px rgba(20, 20, 20, 0.12);
-  --shadow-card: 10px 10px 0 var(--color-ink);
-  --shadow-card-tight: 6px 6px 0 var(--color-ink);
+  --shadow-card: 6px 6px 0 var(--color-ink);
+  --shadow-card-tight: 4px 4px 0 var(--color-ink);
 
   --font-family-display: 'ZCOOL KuaiLe', 'Comic Sans MS', cursive;
   --font-family-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -39,28 +35,15 @@ body {
   font-family: var(--font-family-body);
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(circle at 14% 18%, rgba(255, 93, 143, 0.16) 0 96px, transparent 97px),
-    radial-gradient(circle at 88% 14%, rgba(90, 216, 255, 0.18) 0 78px, transparent 79px),
-    radial-gradient(circle at 82% 82%, rgba(203, 255, 73, 0.18) 0 110px, transparent 111px),
+    radial-gradient(circle at 88% 12%, rgba(255, 230, 105, 0.14) 0 72px, transparent 73px),
     linear-gradient(180deg, rgba(20, 20, 20, 0.04) 0 1px, transparent 1px 36px);
-  background-size: auto, auto, auto, 100% 36px;
+  background-size: auto, 100% 36px;
   background-attachment: fixed;
   color: var(--color-ink);
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 24% 74%, rgba(255, 159, 67, 0.14) 0 62px, transparent 63px),
-    radial-gradient(circle at 48% 8%, rgba(255, 230, 105, 0.16) 0 44px, transparent 45px);
-  pointer-events: none;
-  z-index: -1;
 }
 
 button,

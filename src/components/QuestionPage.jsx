@@ -5,8 +5,8 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
   const [isVisible, setIsVisible] = useState(false);
   const progressPercent = ((currentIndex + 1) / totalQuestions) * 100;
   const helperLine = question.type === 'mbti'
-    ? '别选标准答案，选最像你的。'
-    : '按第一反应点，火柴人替你记着。';
+    ? '选最像你的那一个。'
+    : '按第一反应选。';
 
   useEffect(() => {
     setIsVisible(true);
@@ -55,7 +55,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
             </div>
           </div>
 
-          <div className="question-sketch" aria-hidden="true">
+          <div className="question-doodle-wrap" aria-hidden="true">
             <svg className="question-doodle" viewBox="0 0 120 120">
               <path className="stroke-main" d="M45 32c0-11 9-20 20-20s20 9 20 20-9 20-20 20-20-9-20-20Z" />
               <path className="stroke-main" d="M65 54v24" />
@@ -64,14 +64,11 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
               <path className="stroke-main" d="M65 78L51 102" />
               <path className="stroke-main" d="M65 78l18 23" />
               <path className="stroke-accent" d="M86 27c9-10 21-13 31-8 7 4 11 12 10 22-11 4-22 4-33-1" />
-              <path className="stroke-main" d="M88 45l-7 9" />
-              <path className="stroke-accent-alt" d="M22 66c5-9 13-15 23-16" />
             </svg>
-
-            <p className="question-note">{helperLine}</p>
           </div>
 
           <h2 className="question-text">{question.question}</h2>
+          <p className="question-note">{helperLine}</p>
 
           <div className={`options-list ${question.type === 'mbti' ? 'options-grid' : ''}`}>
             {question.options.map((option, index) => {
@@ -83,7 +80,6 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
                 <button
                   key={option.value}
                   className="option-button"
-                  data-tone={index % 4}
                   style={{ animationDelay: `${index * 0.05}s` }}
                   onClick={() => handleAnswerClick(option.value)}
                 >
@@ -91,12 +87,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
                     {question.type === 'mbti' ? optionCode : `0${index + 1}`.slice(-2)}
                   </span>
 
-                  <span className="option-copy">
-                    <span className="option-text">{optionLabel}</span>
-                    <span className="option-meta">
-                      {question.type === 'mbti' ? '人格代号' : '第一反应就好'}
-                    </span>
-                  </span>
+                  <span className="option-text">{optionLabel}</span>
 
                   <span className="option-arrow">{question.type === 'mbti' ? '✓' : '→'}</span>
                 </button>
@@ -104,18 +95,6 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
             })}
           </div>
         </div>
-      </div>
-
-      <div className="question-bg-doodles" aria-hidden="true">
-        <svg className="bg-doodle bg-doodle-left" viewBox="0 0 120 120">
-          <path className="stroke-main" d="M14 61c20-29 46-44 77-45" />
-          <path className="stroke-accent" d="M37 94c16-4 31 0 46 12" />
-        </svg>
-        <svg className="bg-doodle bg-doodle-right" viewBox="0 0 120 120">
-          <path d="M19 12H5M12 19L5 12L12 5" />
-          <path className="stroke-main" d="M14 24c16 8 29 21 39 39" />
-          <path className="stroke-accent-alt" d="M66 23c8-10 18-15 32-14" />
-        </svg>
       </div>
     </div>
   );

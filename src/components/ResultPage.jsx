@@ -35,7 +35,6 @@ const ResultPage = ({ result, onRestart }) => {
       ? '风格不同，但气质依然对路。'
       : '不是第一眼主角，但越看越顺。';
 
-  // 滑动处理
   const handleTouchStart = (e) => {
     setTouchStart(e.touches[0].clientX);
   };
@@ -44,19 +43,15 @@ const ResultPage = ({ result, onRestart }) => {
     const touchEnd = e.changedTouches[0].clientX;
     const diff = touchStart - touchEnd;
 
-    // 滑动阈值
     if (Math.abs(diff) > 50) {
       if (diff > 0 && !isLast) {
-        // 左滑，下一个
-        setCurrentIndex(prev => prev + 1);
+        setCurrentIndex((prev) => prev + 1);
       } else if (diff < 0 && !isFirst) {
-        // 右滑，上一个
-        setCurrentIndex(prev => prev - 1);
+        setCurrentIndex((prev) => prev - 1);
       }
     }
   };
 
-  // 鼠标拖动处理
   const handleMouseDown = (e) => {
     setTouchStart(e.clientX);
   };
@@ -65,9 +60,9 @@ const ResultPage = ({ result, onRestart }) => {
     const diff = touchStart - e.clientX;
     if (Math.abs(diff) > 50) {
       if (diff > 0 && !isLast) {
-        setCurrentIndex(prev => prev + 1);
+        setCurrentIndex((prev) => prev + 1);
       } else if (diff < 0 && !isFirst) {
-        setCurrentIndex(prev => prev - 1);
+        setCurrentIndex((prev) => prev - 1);
       }
     }
   };
@@ -92,12 +87,9 @@ const ResultPage = ({ result, onRestart }) => {
     }
   };
 
-  // 移除了旧的渐变函数，使用 CSS data-rank 属性
-
   return (
     <div className={`result-page ${isVisible ? 'visible' : ''}`}>
       <div className="result-content">
-        {/* MBTI 信息 */}
         <div className="result-intro">
           <div className="mbti-badge">
             <span className="mbti-type">{result.mbti}</span>
@@ -105,15 +97,8 @@ const ResultPage = ({ result, onRestart }) => {
           </div>
 
           <p className="mbti-description">{result.mbtiInfo.desc}</p>
-
-          <div className="keyword-list">
-            {result.mbtiInfo.keywords.map((keyword) => (
-              <span key={keyword}>{keyword}</span>
-            ))}
-          </div>
         </div>
 
-        {/* 卡片容器 */}
         <div
           className="cards-container"
           onTouchStart={handleTouchStart}
@@ -121,15 +106,11 @@ const ResultPage = ({ result, onRestart }) => {
           onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
         >
-          {/* 结果卡片 */}
           <div
             className="result-card"
             data-rank={rankTone}
             ref={cardRef}
           >
-            <span className="tape tape-left"></span>
-            <span className="tape tape-right"></span>
-
             <div className="result-header">
               <span className="result-label">{rankLabel}</span>
               <span className="match-score">{currentWine.displayMatch}%</span>
@@ -137,13 +118,13 @@ const ResultPage = ({ result, onRestart }) => {
 
             <div className="poster-headline">
               <h2 className="drink-name">{currentWine.name}</h2>
-              <p className="poster-caption">{posterCaption}</p>
+              <p className="poster-caption">
+                {posterCaption} · {currentWine.type}
+              </p>
             </div>
 
             <div className="poster-stage" aria-hidden="true">
-              <span className="poster-type">{currentWine.type}</span>
               <span className="poster-emoji">{currentWine.image}</span>
-              <span className="poster-bubble">今晚喝这杯？</span>
 
               <svg className="result-doodle" viewBox="0 0 360 240">
                 <path className="stroke-main" d="M130 82c0-20 16-36 36-36s36 16 36 36-16 36-36 36-36-16-36-36Z" />
@@ -153,17 +134,8 @@ const ResultPage = ({ result, onRestart }) => {
                 <path className="stroke-main" d="M166 176l-42 46" />
                 <path className="stroke-main" d="M166 176l48 42" />
                 <path className="stroke-accent" d="M220 86l12 40 32-8-11-39Z" />
-                <path className="stroke-main" d="M252 84c16 7 30 23 36 40" />
-                <path className="stroke-main" d="M106 168c-18 6-36 18-45 34" />
-                <path className="stroke-accent-alt" d="M80 72c9-20 29-32 53-32" />
-                <path className="stroke-accent-alt" d="M262 150c20 3 36 16 43 34" />
                 <path className="stroke-main" d="M70 214c67-17 151-18 231-2" />
-                <path className="stroke-main" d="M84 42l20 16" />
-                <path className="stroke-main" d="M98 25l4-21" />
-                <path className="stroke-main" d="M118 22l16-14" />
-                <path className="stroke-main" d="M268 46l21-10" />
-                <path className="stroke-main" d="M284 63l18 10" />
-                <path className="stroke-main" d="M274 28l8-17" />
+                <path className="stroke-accent-alt" d="M84 66c11-15 28-23 50-23" />
               </svg>
             </div>
 
@@ -187,7 +159,6 @@ const ResultPage = ({ result, onRestart }) => {
           </div>
         </div>
 
-        {/* 滑动指示器 */}
         <div className="slide-indicators">
           {result.wines.map((_, index) => (
             <button
@@ -199,7 +170,6 @@ const ResultPage = ({ result, onRestart }) => {
           ))}
         </div>
 
-        {/* 滑动提示 */}
         {result.wines.length > 1 && (
           <p className="slide-hint">
             {currentIndex < result.wines.length - 1
@@ -208,7 +178,6 @@ const ResultPage = ({ result, onRestart }) => {
           </p>
         )}
 
-        {/* 操作按钮 */}
         <div className="result-actions">
           <button className="action-button secondary" onClick={onRestart}>
             再测一次
@@ -217,11 +186,6 @@ const ResultPage = ({ result, onRestart }) => {
             保存这张海报
           </button>
         </div>
-      </div>
-
-      <div className="result-bg-doodles" aria-hidden="true">
-        <span className="result-spark spark-left"></span>
-        <span className="result-spark spark-right"></span>
       </div>
     </div>
   );
