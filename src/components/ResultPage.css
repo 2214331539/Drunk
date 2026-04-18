@@ -1,9 +1,8 @@
 .result-page {
   min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px 16px;
+  padding: 30px 18px 44px;
   position: relative;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -14,44 +13,73 @@
 }
 
 .result-content {
-  width: 100%;
-  max-width: 360px;
+  width: min(100%, 420px);
   position: relative;
-  z-index: 2;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* MBTI 徽章 - 撞色边框 */
+.result-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 20px 16px;
+  border: 3px solid var(--color-ink);
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 8px 8px 0 var(--color-ink);
+}
+
 .mbti-badge {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
-  padding: 12px 24px;
-  background: var(--color-white);
-  border-radius: 50px;
-  border: 3px solid;
-  border-image: var(--gradient-pop) 1;
-  box-shadow: var(--shadow-soft);
+  align-self: flex-start;
+  padding: 10px 16px;
+  background: var(--color-lime);
+  border-radius: 999px;
+  border: 3px solid var(--color-ink);
+  box-shadow: 4px 4px 0 var(--color-ink);
 }
 
 .mbti-type {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-primary);
+  font-family: var(--font-family-display);
+  font-size: 24px;
+  color: var(--color-ink);
   letter-spacing: 0.15em;
 }
 
 .mbti-name {
-  font-size: 13px;
-  color: var(--color-accent);
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 800;
 }
 
-/* 卡片容器 */
+.mbti-description {
+  font-size: 14px;
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.keyword-list span {
+  padding: 8px 12px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 999px;
+  background: #fff3c0;
+  box-shadow: 3px 3px 0 var(--color-ink);
+  font-size: 12px;
+  font-weight: 800;
+}
+
 .cards-container {
   position: relative;
-  margin-bottom: 20px;
   cursor: grab;
   user-select: none;
 }
@@ -60,171 +88,244 @@
   cursor: grabbing;
 }
 
-/* 结果卡片 - 撞色风格 */
 .result-card {
-  background: var(--color-white);
-  border-radius: 24px;
-  padding: 32px 24px;
-  box-shadow: var(--shadow-float);
-  text-align: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 241, 190, 0.98) 100%);
+  border-radius: 34px;
+  padding: 26px 20px 20px;
+  box-shadow: 12px 12px 0 var(--color-ink);
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 3px solid transparent;
+  border: 3px solid var(--color-ink);
 }
 
 .result-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 8px;
+  inset: 16px;
+  border: 2px dashed rgba(20, 20, 20, 0.18);
+  border-radius: 26px;
+  pointer-events: none;
 }
 
-/* 不同排名的配色 */
-.result-card[data-rank="1"] {
-  border-color: var(--color-primary);
+.result-card[data-rank="champion"] {
+  background: linear-gradient(180deg, #fffdf8 0%, #ffe6ee 100%);
 }
 
-.result-card[data-rank="1"]::before {
-  background: var(--color-primary);
+.result-card[data-rank="runner"] {
+  background: linear-gradient(180deg, #fffdf8 0%, #e7faff 100%);
 }
 
-.result-card[data-rank="2"] {
-  border-color: var(--color-accent);
+.result-card[data-rank="third"] {
+  background: linear-gradient(180deg, #fffdf8 0%, #fff2dc 100%);
 }
 
-.result-card[data-rank="2"]::before {
-  background: var(--color-accent);
+.result-card[data-rank="wild"] {
+  background: linear-gradient(180deg, #fffdf8 0%, #f8ffd6 100%);
 }
 
-.result-card[data-rank="3"] {
-  border-color: var(--color-accent4);
+.tape {
+  position: absolute;
+  top: 12px;
+  width: 72px;
+  height: 22px;
+  border: 2px solid var(--color-ink);
+  border-radius: 8px;
+  background: rgba(255, 230, 105, 0.68);
+  z-index: 2;
 }
 
-.result-card[data-rank="3"]::before {
-  background: var(--color-accent4);
+.tape-left {
+  left: 22px;
+  transform: rotate(-12deg);
 }
 
-/* 卡片头部 */
+.tape-right {
+  right: 22px;
+  transform: rotate(14deg);
+}
+
 .result-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 16px;
   position: relative;
   z-index: 2;
 }
 
 .result-label {
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.result-card[data-rank="1"] .result-label {
-  color: var(--color-primary);
-}
-
-.result-card[data-rank="2"] .result-label {
-  color: var(--color-accent);
-}
-
-.result-card[data-rank="3"] .result-label {
-  color: var(--color-accent4);
+  max-width: 62%;
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  line-height: 1.2;
 }
 
 .match-score {
-  font-size: 14px;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 20px;
+  padding: 10px 14px;
+  border-radius: 18px;
+  border: 3px solid var(--color-ink);
+  background: var(--color-white);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  line-height: 1;
 }
 
-.result-card[data-rank="1"] .match-score {
-  background: var(--color-primary);
+.result-card[data-rank="champion"] .match-score {
+  background: var(--color-pink);
   color: var(--color-white);
 }
 
-.result-card[data-rank="2"] .match-score {
-  background: var(--color-accent);
-  color: var(--color-white);
+.result-card[data-rank="runner"] .match-score {
+  background: var(--color-blue);
 }
 
-.result-card[data-rank="3"] .match-score {
-  background: var(--color-accent4);
-  color: var(--color-white);
+.result-card[data-rank="third"] .match-score {
+  background: var(--color-orange);
 }
 
-/* 酒款展示 */
-.result-drink {
-  margin-bottom: 20px;
+.result-card[data-rank="wild"] .match-score {
+  background: var(--color-lime);
+}
+
+.poster-headline {
   position: relative;
   z-index: 2;
-}
-
-.drink-icon {
-  font-size: 60px;
-  margin-bottom: 14px;
-  animation: float 4s ease-in-out infinite;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .drink-name {
-  font-size: 24px;
-  color: var(--color-text);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  margin-bottom: 6px;
+  font-family: var(--font-family-display);
+  font-size: clamp(34px, 9vw, 42px);
+  color: var(--color-ink);
+  line-height: 1.02;
 }
 
-.drink-type {
-  font-size: 13px;
-  color: var(--color-text-light);
-  letter-spacing: 0.15em;
-  font-weight: 500;
+.poster-caption {
+  font-size: 14px;
+  color: var(--color-ink-muted);
+  line-height: 1.7;
 }
 
-/* 分割线 */
-.result-divider {
-  width: 60px;
-  height: 3px;
-  margin: 20px auto;
-  border-radius: 2px;
+.poster-stage {
   position: relative;
+  min-height: 240px;
+  margin-bottom: 16px;
+  border: 3px solid var(--color-ink);
+  border-radius: 28px;
+  background: #fffef8;
+  overflow: hidden;
+}
+
+.poster-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 93, 143, 0.16) 0 70px, transparent 71px),
+    radial-gradient(circle at 84% 26%, rgba(90, 216, 255, 0.2) 0 74px, transparent 75px),
+    radial-gradient(circle at 76% 82%, rgba(203, 255, 73, 0.18) 0 92px, transparent 93px);
+}
+
+.poster-type {
+  position: absolute;
+  top: 16px;
+  left: 16px;
   z-index: 2;
+  padding: 8px 12px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 16px;
+  background: var(--color-white);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-size: 12px;
+  font-weight: 800;
 }
 
-.result-card[data-rank="1"] .result-divider {
-  background: var(--gradient-warm);
+.poster-emoji {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 2;
+  width: 74px;
+  height: 74px;
+  border: 3px solid var(--color-ink);
+  border-radius: 22px;
+  background: var(--color-white);
+  box-shadow: 6px 6px 0 var(--color-ink);
+  display: grid;
+  place-items: center;
+  font-size: 40px;
+  transform: rotate(8deg);
+  animation: floatBob 4s ease-in-out infinite;
 }
 
-.result-card[data-rank="2"] .result-divider {
-  background: var(--gradient-cool);
+.poster-bubble {
+  position: absolute;
+  left: 20px;
+  bottom: 18px;
+  z-index: 2;
+  max-width: 164px;
+  padding: 10px 14px;
+  border: 3px solid var(--color-ink);
+  border-radius: 20px;
+  background: var(--color-white);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-size: 14px;
+  font-weight: 800;
+  transform: rotate(-3deg);
 }
 
-.result-card[data-rank="3"] .result-divider {
-  background: var(--gradient-violet);
+.result-doodle {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
-/* 推荐理由 */
+.result-doodle .stroke-main,
+.result-doodle .stroke-accent,
+.result-doodle .stroke-accent-alt {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6;
+}
+
+.result-doodle .stroke-main {
+  stroke: var(--color-ink);
+}
+
+.result-doodle .stroke-accent {
+  stroke: var(--color-pink);
+}
+
+.result-doodle .stroke-accent-alt {
+  stroke: var(--color-blue);
+}
+
 .result-reason {
   font-size: 15px;
-  color: var(--color-text-light);
-  line-height: 2;
-  margin-bottom: 20px;
+  color: var(--color-ink-soft);
+  line-height: 1.85;
+  margin-bottom: 16px;
   position: relative;
   z-index: 2;
-  font-style: italic;
+  padding: 14px 16px;
+  border: 2px dashed rgba(20, 20, 20, 0.24);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
 }
 
-/* 酒品信息 */
 .wine-info {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  margin-bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
   position: relative;
   z-index: 2;
 }
@@ -233,75 +334,79 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
+  padding: 14px 16px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 22px;
+  background: var(--color-white);
+  box-shadow: 4px 4px 0 var(--color-ink);
 }
 
 .info-label {
-  font-size: 11px;
-  color: var(--color-accent);
-  letter-spacing: 0.15em;
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .info-value {
-  font-size: 13px;
-  color: var(--color-text);
-  font-weight: 500;
+  font-size: 14px;
+  color: var(--color-ink);
+  font-weight: 800;
+  line-height: 1.5;
 }
 
-/* 卡片底部 */
 .result-footer {
-  margin-top: 24px;
   position: relative;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--color-ink-muted);
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .footer-logo {
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  color: var(--color-text-light);
-  font-weight: 600;
+  max-width: 62%;
 }
 
-/* 滑动指示器 */
 .slide-indicators {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 
 .indicator {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--color-bg-secondary);
-  border: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--color-white);
+  border: 3px solid var(--color-ink);
   cursor: pointer;
-  transition: all 0.3s ease;
+  box-shadow: 3px 3px 0 var(--color-ink);
+  transition: all 0.2s ease;
 }
 
 .indicator.active {
-  background: var(--color-primary);
-  width: 32px;
-  border-radius: 5px;
+  background: var(--color-lime);
+  width: 42px;
 }
 
 .indicator:hover {
-  background: var(--color-accent);
+  transform: translateY(-2px);
 }
 
-/* 滑动提示 */
 .slide-hint {
   text-align: center;
   font-size: 13px;
-  color: var(--color-text-light);
-  opacity: 0.7;
-  margin-bottom: 20px;
-  letter-spacing: 0.05em;
+  color: var(--color-ink-soft);
+  opacity: 0.8;
+  letter-spacing: 0.02em;
 }
 
-/* 操作按钮 */
 .result-actions {
   display: flex;
   gap: 12px;
@@ -309,66 +414,82 @@
 
 .action-button {
   flex: 1;
-  padding: 16px 24px;
-  border-radius: 14px;
+  padding: 16px 18px;
+  border-radius: 24px;
   font-size: 15px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: all var(--duration-normal) ease;
-  border: none;
-  font-family: var(--font-family-serif);
-  font-weight: 600;
+  transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  border: 3px solid var(--color-ink);
+  font-weight: 800;
+  box-shadow: 6px 6px 0 var(--color-ink);
 }
 
 .action-button.primary {
-  background: var(--gradient-pop);
+  background: var(--color-ink);
   color: var(--color-white);
-  box-shadow: var(--shadow-color);
 }
 
 .action-button.primary:hover {
-  box-shadow: var(--shadow-float);
-  transform: translateY(-2px);
+  transform: translate(-2px, -4px) rotate(-1deg);
+  box-shadow: 10px 10px 0 var(--color-ink);
 }
 
 .action-button.secondary {
   background: var(--color-white);
-  color: var(--color-text);
-  border: 2px solid var(--color-bg-secondary);
+  color: var(--color-ink);
 }
 
 .action-button.secondary:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  transform: translate(-2px, -4px) rotate(1deg);
+  box-shadow: 10px 10px 0 var(--color-ink);
 }
 
 .action-button:active {
-  transform: scale(0.98);
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 var(--color-ink);
 }
 
-/* 背景渐变 */
-.result-bg-gradient {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, #e8f5f2 0%, #f0f9f8 50%, #fff5f0 100%);
+.result-bg-doodles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   z-index: 0;
 }
 
-/* 响应式适配 */
+.result-spark {
+  position: absolute;
+  border: 3px solid rgba(20, 20, 20, 0.14);
+  border-radius: 999px;
+}
+
+.spark-left {
+  width: 110px;
+  height: 110px;
+  left: -26px;
+  top: 180px;
+}
+
+.spark-right {
+  width: 78px;
+  height: 78px;
+  right: -20px;
+  bottom: 124px;
+}
+
 @media (max-width: 375px) {
   .result-card {
-    padding: 28px 20px;
+    padding: 24px 16px 18px;
   }
 
-  .drink-icon {
-    font-size: 50px;
+  .poster-emoji {
+    width: 64px;
+    height: 64px;
+    font-size: 34px;
   }
 
   .drink-name {
-    font-size: 20px;
+    font-size: 30px;
   }
 
   .result-reason {
@@ -376,21 +497,11 @@
   }
 
   .wine-info {
-    flex-direction: column;
-    gap: 14px;
+    grid-template-columns: 1fr;
   }
 
   .result-actions {
     flex-direction: column;
-  }
-}
-
-@media (min-width: 768px) {
-  .result-page {
-    max-width: 420px;
-    margin: 0 auto;
-    border-radius: 32px;
-    box-shadow: var(--shadow-float);
   }
 }
 

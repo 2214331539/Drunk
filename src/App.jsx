@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback } from 'react';
 import HomePage from './components/HomePage';
 import QuestionPage from './components/QuestionPage';
 import ResultPage from './components/ResultPage';

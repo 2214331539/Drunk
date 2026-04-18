@@ -5,58 +5,80 @@
   overflow: hidden;
 }
 
-/* 页面容器基础样式 */
-.page {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  position: relative;
+.app::before,
+.app::after {
+  content: '';
+  position: fixed;
+  border: 3px solid rgba(20, 20, 20, 0.14);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
 }
 
-/* 淡入动画 */
-@keyframes fadeIn {
+.app::before {
+  width: 210px;
+  height: 210px;
+  top: 56px;
+  right: -82px;
+  transform: rotate(12deg);
+}
+
+.app::after {
+  width: 160px;
+  height: 160px;
+  left: -70px;
+  bottom: 72px;
+  transform: rotate(-8deg);
+}
+
+@keyframes fadeSlideUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(28px) rotate(-1.5deg);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes float {
+@keyframes floatBob {
   0%, 100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
-/* 按钮基础样式 */
-.button {
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-family: var(--font-family-serif);
-  transition: all var(--duration-normal) ease;
-}
-
-.button:active {
-  transform: scale(0.98);
-}
-
-/* 文字动画 */
-@keyframes textReveal {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+@keyframes wobbleTilt {
+  0%, 100% {
+    transform: rotate(-2deg);
   }
+
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes pulseMarker {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes lineDash {
+  from {
+    stroke-dashoffset: 14;
+  }
+
   to {
-    opacity: 1;
-    transform: translateY(0);
+    stroke-dashoffset: 0;
   }
 }

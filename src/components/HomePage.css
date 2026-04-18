@@ -3,201 +3,289 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 30px 18px 42px;
   position: relative;
   overflow: hidden;
 }
 
-.home-content {
-  text-align: center;
+.home-panel {
+  width: min(100%, 420px);
   position: relative;
-  z-index: 2;
-  animation: fadeIn 1s ease;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  animation: fadeSlideUp 0.8s ease;
 }
 
-/* 装饰圆圈 - 多巴胺色彩 */
-.home-decoration {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
-  pointer-events: none;
+.home-stickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.deco-circle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.6;
-  animation: float 6s ease-in-out infinite;
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  letter-spacing: 0.08em;
 }
 
-.deco-1 {
-  width: 180px;
-  height: 180px;
-  top: 0;
-  left: 0;
-  background: var(--color-primary);
-  animation-delay: 0s;
+.sticker-pink {
+  background: var(--color-pink);
+  color: var(--color-white);
+  transform: rotate(-4deg);
 }
 
-.deco-2 {
-  width: 140px;
-  height: 140px;
-  bottom: 30px;
-  right: 0;
-  background: var(--color-accent);
-  animation-delay: 2s;
+.sticker-lime {
+  background: var(--color-lime);
+  transform: rotate(3deg);
 }
 
-.deco-3 {
-  width: 100px;
-  height: 100px;
-  bottom: 50px;
-  left: 40px;
-  background: var(--color-accent2);
-  animation-delay: 4s;
+.home-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-/* 标题样式 */
-.home-title {
-  margin-bottom: 32px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
+.home-kicker {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
 }
 
 .title-main {
   display: block;
-  font-size: 52px;
-  color: var(--color-primary);
-  animation: textReveal 0.8s ease 0.2s both;
+  font-family: var(--font-family-display);
+  font-size: clamp(48px, 13vw, 72px);
+  line-height: 0.92;
 }
 
 .title-sub {
   display: block;
-  font-size: 40px;
-  color: var(--color-accent);
-  animation: textReveal 0.8s ease 0.4s both;
+  margin-top: 8px;
+  font-family: var(--font-family-display);
+  font-size: clamp(20px, 6vw, 30px);
+  letter-spacing: 0.08em;
+  color: var(--color-ink-soft);
 }
 
-/* 描述文字 */
 .home-description {
-  font-size: 17px;
-  color: var(--color-text-light);
-  margin-bottom: 48px;
-  line-height: 2;
-  letter-spacing: 0.05em;
-  animation: textReveal 0.8s ease 0.6s both;
+  max-width: 30ch;
+  font-size: 16px;
+  color: var(--color-ink-soft);
+  line-height: 1.8;
 }
 
-/* 开始按钮 - 大胆撞色 */
-.start-button {
+.home-scene {
   position: relative;
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  background: var(--gradient-pop);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: var(--shadow-color);
-  transition: all var(--duration-normal) ease;
-  animation: textReveal 0.8s ease 0.8s both;
+  min-height: 270px;
+  padding: 24px 18px 16px;
+  border: 3px solid var(--color-ink);
+  border-radius: 34px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 241, 190, 0.95) 100%);
+  box-shadow: var(--shadow-card);
   overflow: hidden;
 }
 
-.start-button:hover {
-  box-shadow: var(--shadow-float), var(--shadow-color);
-  transform: scale(1.08) rotate(5deg);
+.home-scene::before {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 2px dashed rgba(20, 20, 20, 0.18);
+  border-radius: 26px;
 }
 
-.start-button:active {
-  transform: scale(0.98);
-}
-
-.button-text {
-  font-size: 22px;
-  color: var(--color-white);
-  letter-spacing: 0.3em;
-  font-weight: 600;
-  position: relative;
+.home-note {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 10px 16px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 18px;
+  background: var(--color-white);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  transform: rotate(-6deg);
   z-index: 2;
 }
 
-.button-shine {
+.scene-chip {
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.4) 50%,
-    transparent 70%
-  );
-  transform: rotate(45deg);
-  animation: shine 3s ease-in-out infinite;
+  bottom: 18px;
+  z-index: 2;
+  padding: 10px 14px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 999px;
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-size: 12px;
+  font-weight: 800;
 }
 
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(45deg);
-  }
+.chip-left {
+  left: 16px;
+  background: var(--color-lime);
+  transform: rotate(-7deg);
 }
 
-/* 底部提示 */
-.home-footer {
-  margin-top: 32px;
-  font-size: 14px;
-  color: var(--color-text-light);
-  opacity: 0.8;
+.chip-right {
+  right: 16px;
+  background: var(--color-blue);
+  transform: rotate(6deg);
+}
+
+.home-doodle {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+  margin-top: 4px;
+}
+
+.home-doodle text {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  fill: var(--color-ink);
+}
+
+.home-doodle .board-fill {
+  fill: #fffdf7;
+  stroke: var(--color-ink);
+  stroke-width: 5;
+}
+
+.home-doodle .stroke-main,
+.home-doodle .stroke-accent,
+.home-doodle .stroke-accent-alt {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 6;
+}
+
+.home-doodle .stroke-main {
+  stroke: var(--color-ink);
+}
+
+.home-doodle .stroke-accent {
+  stroke: var(--color-pink);
+}
+
+.home-doodle .stroke-accent-alt {
+  stroke: var(--color-blue);
+}
+
+.start-button {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 20px 22px;
+  border: 3px solid var(--color-ink);
+  border-radius: 28px;
+  background: var(--color-ink);
+  color: var(--color-white);
+  box-shadow: 0 10px 0 var(--color-pink);
+  text-align: left;
+  transform: rotate(-1deg);
+  transition: transform var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+}
+
+.start-button:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 0 14px 0 var(--color-pink);
+}
+
+.start-button:active {
+  transform: translateY(2px);
+}
+
+.button-main {
+  font-family: var(--font-family-display);
+  font-size: 30px;
+  line-height: 1;
+}
+
+.button-sub {
+  font-size: 13px;
   letter-spacing: 0.1em;
-  animation: textReveal 0.8s ease 1s both;
+  opacity: 0.8;
 }
 
-/* 背景渐变 */
-.home-bg-gradient {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, #e8f5f2 0%, #f0f9f8 50%, #fff5f0 100%);
+.home-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.home-tags span {
+  padding: 10px 14px;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 18px;
+  background: var(--color-white);
+  box-shadow: 4px 4px 0 var(--color-ink);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.home-spark {
+  position: absolute;
+  border: 3px solid rgba(20, 20, 20, 0.15);
+  border-radius: 999px;
+  pointer-events: none;
   z-index: 0;
 }
 
-/* 响应式适配 */
-@media (max-width: 375px) {
+.spark-a {
+  width: 88px;
+  height: 88px;
+  top: 92px;
+  left: 8px;
+}
+
+.spark-b {
+  width: 56px;
+  height: 56px;
+  right: 10px;
+  top: 260px;
+}
+
+.spark-c {
+  width: 124px;
+  height: 124px;
+  bottom: 108px;
+  right: -34px;
+}
+
+@media (max-width: 390px) {
   .title-main {
-    font-size: 42px;
+    font-size: 44px;
   }
 
   .title-sub {
-    font-size: 32px;
-  }
-
-  .start-button {
-    width: 110px;
-    height: 110px;
-  }
-
-  .button-text {
     font-size: 18px;
+  }
+
+  .home-description {
+    font-size: 15px;
+  }
+
+  .scene-chip {
+    font-size: 11px;
   }
 }
 
 @media (min-width: 768px) {
   .home-page {
-    max-width: 420px;
-    margin: 0 auto;
-    border-radius: 32px;
-    box-shadow: var(--shadow-float);
+    padding: 48px 24px;
   }
 }
