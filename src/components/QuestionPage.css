@@ -145,34 +145,45 @@
   transition: width 0.45s ease;
 }
 
-.question-doodle-wrap {
+.question-image-slot {
   position: absolute;
   top: 18px;
   right: 18px;
   width: 72px;
   height: 72px;
-  opacity: 0.9;
+  padding: 8px;
+  border: 2px solid var(--color-ink);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(244, 244, 244, 0.92));
+  box-shadow: var(--shadow-card-tight);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.question-doodle {
-  width: 100%;
-  height: 100%;
+.question-image-label {
+  align-self: flex-start;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: var(--color-white);
+  border: 1.5px solid var(--color-ink);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
 }
 
-.question-doodle .stroke-main,
-.question-doodle .stroke-accent {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 5;
-}
-
-.question-doodle .stroke-main {
-  stroke: var(--color-ink);
-}
-
-.question-doodle .stroke-accent {
-  stroke: var(--color-pink);
+.question-image-mark {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 12px;
+  border: 2px dashed rgba(20, 20, 20, 0.3);
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--color-ink-muted);
 }
 
 .question-text {
@@ -182,7 +193,7 @@
   line-height: 1.16;
   margin-bottom: 10px;
   letter-spacing: 0.02em;
-  padding-right: 72px;
+  padding-right: 84px;
 }
 
 .question-note {

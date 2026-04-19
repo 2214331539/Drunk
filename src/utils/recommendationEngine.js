@@ -1,36 +1,40 @@
 const TAG_COPY = {
   '低度数': '低负担的微醺感',
-  '低成本': '没有压力的点单门槛',
-  '冷淡': '冷感但有品的距离感',
-  '出片': '很适合点单发圈的氛围感',
-  '刺激': '带一点冒险的刺激感',
+  '低成本': '点起来不心疼的爽感',
+  '冷淡': '干净克制的距离感',
+  '出片': '一上桌就很会出效果',
+  '刺激': '会让情绪立刻起反应',
   '复杂': '层次慢慢展开的内容感',
-  '奶香': '奶香带来的安全感',
-  '安神': '让人慢慢放松下来的安稳感',
-  '微苦': '收口很高级的微苦感',
-  '快乐水': '熟悉又上头的快乐水属性',
-  '抓马': '情绪一下就起来的戏剧感',
-  '断电': '迅速上头的失控感',
-  '极简': '干净克制的高级感',
-  '果味': '果香先行的亲和力',
-  '梦幻': '带一点逃离现实的梦幻感',
-  '气泡': '轻快的气泡感',
-  '治愈': '被稳稳接住的治愈感',
-  '浓烈': '更强烈的存在感',
-  '清爽': '干净利落的清爽感',
-  '烈酒': '更直接的酒精存在感',
-  '爽快': '喝起来很痛快',
-  '甜水': '很好入口的甜水感',
-  '甜腻': '高满足度的甜口',
-  '直球': '不绕弯的直给感',
-  '简单粗暴': '不用思考也很爽快',
-  '纠结': '越喝越有内容的回味',
-  '纯粹': '干脆直接的纯粹感',
-  '经典': '经典不会出错的体面',
-  '解压': '卸掉压力的松弛感',
-  '酸甜': '酸甜平衡的讨喜口感',
-  '颜值高': '一上桌就想拍照的颜值',
-  '高酒精度': '更明确的酒精存在感'
+  '奶香': '软乎乎的包裹感',
+  '安神': '能把人慢慢放下来的安稳感',
+  '治愈': '很会接住人的情绪',
+  '平和': '没有攻击性的舒服感',
+  '微苦': '收口很高级的苦感',
+  '微醺': '刚刚好的轻上头',
+  '快乐水': '熟悉又上头的快乐感',
+  '抓马': '情绪一下就抬起来的戏剧感',
+  '断电': '很容易让理智下班',
+  '极简': '一眼就懂的高级感',
+  '果味': '入口很友好的亲和力',
+  '梦幻': '有点脱离现实的漂亮感',
+  '气泡': '轻快往上冒的氛围感',
+  '浓烈': '存在感特别强',
+  '浪漫': '会让人自动脑补故事',
+  '清淡': '不吵不闹的清透感',
+  '清爽': '能把整个人降温一点',
+  '烈酒': '很直接的酒精存在感',
+  '爽快': '不拖泥带水的痛快感',
+  '直球': '不绕弯子的直接劲儿',
+  '甜水': '入口门槛很低',
+  '甜腻': '会让人有满足感的甜',
+  '简单粗暴': '不用想太多也能立刻开心',
+  '纠结': '越喝越有回味',
+  '纯粹': '干脆利落的完成度',
+  '经典': '怎么点都不容易出错',
+  '解压': '很会卸掉负担',
+  '酸甜': '最容易讨人喜欢的平衡感',
+  '颜值高': '还没入口就先赢了视觉',
+  '高酒精度': '上头速度很明确'
 };
 
 const SBTI_PREFERRED_ALIASES = {
@@ -57,11 +61,15 @@ const SBTI_EXCLUDED_ALIASES = {
   '傻白甜': { tags: ['甜腻', '甜水'] },
   '喧闹': { tags: ['快乐水', '气泡', '抓马'] },
   '娘娘腔': { tags: ['梦幻'] },
+  '平庸': { tags: ['极简'] },
+  '平淡': { tags: ['清爽', '治愈'] },
   '忧郁': { tags: ['微苦', '纠结'] },
   '拖泥带水': { tags: ['复杂'] },
   '挑战性': { tags: ['复杂', '烈酒'] },
   '提神': { tags: ['刺激'] },
+  '无趣': { tags: ['极简', '纯粹'] },
   '无酒精': { tags: ['低度数'] },
+  '昂贵': { tags: ['颜值高', '出片'] },
   '果味重': { tags: ['果味'] },
   '深沉': { tags: ['复杂', '微苦', '经典'] },
   '清淡': { tags: ['清爽', '极简'] },
@@ -80,6 +88,83 @@ const SBTI_EXCLUDED_ALIASES = {
   '高端': { tags: ['经典'] },
   '高调': { tags: ['出片', '颜值高', '梦幻'] }
 };
+
+const PERSONA_TEMPLATES = [
+  '{sbtiCode}这种{sbtiName}，挑酒这件事本来就不该太普通',
+  '{shortdesc}，所以真正会让你停下来的，往往不是热闹，是调性对上',
+  '{planTitle}这条路子，放在{sbtiCode}身上本来就很容易成立',
+  '{sbtiCode}这种人格，适合的不是随便一杯，而是第一眼就让人想下单的那种酒',
+  '对{sbtiCode}来说，酒单里最值钱的不是品类多，而是有没有一杯刚好戳中自己'
+];
+
+const MATCH_TEMPLATES = [
+  '{drink}身上的{tagKeywords}一起发力，几乎就是给你这套人格定制的买单理由',
+  '它最会抓人的地方，是把{tagKeywords}这几层感觉叠得很顺，基本没有犹豫成本',
+  '它真正会勾人的点，不是标签堆得多，而是{tagCopyText}这些感觉全在往同一个方向发力',
+  '当{spotlight}和{tagKeywords}撞在一杯里，{sbtiCode}往往很难装作没看到',
+  '这杯厉害的不是花哨，而是{tagKeywords}这些点全都落在会让你心动的位置上'
+];
+
+const PRODUCT_TEMPLATES = [
+  '{spotlight}这种设定，本身就比普通酒更容易让人记住',
+  '{drink}的妙处在于，{descSnippet}，所以它不只是好喝，还特别会做情绪',
+  '再加上它本身就是{spotlight}这一路数，气氛、画面和记忆点都替你准备好了',
+  '{descSnippet}，所以这类酒很容易把“想喝一杯”直接变成“就点这一杯”'
+];
+
+const PRICE_WRAPPERS = [
+  '{pricePitch}',
+  '更妙的是，{pricePitch}',
+  '而且从下单心理上说，{pricePitch}',
+  '放到真正买单那一刻，{pricePitch}'
+];
+
+const URGE_TEMPLATES = {
+  visual: [
+    '这种杯子最危险的地方，是连没开喝的人都会先想拍，再想点',
+    '它不是单纯好看，是会让人觉得“不点就亏了今晚的镜头”的那种好看',
+    '说白了，这就是那种看见就会让人自动脑补出片画面的酒'
+  ],
+  comfort: [
+    '它很容易让人冒出一个念头：今晚就该对自己好一点',
+    '这种酒最会制造一种冲动，叫“别硬撑了，就点它”',
+    '买它不像消费，倒更像给情绪做一次体面安置'
+  ],
+  intense: [
+    '它像替今晚按下快进键，所以很难不让人想立刻下单',
+    '这种酒的下单逻辑很直接，看上了就会想马上拥有',
+    '它不是慢热型选手，而是会把冲动当场拱出来的那一杯'
+  ],
+  cool: [
+    '它会让人觉得，这杯点出来，整个人的风格先稳住一半',
+    '有些酒负责好喝，这种酒更负责替人立住气质',
+    '点它的快乐不只在入口，还在它一上桌就很像你的审美声明'
+  ],
+  easy: [
+    '下单成本低，快乐来得快，基本属于看到就想点的类型',
+    '这种杯子最适合先爽再说，几乎不会给人拖延的机会',
+    '它没有太高理解门槛，所以很容易把心动立刻变成行动'
+  ],
+  story: [
+    '这种层次感最会骗人买单，因为看起来就像“这一杯有东西”',
+    '它不会只停在好喝，而是会让人觉得这杯值得被认真拥有一次',
+    '有内容的酒最容易让人心动，因为它看起来像能接住一个晚上的情绪'
+  ],
+  default: [
+    '说到底，这就是那种看完酒单会让人心里默念“就它了”的杯子',
+    '它给人的感觉不是试试看，而是很容易直接进入买单流程',
+    '真正会让人下单的酒，通常不是最吵的，而是最会让人确定的'
+  ]
+};
+
+const COMPOSITION_PATTERNS = [
+  ['persona', 'match', 'product', 'urge'],
+  ['plan', 'match', 'price', 'urge'],
+  ['persona', 'product', 'plan', 'price'],
+  ['product', 'match', 'urge'],
+  ['persona', 'plan', 'product', 'urge'],
+  ['plan', 'product', 'match', 'price']
+];
 
 function addWeight(map, key, value) {
   map.set(key, (map.get(key) || 0) + value);
@@ -103,11 +188,62 @@ function sanitizeQuote(text = '') {
 }
 
 function trimEndingPunctuation(text = '') {
-  return text.replace(/[。？！!?]+$/g, '').trim();
+  return text.replace(/[。？！!?,，、；]+$/g, '').trim();
 }
 
 function cleanTitle(title = '') {
   return title.replace(/[【】]/g, '').trim();
+}
+
+function normalizeText(text = '') {
+  return text.replace(/\s+/g, ' ').trim();
+}
+
+function hashString(text = '') {
+  let hash = 2166136261;
+
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+function getSeededIndex(length, seedSource, salt) {
+  if (!length) {
+    return 0;
+  }
+
+  return hashString(`${seedSource}:${salt}`) % length;
+}
+
+function pickSeeded(list, seedSource, salt) {
+  if (!Array.isArray(list) || !list.length) {
+    return '';
+  }
+
+  return list[getSeededIndex(list.length, seedSource, salt)];
+}
+
+function fillTemplate(template, variables) {
+  return String(template || '').replace(/\{(\w+)\}/g, (_, key) => variables[key] || '');
+}
+
+function splitSentences(text = '') {
+  return String(text)
+    .split(/[。？！]/)
+    .map((item) => normalizeText(trimEndingPunctuation(item)))
+    .filter(Boolean);
+}
+
+function ensureSentence(text = '') {
+  const normalized = normalizeText(trimEndingPunctuation(text));
+  return normalized ? `${normalized}。` : '';
+}
+
+function uniqTags(list) {
+  return [...new Set(list)];
 }
 
 function getPriceText(costRange = []) {
@@ -120,24 +256,58 @@ function getPriceText(costRange = []) {
 
 function getPricePitch(costRange = []) {
   if (!Array.isArray(costRange) || costRange.length < 2) {
-    return '价格并不夸张，属于很容易被点上的那一类。';
+    return '价格不会给人太重的心理负担，属于很容易顺手点下去的那一杯';
   }
 
   const [low, high] = costRange;
+  const priceText = getPriceText(costRange);
 
   if (high <= 10) {
-    return `再看它常见落在 ${getPriceText(costRange)} 这个区间，几乎就是想点就点的低负担快乐。`;
+    return `${priceText}这个区间，几乎就是“想点就点”的低负担快乐`;
   }
 
   if (high <= 14) {
-    return `而它常见价格带在 ${getPriceText(costRange)}，很容易让人觉得这杯花得值。`;
+    return `它常见价格落在${priceText}，很容易让人觉得这杯花得值`;
   }
 
-  return `它常见价格带在 ${getPriceText(costRange)}，但给到的氛围和完成度，足够让这笔钱花得很甘心。`;
+  if (low >= 10) {
+    return `它常见价格在${priceText}，但给到的完成度和氛围，足够让这笔钱花得心甘情愿`;
+  }
+
+  return `它常见价格在${priceText}，花起来不算夸张，回报却很完整`;
 }
 
 function getTagPhrase(tag) {
   return TAG_COPY[tag] || tag;
+}
+
+function buildTagKeywords(matchedTags, fallbackTags = []) {
+  const tags = uniqTags([...matchedTags, ...(fallbackTags || [])]).slice(0, 3);
+  return tags.length ? tags.join('、') : '好喝、耐看、很容易被点单';
+}
+
+function buildTagCopyText(matchedTags, fallbackTags = []) {
+  const tags = uniqTags([...matchedTags, ...(fallbackTags || [])])
+    .slice(0, 3)
+    .map(getTagPhrase);
+
+  return tags.length ? tags.join('、') : '很容易被点中的完成度';
+}
+
+function getDescSnippet(descBody = '') {
+  const source = String(descBody || '').split('适合情绪')[0];
+  const sentences = splitSentences(source);
+  const normalized = sentences[0] || normalizeText(trimEndingPunctuation(source));
+
+  if (!normalized) {
+    return '它本身就很会制造记忆点';
+  }
+
+  if (normalized.length <= 24) {
+    return normalized;
+  }
+
+  return `${normalized.slice(0, 22)}...`;
 }
 
 function resolveSemanticToken(token, aliasMap, availableTags, targetMap, meta, weight) {
@@ -171,56 +341,6 @@ function resolveSemanticToken(token, aliasMap, availableTags, targetMap, meta, w
   }
 }
 
-function buildUserProfile(answerValues, questionData) {
-  const answerLookup = new Map();
-  const selectedProfiles = [];
-  const preferredTagWeights = new Map();
-  const avoidTagWeights = new Map();
-  const abvVotes = { low: 0, medium: 0, high: 0 };
-  const sweetnessTargets = [];
-  const complexityTargets = [];
-
-  questionData
-    .filter((question) => question.type !== 'sbti')
-    .forEach((question) => {
-      question.options.forEach((option) => {
-        answerLookup.set(option.value, option.profile);
-      });
-    });
-
-  answerValues.forEach((value) => {
-    const profile = answerLookup.get(value);
-
-    if (!profile) {
-      return;
-    }
-
-    selectedProfiles.push(profile);
-
-    profile.preferred_tags.forEach((tag) => addWeight(preferredTagWeights, tag, 1));
-    profile.avoid_tags.forEach((tag) => addWeight(avoidTagWeights, tag, 0.9));
-
-    abvVotes[profile.abv_target] += 1;
-    sweetnessTargets.push(profile.sweetness_target);
-    complexityTargets.push(profile.complexity_target);
-  });
-
-  return {
-    preferredTagWeights,
-    avoidTagWeights,
-    targetAbv: getLeadingVote(abvVotes, 'medium'),
-    targetSweetness: average(sweetnessTargets) || 2.5,
-    targetComplexity: average(complexityTargets) || 2,
-    story: {
-      need: selectedProfiles[0]?.reason_phrase || '喝得更对味',
-      scene: selectedProfiles[1]?.reason_phrase || '场合自然一点',
-      taste: selectedProfiles[2]?.reason_phrase || '入口足够合拍',
-      mood: selectedProfiles[3]?.reason_phrase || '情绪安稳一点',
-      goal: selectedProfiles[4]?.reason_phrase || '最后有被接住的感觉'
-    }
-  };
-}
-
 function buildSbtiProfile(sbtiInfo, availableTags) {
   const preferredTagWeights = new Map();
   const excludedTagWeights = new Map();
@@ -231,20 +351,46 @@ function buildSbtiProfile(sbtiInfo, availableTags) {
   };
 
   sbtiInfo.recommendation_profile.preferred_tags.forEach((tag) => {
-    resolveSemanticToken(tag, SBTI_PREFERRED_ALIASES, availableTags, preferredTagWeights, meta, 1.4);
+    resolveSemanticToken(tag, SBTI_PREFERRED_ALIASES, availableTags, preferredTagWeights, meta, 1.35);
   });
 
   sbtiInfo.recommendation_profile.excluded_tags.forEach((tag) => {
-    resolveSemanticToken(tag, SBTI_EXCLUDED_ALIASES, availableTags, excludedTagWeights, meta, 1.2);
+    resolveSemanticToken(tag, SBTI_EXCLUDED_ALIASES, availableTags, excludedTagWeights, meta, 1.15);
   });
 
   return {
     preferredTagWeights,
     excludedTagWeights,
-    fallbackIds: new Set(sbtiInfo.recommendation_profile.fallback_cocktails),
+    fallbackIds: new Set(sbtiInfo.recommendation_profile.fallback_cocktails || []),
     targetAbv: getLeadingVote(meta.abvVotes, null),
     targetSweetness: meta.sweetnessTargets.length ? average(meta.sweetnessTargets) : null,
     targetComplexity: meta.complexityTargets.length ? average(meta.complexityTargets) : null
+  };
+}
+
+function buildPlanProfile(plan, availableTags) {
+  const preferredTagWeights = new Map();
+  const excludedTagWeights = new Map();
+
+  (plan.focus_tags || []).forEach((tag) => {
+    if (availableTags.has(tag)) {
+      addWeight(preferredTagWeights, tag, 1.65);
+    }
+  });
+
+  (plan.avoid_tags || []).forEach((tag) => {
+    if (availableTags.has(tag)) {
+      addWeight(excludedTagWeights, tag, 1.2);
+    }
+  });
+
+  return {
+    preferredTagWeights,
+    excludedTagWeights,
+    fallbackIds: new Set(plan.fallback_ids || []),
+    targetAbv: plan.abv_target || null,
+    targetSweetness: typeof plan.sweetness_target === 'number' ? plan.sweetness_target : null,
+    targetComplexity: typeof plan.complexity_target === 'number' ? plan.complexity_target : null
   };
 }
 
@@ -284,16 +430,11 @@ function getAbvBonus(actual, target) {
   };
 
   const distance = distanceMap[target]?.[actual] ?? 1;
-
-  if (distance === 1) {
-    return 2;
-  }
-
-  return -3;
+  return distance === 1 ? 2 : -3;
 }
 
 function getLevelBonus(actual, target, perfect = 6) {
-  if (!target) {
+  if (!target && target !== 0) {
     return 0;
   }
 
@@ -302,66 +443,182 @@ function getLevelBonus(actual, target, perfect = 6) {
 }
 
 function getDisplayMatch(score) {
-  return Math.max(66, Math.min(98, Math.round(score)));
+  return Math.max(68, Math.min(98, Math.round(score)));
 }
 
-function uniqTags(list) {
-  return [...new Set(list)];
+function createFallbackPlan(sbtiCode, sbtiInfo) {
+  const defaultTags = (sbtiInfo.recommendation_profile.preferred_tags || []).slice(0, 3);
+
+  return {
+    id: `${sbtiCode.toLowerCase()}_fallback`,
+    title: '专属上头剧本',
+    copy: `${sbtiCode} 这种人格，天生就该点一杯会做气氛、也会做情绪收口的酒。{drink}把 {tagKeywords} 和 {spotlight} 拧在一起，很容易从酒单里第一眼跳出来。`,
+    focus_tags: defaultTags,
+    fallback_ids: sbtiInfo.recommendation_profile.fallback_cocktails || []
+  };
 }
 
-function buildMatchedTagText(matchedTags) {
-  const phrases = uniqTags(matchedTags)
-    .slice(0, 3)
-    .map(getTagPhrase);
-
-  if (!phrases.length) {
-    return '整体气质和你今天状态的贴合度';
+function pickRandomPlan(plans = []) {
+  if (!plans.length) {
+    return null;
   }
 
-  return phrases.join('、');
+  return plans[Math.floor(Math.random() * plans.length)];
 }
 
-function createPersonalizedReason(cocktail, sbtiCode, sbtiInfo, userProfile, matchedTags) {
-  const preferredPreview = sbtiInfo.recommendation_profile.preferred_tags.slice(0, 2).join('、');
-  const matchedTagText = buildMatchedTagText(matchedTags);
-  const productTitle = cleanTitle(cocktail.desc_title);
-  const shortdesc = trimEndingPunctuation(sanitizeQuote(sbtiInfo.shortdesc));
-  const goalText = userProfile.story.goal.replace(/^最后(最好)?还能/, '').trim();
-  const shortdescText = shortdesc ? `${shortdesc} 这种气质，也会让你更吃这一挂。` : '';
+function detectMood(tags = []) {
+  const tagSet = new Set(tags);
 
-  return `对 ${sbtiCode} 型的${sbtiInfo.name}来说，“${preferredPreview}”这套本来就很容易让你心动，${shortdescText}你前五题里给出的信号也很明确：想要${userProfile.story.need}，偏爱${userProfile.story.taste}，最后最好还能${goalText}。${cocktail.name} 身上的${matchedTagText}正好把这些点一起踩中，再加上它本身就是一杯“${productTitle}”式的酒，很容易让你在看到酒单的那一刻就直接想下单。${getPricePitch(cocktail.cost_range)}`;
+  if (['颜值高', '出片', '梦幻'].some((tag) => tagSet.has(tag))) {
+    return 'visual';
+  }
+
+  if (['治愈', '奶香', '安神', '低度数'].some((tag) => tagSet.has(tag))) {
+    return 'comfort';
+  }
+
+  if (['高酒精度', '烈酒', '刺激', '断电', '浓烈'].some((tag) => tagSet.has(tag))) {
+    return 'intense';
+  }
+
+  if (['极简', '冷淡', '纯粹', '微苦'].some((tag) => tagSet.has(tag))) {
+    return 'cool';
+  }
+
+  if (['快乐水', '气泡', '爽快', '简单粗暴', '直球'].some((tag) => tagSet.has(tag))) {
+    return 'easy';
+  }
+
+  if (['复杂', '纠结', '经典', '酸甜'].some((tag) => tagSet.has(tag))) {
+    return 'story';
+  }
+
+  return 'default';
 }
 
-function scoreCocktail(cocktail, userProfile, sbtiProfile) {
+function buildPlanSegment(plan, variables, seedSource) {
+  const templateWithoutPrice = String(plan.copy || '').replace(/[，。； ]*\{pricePitch\}/g, '');
+  const sentences = splitSentences(fillTemplate(templateWithoutPrice, variables));
+
+  if (!sentences.length) {
+    return '';
+  }
+
+  return pickSeeded(sentences, seedSource, 'plan');
+}
+
+function buildPersonaSegment(variables, seedSource) {
+  return fillTemplate(pickSeeded(PERSONA_TEMPLATES, seedSource, 'persona'), variables);
+}
+
+function buildMatchSegment(variables, seedSource) {
+  return fillTemplate(pickSeeded(MATCH_TEMPLATES, seedSource, 'match'), variables);
+}
+
+function buildProductSegment(variables, seedSource) {
+  return fillTemplate(pickSeeded(PRODUCT_TEMPLATES, seedSource, 'product'), variables);
+}
+
+function buildPriceSegment(variables, seedSource) {
+  return fillTemplate(pickSeeded(PRICE_WRAPPERS, seedSource, 'price'), variables);
+}
+
+function buildUrgeSegment(variables, tags, seedSource) {
+  const mood = detectMood(tags);
+  const pool = URGE_TEMPLATES[mood] || URGE_TEMPLATES.default;
+  return fillTemplate(pickSeeded(pool, seedSource, 'urge'), variables);
+}
+
+function composeReason(segments) {
+  const seen = new Set();
+
+  return segments
+    .map((segment) => normalizeText(trimEndingPunctuation(segment)))
+    .filter(Boolean)
+    .filter((segment) => {
+      const key = segment.replace(/[^0-9A-Za-z\u4e00-\u9fa5]/g, '');
+      if (seen.has(key)) {
+        return false;
+      }
+
+      seen.add(key);
+      return true;
+    })
+    .map(ensureSentence)
+    .join('');
+}
+
+function scoreCocktail(cocktail, sbtiProfile, planProfile) {
   const cocktailTags = cocktail.match_profile.tags;
-  const userMatch = collectMatches(cocktailTags, userProfile.preferredTagWeights);
-  const userPenalty = collectMatches(cocktailTags, userProfile.avoidTagWeights);
   const sbtiMatch = collectMatches(cocktailTags, sbtiProfile.preferredTagWeights);
   const sbtiPenalty = collectMatches(cocktailTags, sbtiProfile.excludedTagWeights);
+  const planMatch = collectMatches(cocktailTags, planProfile.preferredTagWeights);
+  const planPenalty = collectMatches(cocktailTags, planProfile.excludedTagWeights);
 
-  const effectiveAbvTarget = sbtiProfile.targetAbv || userProfile.targetAbv;
-  const effectiveSweetnessTarget = sbtiProfile.targetSweetness || userProfile.targetSweetness;
-  const effectiveComplexityTarget = sbtiProfile.targetComplexity || userProfile.targetComplexity;
+  const effectiveAbvTarget = planProfile.targetAbv || sbtiProfile.targetAbv;
+  const effectiveSweetnessTarget = planProfile.targetSweetness || sbtiProfile.targetSweetness;
+  const effectiveComplexityTarget = planProfile.targetComplexity || sbtiProfile.targetComplexity;
+  const sbtiFallbackHit = sbtiProfile.fallbackIds.has(cocktail.id);
+  const planFallbackHit = planProfile.fallbackIds.has(cocktail.id);
 
-  const totalScore = 58
-    + userMatch.total * 4.6
-    + sbtiMatch.total * 5.6
-    - userPenalty.total * 3.8
-    - sbtiPenalty.total * 4.4
+  const totalScore = 60
+    + sbtiMatch.total * 5.4
+    + planMatch.total * 6.2
+    - sbtiPenalty.total * 4.5
+    - planPenalty.total * 4.1
     + getAbvBonus(cocktail.match_profile.abv_level, effectiveAbvTarget)
     + getLevelBonus(cocktail.match_profile.sweetness, effectiveSweetnessTarget, 5)
     + getLevelBonus(cocktail.match_profile.complexity, effectiveComplexityTarget, 4)
-    + (sbtiProfile.fallbackIds.has(cocktail.id) ? 7 : 0);
-
-  const matchedTags = [
-    ...sbtiMatch.matched.map((item) => item.tag),
-    ...userMatch.matched.map((item) => item.tag)
-  ];
+    + (sbtiFallbackHit ? 6 : 0)
+    + (planFallbackHit ? 8 : 0)
+    + (sbtiFallbackHit && planFallbackHit ? 3 : 0);
 
   return {
     totalScore,
-    matchedTags
+    matchedTags: uniqTags([
+      ...planMatch.matched.map((item) => item.tag),
+      ...sbtiMatch.matched.map((item) => item.tag)
+    ])
   };
+}
+
+function createPersonalizedReason(cocktail, sbtiCode, sbtiInfo, plan, matchedTags, variantSeed) {
+  const shortdesc = trimEndingPunctuation(sanitizeQuote(sbtiInfo.shortdesc));
+  const tagKeywords = buildTagKeywords(matchedTags, plan.focus_tags);
+  const tagCopyText = buildTagCopyText(matchedTags, plan.focus_tags);
+  const spotlight = cleanTitle(cocktail.desc_title);
+  const descSnippet = getDescSnippet(cocktail.desc_body);
+  const variables = {
+    sbtiCode,
+    sbtiName: sbtiInfo.name,
+    shortdesc,
+    planTitle: plan.title,
+    drink: cocktail.name,
+    englishName: cocktail.english_name,
+    baseLiquor: cocktail.base_liquor,
+    spotlight,
+    descSnippet,
+    tagKeywords,
+    tagCopyText,
+    priceText: getPriceText(cocktail.cost_range),
+    pricePitch: getPricePitch(cocktail.cost_range)
+  };
+
+  const segmentMap = {
+    persona: buildPersonaSegment(variables, variantSeed),
+    match: buildMatchSegment(variables, variantSeed),
+    product: buildProductSegment(variables, variantSeed),
+    price: buildPriceSegment(variables, variantSeed),
+    urge: buildUrgeSegment(variables, [...matchedTags, ...cocktail.match_profile.tags], variantSeed),
+    plan: buildPlanSegment(plan, variables, variantSeed)
+  };
+
+  const pattern = pickSeeded(COMPOSITION_PATTERNS, variantSeed, 'pattern');
+  const segments = pattern
+    .map((type) => segmentMap[type])
+    .filter(Boolean);
+
+  return composeReason(segments);
 }
 
 export function buildQuestions(questionData, sbtiMap) {
@@ -380,7 +637,7 @@ export function buildQuestions(questionData, sbtiMap) {
   });
 }
 
-export function calculateRecommendations({ answerValues, sbtiCode, questionData, sbtiMap, cocktailsMap }) {
+export function calculateRecommendations({ sbtiCode, sbtiMap, cocktailsMap, answerPlanMap = {} }) {
   const sbtiInfo = sbtiMap[sbtiCode];
 
   if (!sbtiInfo) {
@@ -389,12 +646,15 @@ export function calculateRecommendations({ answerValues, sbtiCode, questionData,
 
   const cocktails = Object.values(cocktailsMap);
   const availableTags = new Set(cocktails.flatMap((item) => item.match_profile.tags));
-  const userProfile = buildUserProfile(answerValues, questionData);
   const sbtiProfile = buildSbtiProfile(sbtiInfo, availableTags);
+  const plans = answerPlanMap[sbtiCode];
+  const selectedPlan = pickRandomPlan(Array.isArray(plans) ? plans : []) || createFallbackPlan(sbtiCode, sbtiInfo);
+  const planProfile = buildPlanProfile(selectedPlan, availableTags);
+  const sessionSeed = `${sbtiCode}:${selectedPlan.id}:${Math.random().toString(36).slice(2, 10)}`;
 
   const rankedCocktails = cocktails
     .map((cocktail) => {
-      const { totalScore, matchedTags } = scoreCocktail(cocktail, userProfile, sbtiProfile);
+      const { totalScore, matchedTags } = scoreCocktail(cocktail, sbtiProfile, planProfile);
 
       return {
         ...cocktail,
@@ -404,25 +664,33 @@ export function calculateRecommendations({ answerValues, sbtiCode, questionData,
     })
     .sort((a, b) => b.totalScore - a.totalScore)
     .slice(0, 4)
-    .map((cocktail, index) => ({
-      ...cocktail,
-      rank: index + 1,
-      displayMatch: getDisplayMatch(cocktail.totalScore),
-      reasonHeading: '你的 SBTI 专属买单理由',
-      personalizedReason: createPersonalizedReason(
-        cocktail,
-        sbtiCode,
-        sbtiInfo,
-        userProfile,
-        cocktail.matchedTags
-      ),
-      priceText: getPriceText(cocktail.cost_range),
-      spotlightTitle: cleanTitle(cocktail.desc_title)
-    }));
+    .map((cocktail, index) => {
+      const variantSeed = `${sessionSeed}:${cocktail.id}:${index + 1}`;
+
+      return {
+        ...cocktail,
+        rank: index + 1,
+        displayMatch: getDisplayMatch(cocktail.totalScore),
+        reasonLabel: '你的 SBTI 专属买单理由',
+        reasonHeading: selectedPlan.title,
+        personalizedReason: createPersonalizedReason(
+          cocktail,
+          sbtiCode,
+          sbtiInfo,
+          selectedPlan,
+          cocktail.matchedTags,
+          variantSeed
+        ),
+        priceText: getPriceText(cocktail.cost_range),
+        spotlightTitle: cleanTitle(cocktail.desc_title),
+        selectedPlanId: selectedPlan.id
+      };
+    });
 
   return {
     sbti: sbtiCode,
     sbtiInfo,
+    selectedPlanTitle: selectedPlan.title,
     cocktails: rankedCocktails,
     topCocktail: rankedCocktails[0]
   };

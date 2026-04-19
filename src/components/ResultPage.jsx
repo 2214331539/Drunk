@@ -6,13 +6,22 @@ const ResultPage = ({ result, onRestart }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
+  const [isArtworkOpen, setIsArtworkOpen] = useState(false);
   const cardRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  useEffect(() => {
+    setIsArtworkOpen(false);
+  }, [currentIndex]);
+
   const currentCocktail = result.cocktails[currentIndex];
+  const imageSrc = currentCocktail.imageUrl
+    || currentCocktail.image_url
+    || currentCocktail.cover
+    || currentCocktail.image;
   const isLast = currentIndex === result.cocktails.length - 1;
   const isFirst = currentIndex === 0;
   const rankTone = currentCocktail.rank === 1
@@ -80,6 +89,37 @@ const ResultPage = ({ result, onRestart }) => {
     }
   };
 
+  const renderPosterStage = (variant = 'compact') => (
+    <div className={`poster-stage ${variant} ${imageSrc ? 'has-image' : 'is-placeholder'}`}>
+      <div className="poster-media">
+        {imageSrc ? (
+          <img
+            className="poster-image"
+            src={imageSrc}
+            alt={`${currentCocktail.name} 展示图`}
+          />
+        ) : (
+          <div className="poster-placeholder" aria-hidden="true">
+            <span className="poster-placeholder-badge">图片占位</span>
+            <div className="poster-placeholder-center">
+              <span className="poster-placeholder-mark">+</span>
+              <span className="poster-placeholder-copy">
+                后续可插入产品图 / 海报图
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="poster-meta">
+        <span className="poster-meta-name">{currentCocktail.name}</span>
+        <span className="poster-meta-tip">
+          {variant === 'compact' ? '点击放大' : '点击空白处关闭'}
+        </span>
+      </div>
+    </div>
+  );
+
   return (
     <div className={`result-page ${isVisible ? 'visible' : ''}`}>
       <div className="result-content">
@@ -116,35 +156,31 @@ const ResultPage = ({ result, onRestart }) => {
               <p className="poster-caption">{currentCocktail.spotlightTitle}</p>
             </div>
 
-            <div className="poster-stage" aria-hidden="true">
-              <span className="poster-emoji">🍸</span>
-
-              <svg className="result-doodle" viewBox="0 0 360 240">
-                <path className="stroke-main" d="M130 82c0-20 16-36 36-36s36 16 36 36-16 36-36 36-36-16-36-36Z" />
-                <path className="stroke-main" d="M166 118v58" />
-                <path className="stroke-main" d="M166 134l-58 26" />
-                <path className="stroke-main" d="M166 134l56-30" />
-                <path className="stroke-main" d="M166 176l-42 46" />
-                <path className="stroke-main" d="M166 176l48 42" />
-                <path className="stroke-accent" d="M220 86l12 40 32-8-11-39Z" />
-                <path className="stroke-main" d="M70 214c67-17 151-18 231-2" />
-                <path className="stroke-accent-alt" d="M84 66c11-15 28-23 50-23" />
-              </svg>
-            </div>
-
             <div className="reason-block">
-              <span className="reason-heading">{currentCocktail.reasonHeading}</span>
+              <span className="reason-label">{currentCocktail.reasonLabel}</span>
+              <h3 className="reason-title">{currentCocktail.reasonHeading}</h3>
               <p className="result-reason">{currentCocktail.personalizedReason}</p>
             </div>
 
-            <div className="wine-info">
-              <div className="info-item">
-                <span className="info-label">基酒</span>
-                <span className="info-value">{currentCocktail.base_liquor}</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">参考价</span>
-                <span className="info-value">{currentCocktail.priceText}</span>
+            <div className="result-support">
+              <button
+                type="button"
+                className="poster-preview"
+                onClick={() => setIsArtworkOpen(true)}
+                aria-label={`放大查看 ${currentCocktail.name} 图片框`}
+              >
+                {renderPosterStage('compact')}
+              </button>
+
+              <div className="wine-info">
+                <div className="info-item">
+                  <span className="info-label">基酒</span>
+                  <span className="info-value">{currentCocktail.base_liquor}</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-label">参考价</span>
+                  <span className="info-value">{currentCocktail.priceText}</span>
+                </div>
               </div>
             </div>
 
@@ -169,7 +205,7 @@ const ResultPage = ({ result, onRestart }) => {
         {result.cocktails.length > 1 && (
           <p className="slide-hint">
             {currentIndex < result.cocktails.length - 1
-              ? '左右划一划，看看火柴人还给你留了哪几杯。'
+              ? '左右划一划，看看还有哪几杯更适合你。'
               : '已经滑到最后一杯了。'}
           </p>
         )}
@@ -183,6 +219,29 @@ const ResultPage = ({ result, onRestart }) => {
           </button>
         </div>
       </div>
+
+      {isArtworkOpen && (
+        <div
+          className="artwork-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${currentCocktail.name} 图片预览`}
+          onClick={() => setIsArtworkOpen(false)}
+        >
+          <div className="artwork-panel" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="artwork-close"
+              onClick={() => setIsArtworkOpen(false)}
+              aria-label="关闭大图"
+            >
+              ×
+            </button>
+
+            {renderPosterStage('expanded')}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

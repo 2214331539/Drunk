@@ -5,12 +5,14 @@ import ResultPage from './components/ResultPage';
 import questionsData from '../data/questions.json';
 import sbtiData from '../data/sbti.json';
 import alcoholData from '../data/alcohol.json';
+import answerData from '../data/answer.json';
 import { buildQuestions, calculateRecommendations } from './utils/recommendationEngine';
 import './styles/App.css';
 
 function App() {
   const sbtiMap = useMemo(() => sbtiData.sbti, []);
   const cocktailsMap = useMemo(() => alcoholData.cocktails, []);
+  const answerPlanMap = useMemo(() => answerData.answers, []);
   const questions = useMemo(
     () => buildQuestions(questionsData.questions, sbtiMap),
     [sbtiMap]
@@ -38,19 +40,17 @@ function App() {
     }
 
     const sbtiCode = newAnswers[newAnswers.length - 1];
-    const answerValues = newAnswers.slice(0, -1);
 
     const calculatedResult = calculateRecommendations({
-      answerValues,
       sbtiCode,
-      questionData: questionsData.questions,
       sbtiMap,
-      cocktailsMap
+      cocktailsMap,
+      answerPlanMap
     });
 
     setResult(calculatedResult);
     setCurrentPage('result');
-  }, [answers, cocktailsMap, currentQuestion, questions.length, sbtiMap]);
+  }, [answerPlanMap, answers, cocktailsMap, currentQuestion, questions.length, sbtiMap]);
 
   const handleRestart = useCallback(() => {
     setCurrentPage('home');

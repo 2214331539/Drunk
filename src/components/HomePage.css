@@ -95,46 +95,70 @@
   font-weight: 700;
 }
 
-.home-doodle {
+.scene-image-frame {
   position: relative;
   z-index: 1;
-  width: 100%;
-  height: auto;
-  margin-top: 12px;
+  margin-top: 16px;
+  min-height: 188px;
+  padding: 18px;
+  border: 2px solid var(--color-ink);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.94)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(20, 20, 20, 0.03),
+      rgba(20, 20, 20, 0.03) 10px,
+      rgba(255, 255, 255, 0.04) 10px,
+      rgba(255, 255, 255, 0.04) 20px
+    );
+  box-shadow: var(--shadow-card-tight);
 }
 
-.home-doodle text {
-  font-family: var(--font-family-body);
-  font-size: 14px;
+.scene-image-tag {
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 2px solid var(--color-ink);
+  background: var(--color-white);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.scene-image-inner {
+  min-height: 128px;
+  margin-top: 16px;
+  border: 2px dashed rgba(20, 20, 20, 0.22);
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.52);
+}
+
+.scene-image-plus {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin: 0 auto 10px;
+  border: 2px solid var(--color-ink);
+  border-radius: 16px;
+  background: var(--color-lime);
+  font-family: var(--font-family-display);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.scene-image-hint {
+  display: block;
+  max-width: 18ch;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-ink-muted);
   font-weight: 700;
-  fill: var(--color-ink);
-}
-
-.home-doodle .board-fill {
-  fill: #fffdf7;
-  stroke: var(--color-ink);
-  stroke-width: 5;
-}
-
-.home-doodle .stroke-main,
-.home-doodle .stroke-accent,
-.home-doodle .stroke-accent-alt {
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 5;
-}
-
-.home-doodle .stroke-main {
-  stroke: var(--color-ink);
-}
-
-.home-doodle .stroke-accent {
-  stroke: var(--color-pink);
-}
-
-.home-doodle .stroke-accent-alt {
-  stroke: var(--color-blue);
 }
 
 .start-button {

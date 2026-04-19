@@ -52,20 +52,13 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
               <div
                 className="progress-fill"
                 style={{ width: `${progressPercent}%` }}
-              ></div>
+              />
             </div>
           </div>
 
-          <div className="question-doodle-wrap" aria-hidden="true">
-            <svg className="question-doodle" viewBox="0 0 120 120">
-              <path className="stroke-main" d="M45 32c0-11 9-20 20-20s20 9 20 20-9 20-20 20-20-9-20-20Z" />
-              <path className="stroke-main" d="M65 54v24" />
-              <path className="stroke-main" d="M65 62l-19 11" />
-              <path className="stroke-main" d="M65 62l18 6" />
-              <path className="stroke-main" d="M65 78L51 102" />
-              <path className="stroke-main" d="M65 78l18 23" />
-              <path className="stroke-accent" d="M86 27c9-10 21-13 31-8 7 4 11 12 10 22-11 4-22 4-33-1" />
-            </svg>
+          <div className="question-image-slot" aria-hidden="true">
+            <span className="question-image-label">配图占位</span>
+            <span className="question-image-mark">+</span>
           </div>
 
           <h2 className="question-text">{question.question}</h2>
