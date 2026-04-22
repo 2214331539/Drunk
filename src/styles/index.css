@@ -5,17 +5,17 @@
 }
 
 :root {
-  --color-paper: #fffaf1;
-  --color-ink: #141414;
-  --color-ink-soft: #342e29;
-  --color-ink-muted: #6d665e;
-  --color-white: #ffffff;
-  --color-pink: #ff5d8f;
-  --color-lime: #cbff49;
-  --color-blue: #5ad8ff;
-  --color-yellow: #ffe669;
+  --color-paper: #f8ead1;
+  --color-ink: #215b72;
+  --color-ink-soft: #2f6880;
+  --color-ink-muted: #6c8790;
+  --color-white: #fff8ee;
+  --color-pink: #ec7155;
+  --color-lime: #ec7155;
+  --color-blue: #215b72;
+  --color-yellow: #f4c8a9;
 
-  --shadow-soft: 0 16px 40px rgba(20, 20, 20, 0.12);
+  --shadow-soft: 0 16px 40px rgba(33, 91, 114, 0.12);
   --shadow-card: 6px 6px 0 var(--color-ink);
   --shadow-card-tight: 4px 4px 0 var(--color-ink);
 
@@ -35,8 +35,9 @@ body {
   font-family: var(--font-family-body);
   background-color: var(--color-paper);
   background-image:
-    radial-gradient(circle at 88% 12%, rgba(255, 230, 105, 0.14) 0 72px, transparent 73px),
-    linear-gradient(180deg, rgba(20, 20, 20, 0.04) 0 1px, transparent 1px 36px);
+    radial-gradient(circle at 12% 18%, rgba(236, 113, 85, 0.18) 0 108px, transparent 109px),
+    radial-gradient(circle at 86% 10%, rgba(33, 91, 114, 0.16) 0 132px, transparent 133px),
+    linear-gradient(180deg, rgba(33, 91, 114, 0.05) 0 1px, transparent 1px 36px);
   background-size: auto, 100% 36px;
   background-attachment: fixed;
   color: var(--color-ink);
@@ -66,7 +67,7 @@ a {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(20, 20, 20, 0.08);
+  background: rgba(33, 91, 114, 0.08);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -75,6 +76,6 @@ a {
 }
 
 ::selection {
-  background: var(--color-lime);
-  color: var(--color-ink);
+  background: var(--color-pink);
+  color: var(--color-white);
 }

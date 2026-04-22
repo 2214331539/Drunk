@@ -316,3 +316,64 @@
     grid-template-columns: 1fr;
   }
 }
+
+.question-page {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(236, 113, 85, 0.12), transparent 24%),
+    radial-gradient(circle at 86% 14%, rgba(33, 91, 114, 0.1), transparent 24%);
+}
+
+.back-button,
+.question-progress,
+.progress-badge,
+.question-card,
+.question-tag,
+.progress-bar,
+.question-image-slot,
+.question-image-label,
+.option-button,
+.option-marker {
+  border-color: var(--color-ink);
+}
+
+.back-button,
+.question-progress,
+.progress-badge,
+.question-tag,
+.option-button {
+  background: rgba(255, 248, 238, 0.96);
+}
+
+.question-progress,
+.question-card {
+  box-shadow: var(--shadow-card-tight), 0 16px 30px rgba(33, 91, 114, 0.08);
+}
+
+.question-card {
+  background: linear-gradient(180deg, rgba(255, 248, 238, 0.97), rgba(248, 234, 209, 0.9));
+}
+
+.question-card::before {
+  background: rgba(236, 113, 85, 0.28);
+  box-shadow: 0 0 0 6px rgba(236, 113, 85, 0.08);
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #215b72 0%, #ec7155 100%);
+}
+
+.question-image-slot {
+  background: linear-gradient(180deg, rgba(255, 248, 238, 0.96), rgba(248, 234, 209, 0.9));
+}
+
+.question-image-mark {
+  border-color: rgba(33, 91, 114, 0.28);
+}
+
+.option-marker {
+  background: rgba(248, 234, 209, 0.72);
+}
+
+.option-button:hover {
+  box-shadow: 6px 6px 0 var(--color-ink), 0 16px 26px rgba(33, 91, 114, 0.08);
+}

@@ -2,6 +2,42 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import './ResultPage.css';
 
+const characterImageModules = import.meta.glob(
+  '../../imgs/character/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true, import: 'default' }
+);
+const drinkImageModules = import.meta.glob(
+  '../../imgs/drinks/*.{png,jpg,jpeg,webp,avif}',
+  { eager: true, import: 'default' }
+);
+
+function buildAssetMap(modules) {
+  return Object.entries(modules).reduce((assetMap, [path, assetUrl]) => {
+    const fileName = path.split('/').pop()?.replace(/\.[^.]+$/, '');
+
+    if (fileName && !assetMap[fileName]) {
+      assetMap[fileName] = assetUrl;
+    }
+
+    return assetMap;
+  }, {});
+}
+
+function normalizeAssetKey(value = '') {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/!/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+const characterImageMap = buildAssetMap(characterImageModules);
+const drinkImageMap = buildAssetMap(drinkImageModules);
+const characterImageAliasMap = {
+  drunk: 'drun-k'
+};
+
 function hashString(text = '') {
   let hash = 2166136261;
 
@@ -69,11 +105,32 @@ function createBurstParticles(seedSource, count = 22) {
   });
 }
 
+function resolveCharacterImage(sbtiCode) {
+  const normalizedCode = normalizeAssetKey(sbtiCode);
+  const assetKey = characterImageAliasMap[normalizedCode] || normalizedCode;
+
+  return characterImageMap[assetKey] || null;
+}
+
+function resolveDrinkImage(cocktail) {
+  if (!cocktail) {
+    return null;
+  }
+
+  return cocktail.imageUrl
+    || cocktail.image_url
+    || cocktail.cover
+    || cocktail.image
+    || drinkImageMap[cocktail.id]
+    || null;
+}
+
 const ResultPage = ({ result, onRestart }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [isArtworkOpen, setIsArtworkOpen] = useState(false);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -84,11 +141,19 @@ const ResultPage = ({ result, onRestart }) => {
     setIsArtworkOpen(false);
   }, [currentIndex]);
 
+  useEffect(() => {
+    setIsDescriptionExpanded(false);
+  }, [result.sbti]);
+
   const currentCocktail = result.cocktails[currentIndex];
-  const imageSrc = currentCocktail.imageUrl
-    || currentCocktail.image_url
-    || currentCocktail.cover
-    || currentCocktail.image;
+  const imageSrc = useMemo(
+    () => resolveDrinkImage(currentCocktail),
+    [currentCocktail]
+  );
+  const characterImageSrc = useMemo(
+    () => resolveCharacterImage(result.sbti),
+    [result.sbti]
+  );
   const isLast = currentIndex === result.cocktails.length - 1;
   const isFirst = currentIndex === 0;
   const rankTone = currentCocktail.rank === 1
@@ -191,8 +256,7 @@ const ResultPage = ({ result, onRestart }) => {
       </div>
 
       <div className="poster-meta">
-        <span className="poster-meta-name">{currentCocktail.name}</span>
-        <span className="poster-meta-tip">
+        <span className="poster-meta-tip subtle">
           {variant === 'compact' ? '点击放大' : '点击空白处关闭'}
         </span>
       </div>
@@ -227,13 +291,44 @@ const ResultPage = ({ result, onRestart }) => {
 
       <div className="result-content">
         <div className="result-intro">
-          <div className="mbti-badge">
-            <span className="mbti-type">{result.sbti}</span>
-            <span className="mbti-name">{result.sbtiInfo.name}</span>
+          <div className="mbti-intro-head">
+            <div className="mbti-intro-copy">
+              <div className="mbti-badge">
+                <span className="mbti-type">{result.sbti}</span>
+                <span className="mbti-name">{result.sbtiInfo.name}</span>
+              </div>
+
+              <p className="mbti-shortdesc">{result.sbtiInfo.shortdesc}</p>
+            </div>
+
+            <div className="mbti-portrait-shell">
+              {characterImageSrc ? (
+                <img
+                  className="mbti-portrait"
+                  src={characterImageSrc}
+                  alt={`${result.sbti} portrait`}
+                />
+              ) : (
+                <div className="mbti-portrait-placeholder" aria-hidden="true">
+                  <span>{result.sbti}</span>
+                </div>
+              )}
+            </div>
           </div>
 
-          <p className="mbti-shortdesc">{result.sbtiInfo.shortdesc}</p>
-          <p className="mbti-description">{result.sbtiInfo.desc}</p>
+          <button
+            type="button"
+            className={`mbti-description-panel ${isDescriptionExpanded ? 'expanded' : ''}`}
+            onClick={() => setIsDescriptionExpanded((current) => !current)}
+            aria-expanded={isDescriptionExpanded}
+          >
+            <p className={`mbti-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
+              {result.sbtiInfo.desc}
+            </p>
+            <span className="mbti-description-toggle">
+              {isDescriptionExpanded ? '收起人格描述' : '点击展开人格描述'}
+            </span>
+          </button>
         </div>
 
         <div

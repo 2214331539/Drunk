@@ -9,7 +9,7 @@
 .app::after {
   content: '';
   position: fixed;
-  border: 2px solid rgba(20, 20, 20, 0.1);
+  border: 2px solid rgba(33, 91, 114, 0.14);
   border-radius: 999px;
   pointer-events: none;
   z-index: 0;
@@ -21,6 +21,7 @@
   top: 60px;
   right: -70px;
   transform: rotate(12deg);
+  box-shadow: 0 0 0 12px rgba(236, 113, 85, 0.05);
 }
 
 .app::after {

@@ -57,3 +57,8 @@ coverage/
 .cache/
 .temp/
 tmp/
+
+
+# resources 
+imgs/**/*.png
+imgs/**/*.jpg
