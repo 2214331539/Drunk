@@ -623,6 +623,8 @@
   width: min(100%, 560px);
   aspect-ratio: 4 / 5;
   min-height: min(72vh, 520px);
+  max-height: min(72vh, 520px);
+  margin: 0 auto;
 }
 
 .poster-media {
@@ -892,6 +894,10 @@
 .artwork-panel {
   position: relative;
   width: min(100%, 620px);
+  max-width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
   animation: modalLift 0.32s ease-out both;
 }
 
@@ -909,6 +915,27 @@
   font-size: 22px;
   font-weight: 800;
   cursor: pointer;
+}
+
+@media (max-width: 560px) {
+  .artwork-modal {
+    padding: 16px;
+  }
+
+  .artwork-panel {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .poster-stage.expanded {
+    width: min(100%, 360px);
+    min-height: auto;
+    max-height: min(78vh, 500px);
+  }
+
+  .poster-stage.expanded .poster-media {
+    padding: 12px;
+  }
 }
 
 @keyframes ambientFloat {
@@ -1148,6 +1175,25 @@
     grid-template-columns: 112px minmax(0, 1fr);
     gap: 12px;
   }
+
+  .artwork-modal {
+    padding: 14px;
+  }
+
+  .artwork-panel {
+    width: 100%;
+    max-width: 380px;
+  }
+
+  .poster-stage.expanded {
+    width: min(100%, 340px);
+    min-height: auto;
+    max-height: min(78vh, 460px);
+  }
+
+  .poster-stage.expanded .poster-media {
+    padding: 10px;
+  }
 }
 
 @media (max-width: 340px) {
@@ -1161,6 +1207,19 @@
 
   .poster-stage.compact {
     min-height: 150px;
+  }
+
+  .artwork-modal {
+    padding: 12px;
+  }
+
+  .artwork-panel {
+    max-width: 320px;
+  }
+
+  .poster-stage.expanded {
+    width: min(100%, 300px);
+    max-height: min(76vh, 420px);
   }
 }
 
