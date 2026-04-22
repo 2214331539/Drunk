@@ -1,6 +1,73 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import './ResultPage.css';
+
+function hashString(text = '') {
+  let hash = 2166136261;
+
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return hash >>> 0;
+}
+
+function createSeededRandom(seedSource) {
+  let seed = hashString(seedSource) || 1;
+
+  return () => {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
+}
+
+function createAmbientParticles(seedSource, count = 26) {
+  const random = createSeededRandom(seedSource);
+  const tones = ['lime', 'blue', 'pink', 'yellow'];
+  const shapes = ['dot', 'diamond', 'spark'];
+
+  return Array.from({ length: count }, (_, index) => ({
+    id: `ambient-${index}`,
+    left: `${random() * 100}%`,
+    top: `${random() * 100}%`,
+    size: `${6 + random() * 12}px`,
+    duration: `${10 + random() * 8}s`,
+    delay: `${-random() * 8}s`,
+    driftX: `${-40 + random() * 80}px`,
+    driftY: `${-28 - random() * 140}px`,
+    opacity: `${0.18 + random() * 0.42}`,
+    tone: tones[Math.floor(random() * tones.length)],
+    shape: shapes[Math.floor(random() * shapes.length)]
+  }));
+}
+
+function createBurstParticles(seedSource, count = 22) {
+  const random = createSeededRandom(seedSource);
+  const tones = ['lime', 'blue', 'pink', 'yellow'];
+  const shapes = ['dot', 'diamond', 'line'];
+
+  return Array.from({ length: count }, (_, index) => {
+    const angle = random() * Math.PI * 2;
+    const radius = 78 + random() * 152;
+    const originX = 50 + (random() - 0.5) * 12;
+    const originY = 38 + (random() - 0.5) * 12;
+
+    return {
+      id: `burst-${index}`,
+      left: `${originX}%`,
+      top: `${originY}%`,
+      size: `${5 + random() * 12}px`,
+      duration: `${0.8 + random() * 0.7}s`,
+      delay: `${random() * 0.18}s`,
+      tx: `${Math.cos(angle) * radius}px`,
+      ty: `${Math.sin(angle) * radius}px`,
+      rotate: `${-90 + random() * 180}deg`,
+      tone: tones[Math.floor(random() * tones.length)],
+      shape: shapes[Math.floor(random() * shapes.length)]
+    };
+  });
+}
 
 const ResultPage = ({ result, onRestart }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -36,13 +103,22 @@ const ResultPage = ({ result, onRestart }) => {
     : currentCocktail.rank <= 3
       ? `高匹配 No.${currentCocktail.rank}`
       : `隐藏惊喜 No.${currentCocktail.rank}`;
+  const frameKey = `${currentCocktail.id}-${currentIndex}`;
+  const ambientParticles = useMemo(
+    () => createAmbientParticles(`${result.sbti}-result-atmosphere`),
+    [result.sbti]
+  );
+  const burstParticles = useMemo(
+    () => createBurstParticles(frameKey),
+    [frameKey]
+  );
 
-  const handleTouchStart = (e) => {
-    setTouchStart(e.touches[0].clientX);
+  const handleTouchStart = (event) => {
+    setTouchStart(event.touches[0].clientX);
   };
 
-  const handleTouchEnd = (e) => {
-    const touchEnd = e.changedTouches[0].clientX;
+  const handleTouchEnd = (event) => {
+    const touchEnd = event.changedTouches[0].clientX;
     const diff = touchStart - touchEnd;
 
     if (Math.abs(diff) > 50) {
@@ -54,12 +130,13 @@ const ResultPage = ({ result, onRestart }) => {
     }
   };
 
-  const handleMouseDown = (e) => {
-    setTouchStart(e.clientX);
+  const handleMouseDown = (event) => {
+    setTouchStart(event.clientX);
   };
 
-  const handleMouseUp = (e) => {
-    const diff = touchStart - e.clientX;
+  const handleMouseUp = (event) => {
+    const diff = touchStart - event.clientX;
+
     if (Math.abs(diff) > 50) {
       if (diff > 0 && !isLast) {
         setCurrentIndex((prev) => prev + 1);
@@ -70,22 +147,24 @@ const ResultPage = ({ result, onRestart }) => {
   };
 
   const handleShare = async () => {
-    if (cardRef.current) {
-      try {
-        const canvas = await html2canvas(cardRef.current, {
-          scale: 2,
-          backgroundColor: null,
-          logging: false
-        });
-        const image = canvas.toDataURL('image/png');
+    if (!cardRef.current) {
+      return;
+    }
 
-        const link = document.createElement('a');
-        link.download = `我的微醺解药-${currentCocktail.name}.png`;
-        link.href = image;
-        link.click();
-      } catch (error) {
-        console.error('生成图片失败:', error);
-      }
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        scale: 2,
+        backgroundColor: null,
+        logging: false
+      });
+      const image = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+
+      link.download = `我的微醺解药-${currentCocktail.name}.png`;
+      link.href = image;
+      link.click();
+    } catch (error) {
+      console.error('生成图片失败:', error);
     }
   };
 
@@ -122,6 +201,30 @@ const ResultPage = ({ result, onRestart }) => {
 
   return (
     <div className={`result-page ${isVisible ? 'visible' : ''}`}>
+      <div className="result-atmosphere" aria-hidden="true">
+        <div className="atmosphere-glow glow-one" />
+        <div className="atmosphere-glow glow-two" />
+        <div className="atmosphere-glow glow-three" />
+
+        {ambientParticles.map((particle) => (
+          <span
+            key={particle.id}
+            className={`ambient-particle ${particle.tone} ${particle.shape}`}
+            style={{
+              left: particle.left,
+              top: particle.top,
+              width: particle.size,
+              height: particle.size,
+              opacity: particle.opacity,
+              animationDuration: particle.duration,
+              animationDelay: particle.delay,
+              '--drift-x': particle.driftX,
+              '--drift-y': particle.driftY
+            }}
+          />
+        ))}
+      </div>
+
       <div className="result-content">
         <div className="result-intro">
           <div className="mbti-badge">
@@ -145,48 +248,78 @@ const ResultPage = ({ result, onRestart }) => {
             data-rank={rankTone}
             ref={cardRef}
           >
-            <div className="result-header">
-              <span className="result-label">{rankLabel}</span>
-              <span className="match-score">{currentCocktail.displayMatch}%</span>
-            </div>
+            <div className="result-card-frame" key={frameKey}>
+              <div className="card-transition-shell" aria-hidden="true">
+                <div className="card-transition-veil" />
+                <div className="card-transition-core" />
+                <div className="card-transition-rune rune-outer" />
+                <div className="card-transition-rune rune-inner" />
+                <div className="card-transition-rays" />
+                <div className="card-transition-flare" />
+                <div className="card-transition-sweep" />
 
-            <div className="poster-headline">
-              <h2 className="drink-name">{currentCocktail.name}</h2>
-              <p className="drink-english">{currentCocktail.english_name}</p>
-              <p className="poster-caption">{currentCocktail.spotlightTitle}</p>
-            </div>
+                {burstParticles.map((particle) => (
+                  <span
+                    key={particle.id}
+                    className={`burst-particle ${particle.tone} ${particle.shape}`}
+                    style={{
+                      left: particle.left,
+                      top: particle.top,
+                      width: particle.size,
+                      height: particle.size,
+                      animationDuration: particle.duration,
+                      animationDelay: particle.delay,
+                      '--tx': particle.tx,
+                      '--ty': particle.ty,
+                      '--rotate': particle.rotate
+                    }}
+                  />
+                ))}
+              </div>
 
-            <div className="reason-block">
-              <span className="reason-label">{currentCocktail.reasonLabel}</span>
-              <h3 className="reason-title">{currentCocktail.reasonHeading}</h3>
-              <p className="result-reason">{currentCocktail.personalizedReason}</p>
-            </div>
+              <div className="result-header">
+                <span className="result-label">{rankLabel}</span>
+                <span className="match-score">{currentCocktail.displayMatch}%</span>
+              </div>
 
-            <div className="result-support">
-              <button
-                type="button"
-                className="poster-preview"
-                onClick={() => setIsArtworkOpen(true)}
-                aria-label={`放大查看 ${currentCocktail.name} 图片框`}
-              >
-                {renderPosterStage('compact')}
-              </button>
+              <div className="poster-headline">
+                <h2 className="drink-name">{currentCocktail.name}</h2>
+                <p className="drink-english">{currentCocktail.english_name}</p>
+                <p className="poster-caption">{currentCocktail.spotlightTitle}</p>
+              </div>
 
-              <div className="wine-info">
-                <div className="info-item">
-                  <span className="info-label">基酒</span>
-                  <span className="info-value">{currentCocktail.base_liquor}</span>
-                </div>
-                <div className="info-item">
-                  <span className="info-label">参考价</span>
-                  <span className="info-value">{currentCocktail.priceText}</span>
+              <div className="reason-block">
+                <span className="reason-label">{currentCocktail.reasonLabel}</span>
+                <h3 className="reason-title">{currentCocktail.reasonHeading}</h3>
+                <p className="result-reason">{currentCocktail.personalizedReason}</p>
+              </div>
+
+              <div className="result-support">
+                <button
+                  type="button"
+                  className="poster-preview"
+                  onClick={() => setIsArtworkOpen(true)}
+                  aria-label={`放大查看 ${currentCocktail.name} 图片框`}
+                >
+                  {renderPosterStage('compact')}
+                </button>
+
+                <div className="wine-info">
+                  <div className="info-item">
+                    <span className="info-label">基酒</span>
+                    <span className="info-value">{currentCocktail.base_liquor}</span>
+                  </div>
+                  <div className="info-item">
+                    <span className="info-label">参考价</span>
+                    <span className="info-value">{currentCocktail.priceText}</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="result-footer">
-              <span className="footer-logo">白日微醺 / Stick Mood Mix</span>
-              <span>{currentIndex + 1} / {result.cocktails.length}</span>
+              <div className="result-footer">
+                <span className="footer-logo">白日微醺 / Stick Mood Mix</span>
+                <span>{currentIndex + 1} / {result.cocktails.length}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -228,7 +361,7 @@ const ResultPage = ({ result, onRestart }) => {
           aria-label={`${currentCocktail.name} 图片预览`}
           onClick={() => setIsArtworkOpen(false)}
         >
-          <div className="artwork-panel" onClick={(e) => e.stopPropagation()}>
+          <div className="artwork-panel" onClick={(event) => event.stopPropagation()}>
             <button
               type="button"
               className="artwork-close"
