@@ -289,3 +289,17 @@
   color: rgba(255, 248, 238, 0.84);
   opacity: 1;
 }
+
+.scene-image-frame {
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.scene-logo-image {
+  display: block;
+  width: min(100%, 230px);
+  max-height: 160px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 18px rgba(33, 91, 114, 0.14));
+}

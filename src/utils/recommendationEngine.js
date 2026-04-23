@@ -98,7 +98,7 @@ const PERSONA_TEMPLATES = [
 ];
 
 const MATCH_TEMPLATES = [
-  '{drink}身上的{tagKeywords}一起发力，几乎就是给你这套人格定制的买单理由',
+  '{drink}身上的{tagKeywords}一起发力，几乎就是给你这套人格定制的微醺方案',
   '它最会抓人的地方，是把{tagKeywords}这几层感觉叠得很顺，基本没有犹豫成本',
   '它真正会勾人的点，不是标签堆得多，而是{tagCopyText}这些感觉全在往同一个方向发力',
   '当{spotlight}和{tagKeywords}撞在一杯里，{sbtiCode}往往很难装作没看到',
@@ -671,7 +671,7 @@ export function calculateRecommendations({ sbtiCode, sbtiMap, cocktailsMap, answ
         ...cocktail,
         rank: index + 1,
         displayMatch: getDisplayMatch(cocktail.totalScore),
-        reasonLabel: '你的 SBTI 专属买单理由',
+        reasonLabel: '你的 SBTI 专属推荐',
         reasonHeading: selectedPlan.title,
         personalizedReason: createPersonalizedReason(
           cocktail,

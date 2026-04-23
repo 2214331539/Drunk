@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import logoImage from '../../imgs/logo.png';
 import './QuestionPage.css';
 
 const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack }) => {
@@ -6,8 +7,8 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
   const progressPercent = ((currentIndex + 1) / totalQuestions) * 100;
   const isSbtiQuestion = question.type === 'sbti';
   const helperLine = isSbtiQuestion
-    ? '直接选你测出的 SBTI。'
-    : '按第一反应选。';
+    '直接选你测出的 SBTI。'
+    
 
   useEffect(() => {
     setIsVisible(true);
@@ -57,8 +58,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
           </div>
 
           <div className="question-image-slot" aria-hidden="true">
-            <span className="question-image-label">配图占位</span>
-            <span className="question-image-mark">+</span>
+            <img className="question-logo-image" src={logoImage} alt="" />
           </div>
 
           <h2 className="question-text">{question.question}</h2>
