@@ -112,13 +112,6 @@ const PRODUCT_TEMPLATES = [
   '{descSnippet}，所以这类酒很容易把“想喝一杯”直接变成“就点这一杯”'
 ];
 
-const PRICE_WRAPPERS = [
-  '{pricePitch}',
-  '更妙的是，{pricePitch}',
-  '而且从下单心理上说，{pricePitch}',
-  '放到真正买单那一刻，{pricePitch}'
-];
-
 const URGE_TEMPLATES = {
   visual: [
     '这种杯子最危险的地方，是连没开喝的人都会先想拍，再想点',
@@ -159,11 +152,11 @@ const URGE_TEMPLATES = {
 
 const COMPOSITION_PATTERNS = [
   ['persona', 'match', 'product', 'urge'],
-  ['plan', 'match', 'price', 'urge'],
-  ['persona', 'product', 'plan', 'price'],
+  ['plan', 'match', 'product', 'urge'],
+  ['persona', 'product', 'plan', 'urge'],
   ['product', 'match', 'urge'],
   ['persona', 'plan', 'product', 'urge'],
-  ['plan', 'product', 'match', 'price']
+  ['plan', 'product', 'match', 'urge']
 ];
 
 function addWeight(map, key, value) {
@@ -246,35 +239,8 @@ function uniqTags(list) {
   return [...new Set(list)];
 }
 
-function getPriceText(costRange = []) {
-  if (!Array.isArray(costRange) || costRange.length < 2) {
-    return '店内酒单为准';
-  }
-
-  return `¥${costRange[0]}-${costRange[1]}`;
-}
-
-function getPricePitch(costRange = []) {
-  if (!Array.isArray(costRange) || costRange.length < 2) {
-    return '价格不会给人太重的心理负担，属于很容易顺手点下去的那一杯';
-  }
-
-  const [low, high] = costRange;
-  const priceText = getPriceText(costRange);
-
-  if (high <= 10) {
-    return `${priceText}这个区间，几乎就是“想点就点”的低负担快乐`;
-  }
-
-  if (high <= 14) {
-    return `它常见价格落在${priceText}，很容易让人觉得这杯花得值`;
-  }
-
-  if (low >= 10) {
-    return `它常见价格在${priceText}，但给到的完成度和氛围，足够让这笔钱花得心甘情愿`;
-  }
-
-  return `它常见价格在${priceText}，花起来不算夸张，回报却很完整`;
+function getPriceText() {
+  return '**';
 }
 
 function getTagPhrase(tag) {
@@ -519,10 +485,6 @@ function buildProductSegment(variables, seedSource) {
   return fillTemplate(pickSeeded(PRODUCT_TEMPLATES, seedSource, 'product'), variables);
 }
 
-function buildPriceSegment(variables, seedSource) {
-  return fillTemplate(pickSeeded(PRICE_WRAPPERS, seedSource, 'price'), variables);
-}
-
 function buildUrgeSegment(variables, tags, seedSource) {
   const mood = detectMood(tags);
   const pool = URGE_TEMPLATES[mood] || URGE_TEMPLATES.default;
@@ -601,14 +563,13 @@ function createPersonalizedReason(cocktail, sbtiCode, sbtiInfo, plan, matchedTag
     tagKeywords,
     tagCopyText,
     priceText: getPriceText(cocktail.cost_range),
-    pricePitch: getPricePitch(cocktail.cost_range)
+    pricePitch: ''
   };
 
   const segmentMap = {
     persona: buildPersonaSegment(variables, variantSeed),
     match: buildMatchSegment(variables, variantSeed),
     product: buildProductSegment(variables, variantSeed),
-    price: buildPriceSegment(variables, variantSeed),
     urge: buildUrgeSegment(variables, [...matchedTags, ...cocktail.match_profile.tags], variantSeed),
     plan: buildPlanSegment(plan, variables, variantSeed)
   };
