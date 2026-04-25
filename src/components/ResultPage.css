@@ -109,6 +109,12 @@
   gap: 14px;
 }
 
+.result-share-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .result-intro {
   display: flex;
   flex-direction: column;
@@ -880,6 +886,12 @@
   box-shadow: 2px 2px 0 var(--color-ink);
 }
 
+.action-button:disabled {
+  cursor: wait;
+  opacity: 0.78;
+  transform: none;
+}
+
 .artwork-modal {
   position: fixed;
   inset: 0;
@@ -1430,4 +1442,43 @@
 
 .artwork-modal {
   background: rgba(33, 91, 114, 0.36);
+}
+
+.is-exporting-result .result-page,
+.is-exporting-result .result-intro,
+.is-exporting-result .result-card,
+.is-exporting-result .result-card-frame,
+.is-exporting-result .result-header,
+.is-exporting-result .poster-headline,
+.is-exporting-result .reason-block,
+.is-exporting-result .result-support,
+.is-exporting-result .result-footer {
+  animation: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+.is-exporting-result .result-atmosphere,
+.is-exporting-result .card-transition-shell,
+.is-exporting-result .slide-indicators,
+.is-exporting-result .slide-hint,
+.is-exporting-result .result-actions {
+  display: none !important;
+}
+
+.is-exporting-result .result-intro,
+.is-exporting-result .result-card,
+.is-exporting-result .artwork-modal {
+  backdrop-filter: none !important;
+}
+
+.is-exporting-result .result-share-shell {
+  padding: 18px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(236, 113, 85, 0.14), transparent 24%),
+    radial-gradient(circle at 86% 14%, rgba(33, 91, 114, 0.16), transparent 26%),
+    linear-gradient(180deg, rgba(255, 248, 238, 0.82), rgba(248, 234, 209, 0.96));
 }

@@ -125,13 +125,55 @@ function resolveDrinkImage(cocktail) {
     || null;
 }
 
+function waitForNextFrame() {
+  return new Promise((resolve) => {
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(resolve);
+    });
+  });
+}
+
+function waitForFonts() {
+  if (!document.fonts?.ready) {
+    return Promise.resolve();
+  }
+
+  return document.fonts.ready.catch(() => undefined);
+}
+
+function waitForImages(container) {
+  const images = Array.from(container.querySelectorAll('img'));
+  const pendingImages = images.filter((image) => !image.complete);
+
+  if (!pendingImages.length) {
+    return Promise.resolve();
+  }
+
+  return Promise.all(
+    pendingImages.map(
+      (image) =>
+        new Promise((resolve) => {
+          const finish = () => {
+            image.removeEventListener('load', finish);
+            image.removeEventListener('error', finish);
+            resolve();
+          };
+
+          image.addEventListener('load', finish, { once: true });
+          image.addEventListener('error', finish, { once: true });
+        })
+    )
+  );
+}
+
 const ResultPage = ({ result, onRestart }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [isArtworkOpen, setIsArtworkOpen] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-  const cardRef = useRef(null);
+  const [isSharing, setIsSharing] = useState(false);
+  const captureRef = useRef(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -212,23 +254,37 @@ const ResultPage = ({ result, onRestart }) => {
   };
 
   const handleShare = async () => {
-    if (!cardRef.current) {
+    if (!captureRef.current || isSharing) {
       return;
     }
 
+    setIsSharing(true);
+
     try {
-      const canvas = await html2canvas(cardRef.current, {
-        scale: 2,
+      await waitForFonts();
+      await waitForImages(captureRef.current);
+      await waitForNextFrame();
+
+      const canvas = await html2canvas(captureRef.current, {
+        scale: Math.min(window.devicePixelRatio || 2, 3),
         backgroundColor: null,
-        logging: false
+        useCORS: true,
+        logging: false,
+        scrollX: 0,
+        scrollY: -window.scrollY,
+        onclone: (clonedDocument) => {
+          clonedDocument.body.classList.add('is-exporting-result');
+        }
       });
       const image = canvas.toDataURL('image/png');
       const link = document.createElement('a');
 
-      link.download = `我的微醺解药-${currentCocktail.name}.png`;
+      link.download = `stick-mood-result-${currentCocktail.id}.png`;
       link.href = image;
       link.click();
+      setIsSharing(false);
     } catch (error) {
+      setIsSharing(false);
       console.error('生成图片失败:', error);
     }
   };
@@ -290,6 +346,7 @@ const ResultPage = ({ result, onRestart }) => {
       </div>
 
       <div className="result-content">
+        <div className="result-share-shell" ref={captureRef}>
         <div className="result-intro">
           <div className="mbti-intro-head">
             <div className="mbti-intro-copy">
@@ -331,18 +388,17 @@ const ResultPage = ({ result, onRestart }) => {
           </button>
         </div>
 
-        <div
-          className="cards-container"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onMouseDown={handleMouseDown}
+          <div
+            className="cards-container"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onMouseDown={handleMouseDown}
           onMouseUp={handleMouseUp}
         >
-          <div
-            className="result-card"
-            data-rank={rankTone}
-            ref={cardRef}
-          >
+            <div
+              className="result-card"
+              data-rank={rankTone}
+            >
             <div className="result-card-frame" key={frameKey}>
               <div className="card-transition-shell" aria-hidden="true">
                 <div className="card-transition-veil" />
@@ -419,6 +475,8 @@ const ResultPage = ({ result, onRestart }) => {
           </div>
         </div>
 
+        </div>
+
         <div className="slide-indicators">
           {result.cocktails.map((_, index) => (
             <button
@@ -442,8 +500,8 @@ const ResultPage = ({ result, onRestart }) => {
           <button className="action-button secondary" onClick={onRestart}>
             再测一次
           </button>
-          <button className="action-button primary" onClick={handleShare}>
-            保存这张海报
+          <button className="action-button primary" onClick={handleShare} disabled={isSharing}>
+            {isSharing ? '生成中...' : '保存这张海报'}
           </button>
         </div>
       </div>
