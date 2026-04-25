@@ -5,10 +5,10 @@ import './QuestionPage.css';
 const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack }) => {
   const [isVisible, setIsVisible] = useState(false);
   const progressPercent = ((currentIndex + 1) / totalQuestions) * 100;
-  const isSbtiQuestion = question.type === 'sbti';
-  const helperLine = isSbtiQuestion
-    '直接选你测出的 SBTI。'
-    
+  const isMbtiQuestion = question.type === 'mbti';
+  const helperLine = isMbtiQuestion
+    ? '直接选你平时更认同的 MBTI 类型。'
+    : '按直觉选，更容易拿到贴合当下状态的推荐。';
 
   useEffect(() => {
     setIsVisible(true);
@@ -19,7 +19,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
     setTimeout(() => onAnswer(value), 300);
   };
 
-  const handleBack = () => {
+  const handleBackClick = () => {
     setIsVisible(false);
     setTimeout(() => onBack(), 300);
   };
@@ -28,7 +28,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
     <div className={`question-page ${isVisible ? 'visible' : ''}`}>
       <div className="question-shell">
         <div className="question-topline">
-          <button className="back-button" onClick={handleBack}>
+          <button className="back-button" onClick={handleBackClick}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M19 12H5M12 19L5 12L12 5" />
             </svg>
@@ -46,7 +46,7 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
         <div className="question-card">
           <div className="question-card-head">
             <span className="question-tag">
-              {isSbtiQuestion ? 'SBTI 人格' : '当下心情'}
+              {isMbtiQuestion ? 'MBTI 人格' : '当下心情'}
             </span>
 
             <div className="progress-bar">
@@ -64,9 +64,9 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
           <h2 className="question-text">{question.question}</h2>
           <p className="question-note">{helperLine}</p>
 
-          <div className={`options-list ${isSbtiQuestion ? 'options-grid' : ''}`}>
+          <div className={`options-list ${isMbtiQuestion ? 'options-grid' : ''}`}>
             {question.options.map((option, index) => {
-              const [optionCode, optionLabel = option.text] = isSbtiQuestion
+              const [optionCode, optionLabel = option.text] = isMbtiQuestion
                 ? option.text.split(' - ')
                 : [null, option.text];
 
@@ -78,12 +78,12 @@ const QuestionPage = ({ question, currentIndex, totalQuestions, onAnswer, onBack
                   onClick={() => handleAnswerClick(option.value)}
                 >
                   <span className="option-marker">
-                    {isSbtiQuestion ? optionCode : `0${index + 1}`.slice(-2)}
+                    {isMbtiQuestion ? optionCode : `0${index + 1}`.slice(-2)}
                   </span>
 
                   <span className="option-text">{optionLabel}</span>
 
-                  <span className="option-arrow">{isSbtiQuestion ? '✓' : '→'}</span>
+                  <span className="option-arrow">{isMbtiQuestion ? '✓' : '→'}</span>
                 </button>
               );
             })}

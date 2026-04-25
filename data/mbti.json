@@ -1,0 +1,196 @@
+{
+  "mbti": {
+    "INFJ": {
+      "name": "提倡者",
+      "shortdesc": "看重意义，也看重氛围落点。",
+      "desc": "INFJ 往往会先感受一杯酒背后的情绪，再决定要不要认真喜欢。你通常不需要最吵的那杯，更偏爱层次、留白和能慢慢回味的东西；酒最好能陪你沉进去，而不是把你推得太快。",
+      "keyword": ["洞察", "理想", "共情", "深度"],
+      "recommendation_profile": {
+        "preferred_tags": ["复杂", "治愈", "微苦", "独处", "经典"],
+        "excluded_tags": ["喧闹", "简单粗暴", "断电"],
+        "vibe": "慢热、深度、克制但有感受力",
+        "fallback_cocktails": ["whiskey_sour", "white_russian"]
+      }
+    },
+    "INFP": {
+      "name": "调停者",
+      "shortdesc": "浪漫和真实感，要同时在线。",
+      "desc": "INFP 常常对情绪和审美都很敏锐，喜欢入口友好、回味里又有故事的酒。太直给会显得粗，太冷会失去连接；最好既有想象空间，也能把当下的心情温柔接住。",
+      "keyword": ["浪漫", "真实", "想象力", "共鸣"],
+      "recommendation_profile": {
+        "preferred_tags": ["浪漫", "梦幻", "酸甜", "治愈", "纠结"],
+        "excluded_tags": ["高酒精度", "冷淡", "喧闹"],
+        "vibe": "浪漫、内倾、情绪饱满",
+        "fallback_cocktails": ["tequila_sunrise", "white_russian"]
+      }
+    },
+    "ENFJ": {
+      "name": "主人公",
+      "shortdesc": "把氛围和照顾感一起带起来。",
+      "desc": "ENFJ 往往天然会关注在场每个人的感受，也知道什么选择能把氛围推到舒服的位置。你不只在意自己喝得好不好，也会在意一杯酒是否体面、好分享、能把夜晚气质一起抬起来。",
+      "keyword": ["感染力", "温暖", "引导", "连接"],
+      "recommendation_profile": {
+        "preferred_tags": ["治愈", "气泡", "出片", "果味", "经典"],
+        "excluded_tags": ["冷淡", "断电", "无趣"],
+        "vibe": "温暖、带场、照顾全局",
+        "fallback_cocktails": ["mojito", "tequila_sunrise"]
+      }
+    },
+    "ENFP": {
+      "name": "竞选者",
+      "shortdesc": "新鲜感、快乐和故事感，都想要。",
+      "desc": "ENFP 容易被有画面、有情绪起伏、有趣味的东西吸引。你未必只选最稳的，反而更偏爱一上桌就有记忆点、喝起来还有点惊喜的酒；越能让今晚变得不普通，越容易让你心动。",
+      "keyword": ["自由", "热情", "好奇", "可能性"],
+      "recommendation_profile": {
+        "preferred_tags": ["梦幻", "出片", "快乐水", "气泡", "果味"],
+        "excluded_tags": ["冷淡", "平庸", "无趣"],
+        "vibe": "跳跃、热情、充满新鲜感",
+        "fallback_cocktails": ["blue_lagoon", "cuba_libre"]
+      }
+    },
+    "INTJ": {
+      "name": "建筑师",
+      "shortdesc": "讲究结构、克制和明确的完成度。",
+      "desc": "INTJ 往往会先判断一杯酒的逻辑是否成立，再决定要不要认真喜欢。你更吃极简、纯粹、层次清晰的路子，不需要过度讨好，也不喜欢被花哨分散注意力；高级感对你来说通常来自精准而不是堆料。",
+      "keyword": ["战略", "效率", "克制", "结构感"],
+      "recommendation_profile": {
+        "preferred_tags": ["极简", "经典", "微苦", "复杂", "纯粹"],
+        "excluded_tags": ["甜腻", "花里胡哨", "喧闹"],
+        "vibe": "克制、清晰、目标明确",
+        "fallback_cocktails": ["gin_tonic", "whiskey_sour"]
+      }
+    },
+    "INTP": {
+      "name": "逻辑学家",
+      "shortdesc": "有意思，比热闹更重要。",
+      "desc": "INTP 通常对标准答案没太大兴趣，反而更喜欢能让人继续琢磨的东西。选酒时你会被复杂度、结构感和回味吸引，一杯酒如果足够清晰又留有探索空间，通常更容易进入你的偏好名单。",
+      "keyword": ["逻辑", "分析", "好奇", "独立思考"],
+      "recommendation_profile": {
+        "preferred_tags": ["复杂", "经典", "微苦", "冷淡", "纯粹"],
+        "excluded_tags": ["甜腻", "花里胡哨", "无趣"],
+        "vibe": "理性、好奇、偏爱内容感",
+        "fallback_cocktails": ["gin_tonic", "whiskey_sour"]
+      }
+    },
+    "ENTJ": {
+      "name": "指挥官",
+      "shortdesc": "要的是强度、效率和可控的锋利感。",
+      "desc": "ENTJ 通常很清楚自己要什么，也不愿把时间花在模棱两可的选择上。比起温吞和讨好，你更适合气场明确、酒精存在感清楚、落点干脆的酒；它最好一上桌就把基调定下来。",
+      "keyword": ["决断", "掌控", "推进", "结果导向"],
+      "recommendation_profile": {
+        "preferred_tags": ["高酒精度", "经典", "复杂", "浓烈", "纯粹"],
+        "excluded_tags": ["奶香", "甜水", "温吞"],
+        "vibe": "高压、直接、掌控节奏",
+        "fallback_cocktails": ["margarita", "whiskey_sour"]
+      }
+    },
+    "ENTP": {
+      "name": "辩论家",
+      "shortdesc": "喜欢能激发反应的那一杯。",
+      "desc": "ENTP 往往不满足于平铺直叙的体验，更容易被反差、变化和一点挑战性吸引。你会偏爱有辨识度、有话题度、最好还能带点机灵转折的风格，太无聊的稳妥牌很难让你真正下单。",
+      "keyword": ["挑战", "灵活", "反差", "创造力"],
+      "recommendation_profile": {
+        "preferred_tags": ["刺激", "复杂", "酸甜", "气泡", "经典"],
+        "excluded_tags": ["平淡", "无趣", "温吞"],
+        "vibe": "机灵、跳脱、喜欢变化",
+        "fallback_cocktails": ["margarita", "blue_lagoon"]
+      }
+    },
+    "ISFJ": {
+      "name": "守卫者",
+      "shortdesc": "舒服、妥帖、有被照顾到的感觉最重要。",
+      "desc": "ISFJ 往往不追求最夸张的刺激，而更在意一杯酒是不是可靠、顺口、让人安心。你偏爱那种能把情绪稳稳接住的类型，入口友好、气质温柔、有一点熟悉感，通常比戏剧化的狠角色更适合你。",
+      "keyword": ["可靠", "耐心", "照顾", "安定"],
+      "recommendation_profile": {
+        "preferred_tags": ["治愈", "奶香", "安神", "经典", "安全感"],
+        "excluded_tags": ["刺激", "断电", "高酒精度"],
+        "vibe": "安稳、柔和、低压",
+        "fallback_cocktails": ["white_russian", "mojito"]
+      }
+    },
+    "ISFP": {
+      "name": "探险家",
+      "shortdesc": "审美、体感和当下心情，要一起被满足。",
+      "desc": "ISFP 容易被美感和情绪同步击中，喜欢轻盈但不敷衍、好看也好喝的选择。你不必每次都找最复杂的酒，但会在意它是不是有氛围、有触感、有一点只属于今晚的私人漂亮。",
+      "keyword": ["审美", "感受", "即兴", "细腻"],
+      "recommendation_profile": {
+        "preferred_tags": ["梦幻", "颜值高", "果味", "酸甜", "治愈"],
+        "excluded_tags": ["粗糙", "高定", "烈酒"],
+        "vibe": "感性、当下、注重体验",
+        "fallback_cocktails": ["tequila_sunrise", "blue_lagoon"]
+      }
+    },
+    "ESFJ": {
+      "name": "执政官",
+      "shortdesc": "偏爱让大家都舒服的热闹。",
+      "desc": "ESFJ 常常天然知道什么样的东西最容易让场子顺起来。你会偏好亲和、明亮、容易分享的风格，既要好入口，也要有一点体面和氛围感；一杯能把关系拉近的酒，往往比孤独感太重的酒更对味。",
+      "keyword": ["亲和", "组织感", "照顾", "和谐"],
+      "recommendation_profile": {
+        "preferred_tags": ["气泡", "果味", "治愈", "出片", "快乐水"],
+        "excluded_tags": ["冷淡", "独处", "微苦"],
+        "vibe": "热场、和谐、易于分享",
+        "fallback_cocktails": ["mojito", "cuba_libre"]
+      }
+    },
+    "ESFP": {
+      "name": "表演者",
+      "shortdesc": "好玩、好看、好上头，缺一项都不够。",
+      "desc": "ESFP 对现场感和即时快乐通常很敏感，喜欢那种一上桌就能把注意力拉过来的选择。你不需要过度解释的一杯，越直观、越有记忆点、越能让当下立刻升温，越容易变成你的心头好。",
+      "keyword": ["活力", "表现力", "快乐", "现场感"],
+      "recommendation_profile": {
+        "preferred_tags": ["出片", "快乐水", "气泡", "颜值高", "爽快"],
+        "excluded_tags": ["冷淡", "深沉", "极简"],
+        "vibe": "外放、明亮、即时满足",
+        "fallback_cocktails": ["blue_lagoon", "cuba_libre"]
+      }
+    },
+    "ISTJ": {
+      "name": "物流师",
+      "shortdesc": "稳定、清楚、可靠，本身就是偏好。",
+      "desc": "ISTJ 不太吃浮夸路线，更认可那些经得住反复选择的经典解法。对你来说，一杯酒最好逻辑清晰、完成度高、不容易出错；它不必喧闹，但要足够稳，稳到你愿意一次次回头点它。",
+      "keyword": ["秩序", "稳健", "可靠", "执行"],
+      "recommendation_profile": {
+        "preferred_tags": ["经典", "纯粹", "极简", "微苦", "低成本"],
+        "excluded_tags": ["花里胡哨", "甜水", "抓马"],
+        "vibe": "稳定、务实、可预期",
+        "fallback_cocktails": ["gin_tonic", "whiskey_sour"]
+      }
+    },
+    "ISTP": {
+      "name": "鉴赏家",
+      "shortdesc": "干脆、好用、不过度解释。",
+      "desc": "ISTP 更信手感和实际体验，而不是被包装牵着走。你通常偏好直接、冷静、带点锋利感的酒，最好不拖泥带水，入口就能说明自己的路数；复杂可以有，但不能啰嗦。",
+      "keyword": ["冷静", "动手", "判断力", "独立"],
+      "recommendation_profile": {
+        "preferred_tags": ["直球", "极简", "纯粹", "刺激", "冷淡"],
+        "excluded_tags": ["甜腻", "娘娘腔", "拖泥带水"],
+        "vibe": "冷静、利落、讲究手感",
+        "fallback_cocktails": ["gin_tonic", "margarita"]
+      }
+    },
+    "ESTJ": {
+      "name": "总经理",
+      "shortdesc": "更信服结果明确的选择。",
+      "desc": "ESTJ 往往会自然偏向那些有秩序、有效率、能直接成立的东西。选酒时你更容易被完成度、强度和经典感打动，不需要太多暧昧空间；一杯酒如果能迅速表明立场，通常更合你胃口。",
+      "keyword": ["管理", "效率", "判断", "推进"],
+      "recommendation_profile": {
+        "preferred_tags": ["经典", "浓烈", "纯粹", "高酒精度", "直球"],
+        "excluded_tags": ["梦幻", "奶香", "甜腻"],
+        "vibe": "果断、稳准、结果优先",
+        "fallback_cocktails": ["margarita", "whiskey_sour"]
+      }
+    },
+    "ESTP": {
+      "name": "企业家",
+      "shortdesc": "先刺激起来，再说别的。",
+      "desc": "ESTP 很会跟着现场节奏走，也擅长把气氛往前推。你偏爱高反应、强存在感、入口就有动作的风格，太慢热太收着的酒容易让你失去兴趣；好喝之外，还得让人有立刻进入状态的感觉。",
+      "keyword": ["冒险", "行动", "反应快", "冲劲"],
+      "recommendation_profile": {
+        "preferred_tags": ["刺激", "爽快", "高酒精度", "气泡", "直球"],
+        "excluded_tags": ["温吞", "忧郁", "复杂"],
+        "vibe": "直接、冒险、追求即时反馈",
+        "fallback_cocktails": ["margarita", "cuba_libre"]
+      }
+    }
+  }
+}

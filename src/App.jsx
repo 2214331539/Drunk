@@ -3,19 +3,19 @@ import HomePage from './components/HomePage';
 import QuestionPage from './components/QuestionPage';
 import ResultPage from './components/ResultPage';
 import questionsData from '../data/questions.json';
-import sbtiData from '../data/sbti.json';
+import mbtiData from '../data/mbti.json';
 import alcoholData from '../data/alcohol.json';
 import answerData from '../data/answer.json';
 import { buildQuestions, calculateRecommendations } from './utils/recommendationEngine';
 import './styles/App.css';
 
 function App() {
-  const sbtiMap = useMemo(() => sbtiData.sbti, []);
+  const mbtiMap = useMemo(() => mbtiData.mbti, []);
   const cocktailsMap = useMemo(() => alcoholData.cocktails, []);
   const answerPlanMap = useMemo(() => answerData.answers, []);
   const questions = useMemo(
-    () => buildQuestions(questionsData.questions, sbtiMap),
-    [sbtiMap]
+    () => buildQuestions(questionsData.questions, mbtiMap),
+    [mbtiMap]
   );
 
   const [currentPage, setCurrentPage] = useState('home');
@@ -39,18 +39,18 @@ function App() {
       return;
     }
 
-    const sbtiCode = newAnswers[newAnswers.length - 1];
+    const mbtiCode = newAnswers[newAnswers.length - 1];
 
     const calculatedResult = calculateRecommendations({
-      sbtiCode,
-      sbtiMap,
+      mbtiCode,
+      mbtiMap,
       cocktailsMap,
       answerPlanMap
     });
 
     setResult(calculatedResult);
     setCurrentPage('result');
-  }, [answerPlanMap, answers, cocktailsMap, currentQuestion, questions.length, sbtiMap]);
+  }, [answerPlanMap, answers, cocktailsMap, currentQuestion, questions.length, mbtiMap]);
 
   const handleRestart = useCallback(() => {
     setCurrentPage('home');

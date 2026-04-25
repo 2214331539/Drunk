@@ -37,7 +37,7 @@ const TAG_COPY = {
   '高酒精度': '上头速度很明确'
 };
 
-const SBTI_PREFERRED_ALIASES = {
+const MBTI_PREFERRED_ALIASES = {
   '伪装': { tags: ['经典', '冷淡'] },
   '低复杂度': { tags: ['简单粗暴'], complexity: 1 },
   '低酒精度': { tags: ['低度数'], abv: 'low' },
@@ -57,7 +57,7 @@ const SBTI_PREFERRED_ALIASES = {
   '高调': { tags: ['出片', '颜值高', '梦幻'] }
 };
 
-const SBTI_EXCLUDED_ALIASES = {
+const MBTI_EXCLUDED_ALIASES = {
   '傻白甜': { tags: ['甜腻', '甜水'] },
   '喧闹': { tags: ['快乐水', '气泡', '抓马'] },
   '娘娘腔': { tags: ['梦幻'] },
@@ -90,18 +90,18 @@ const SBTI_EXCLUDED_ALIASES = {
 };
 
 const PERSONA_TEMPLATES = [
-  '{sbtiCode}这种{sbtiName}，挑酒这件事本来就不该太普通',
+  '{mbtiCode} 这种 {mbtiName}，挑酒这件事本来就不该太普通',
   '{shortdesc}，所以真正会让你停下来的，往往不是热闹，是调性对上',
-  '{planTitle}这条路子，放在{sbtiCode}身上本来就很容易成立',
-  '{sbtiCode}这种人格，适合的不是随便一杯，而是第一眼就让人想下单的那种酒',
-  '对{sbtiCode}来说，酒单里最值钱的不是品类多，而是有没有一杯刚好戳中自己'
+  '{planTitle} 这条路子，放在 {mbtiCode} 身上本来就很容易成立',
+  '{mbtiCode} 这种人格，适合的不是随便一杯，而是第一眼就让人想下单的那种酒',
+  '对 {mbtiCode} 来说，酒单里最值钱的不是品类多，而是有没有一杯刚好戳中自己'
 ];
 
 const MATCH_TEMPLATES = [
   '{drink}身上的{tagKeywords}一起发力，几乎就是给你这套人格定制的微醺方案',
   '它最会抓人的地方，是把{tagKeywords}这几层感觉叠得很顺，基本没有犹豫成本',
   '它真正会勾人的点，不是标签堆得多，而是{tagCopyText}这些感觉全在往同一个方向发力',
-  '当{spotlight}和{tagKeywords}撞在一杯里，{sbtiCode}往往很难装作没看到',
+  '当{spotlight}和{tagKeywords}撞在一杯里，{mbtiCode} 往往很难装作没看到',
   '这杯厉害的不是花哨，而是{tagKeywords}这些点全都落在会让你心动的位置上'
 ];
 
@@ -307,7 +307,7 @@ function resolveSemanticToken(token, aliasMap, availableTags, targetMap, meta, w
   }
 }
 
-function buildSbtiProfile(sbtiInfo, availableTags) {
+function buildMbtiProfile(mbtiInfo, availableTags) {
   const preferredTagWeights = new Map();
   const excludedTagWeights = new Map();
   const meta = {
@@ -316,18 +316,18 @@ function buildSbtiProfile(sbtiInfo, availableTags) {
     complexityTargets: []
   };
 
-  sbtiInfo.recommendation_profile.preferred_tags.forEach((tag) => {
-    resolveSemanticToken(tag, SBTI_PREFERRED_ALIASES, availableTags, preferredTagWeights, meta, 1.35);
+  mbtiInfo.recommendation_profile.preferred_tags.forEach((tag) => {
+    resolveSemanticToken(tag, MBTI_PREFERRED_ALIASES, availableTags, preferredTagWeights, meta, 1.35);
   });
 
-  sbtiInfo.recommendation_profile.excluded_tags.forEach((tag) => {
-    resolveSemanticToken(tag, SBTI_EXCLUDED_ALIASES, availableTags, excludedTagWeights, meta, 1.15);
+  mbtiInfo.recommendation_profile.excluded_tags.forEach((tag) => {
+    resolveSemanticToken(tag, MBTI_EXCLUDED_ALIASES, availableTags, excludedTagWeights, meta, 1.15);
   });
 
   return {
     preferredTagWeights,
     excludedTagWeights,
-    fallbackIds: new Set(sbtiInfo.recommendation_profile.fallback_cocktails || []),
+    fallbackIds: new Set(mbtiInfo.recommendation_profile.fallback_cocktails || []),
     targetAbv: getLeadingVote(meta.abvVotes, null),
     targetSweetness: meta.sweetnessTargets.length ? average(meta.sweetnessTargets) : null,
     targetComplexity: meta.complexityTargets.length ? average(meta.complexityTargets) : null
@@ -412,15 +412,15 @@ function getDisplayMatch(score) {
   return Math.max(68, Math.min(98, Math.round(score)));
 }
 
-function createFallbackPlan(sbtiCode, sbtiInfo) {
-  const defaultTags = (sbtiInfo.recommendation_profile.preferred_tags || []).slice(0, 3);
+function createFallbackPlan(mbtiCode, mbtiInfo) {
+  const defaultTags = (mbtiInfo.recommendation_profile.preferred_tags || []).slice(0, 3);
 
   return {
-    id: `${sbtiCode.toLowerCase()}_fallback`,
-    title: '专属上头剧本',
-    copy: `${sbtiCode} 这种人格，天生就该点一杯会做气氛、也会做情绪收口的酒。{drink}把 {tagKeywords} 和 {spotlight} 拧在一起，很容易从酒单里第一眼跳出来。`,
+    id: `${mbtiCode.toLowerCase()}_fallback`,
+    title: '专属微醺剧本',
+    copy: `${mbtiCode} 这种人格，天生就该点一杯会做气氛、也会做情绪收口的酒。{drink}把 {tagKeywords} 和 {spotlight} 拧在一起，很容易从酒单里第一眼跳出来。`,
     focus_tags: defaultTags,
-    fallback_ids: sbtiInfo.recommendation_profile.fallback_cocktails || []
+    fallback_ids: mbtiInfo.recommendation_profile.fallback_cocktails || []
   };
 }
 
@@ -510,49 +510,49 @@ function composeReason(segments) {
     .join('');
 }
 
-function scoreCocktail(cocktail, sbtiProfile, planProfile) {
+function scoreCocktail(cocktail, mbtiProfile, planProfile) {
   const cocktailTags = cocktail.match_profile.tags;
-  const sbtiMatch = collectMatches(cocktailTags, sbtiProfile.preferredTagWeights);
-  const sbtiPenalty = collectMatches(cocktailTags, sbtiProfile.excludedTagWeights);
+  const mbtiMatch = collectMatches(cocktailTags, mbtiProfile.preferredTagWeights);
+  const mbtiPenalty = collectMatches(cocktailTags, mbtiProfile.excludedTagWeights);
   const planMatch = collectMatches(cocktailTags, planProfile.preferredTagWeights);
   const planPenalty = collectMatches(cocktailTags, planProfile.excludedTagWeights);
 
-  const effectiveAbvTarget = planProfile.targetAbv || sbtiProfile.targetAbv;
-  const effectiveSweetnessTarget = planProfile.targetSweetness || sbtiProfile.targetSweetness;
-  const effectiveComplexityTarget = planProfile.targetComplexity || sbtiProfile.targetComplexity;
-  const sbtiFallbackHit = sbtiProfile.fallbackIds.has(cocktail.id);
+  const effectiveAbvTarget = planProfile.targetAbv || mbtiProfile.targetAbv;
+  const effectiveSweetnessTarget = planProfile.targetSweetness || mbtiProfile.targetSweetness;
+  const effectiveComplexityTarget = planProfile.targetComplexity || mbtiProfile.targetComplexity;
+  const mbtiFallbackHit = mbtiProfile.fallbackIds.has(cocktail.id);
   const planFallbackHit = planProfile.fallbackIds.has(cocktail.id);
 
   const totalScore = 60
-    + sbtiMatch.total * 5.4
+    + mbtiMatch.total * 5.4
     + planMatch.total * 6.2
-    - sbtiPenalty.total * 4.5
+    - mbtiPenalty.total * 4.5
     - planPenalty.total * 4.1
     + getAbvBonus(cocktail.match_profile.abv_level, effectiveAbvTarget)
     + getLevelBonus(cocktail.match_profile.sweetness, effectiveSweetnessTarget, 5)
     + getLevelBonus(cocktail.match_profile.complexity, effectiveComplexityTarget, 4)
-    + (sbtiFallbackHit ? 6 : 0)
+    + (mbtiFallbackHit ? 6 : 0)
     + (planFallbackHit ? 8 : 0)
-    + (sbtiFallbackHit && planFallbackHit ? 3 : 0);
+    + (mbtiFallbackHit && planFallbackHit ? 3 : 0);
 
   return {
     totalScore,
     matchedTags: uniqTags([
       ...planMatch.matched.map((item) => item.tag),
-      ...sbtiMatch.matched.map((item) => item.tag)
+      ...mbtiMatch.matched.map((item) => item.tag)
     ])
   };
 }
 
-function createPersonalizedReason(cocktail, sbtiCode, sbtiInfo, plan, matchedTags, variantSeed) {
-  const shortdesc = trimEndingPunctuation(sanitizeQuote(sbtiInfo.shortdesc));
+function createPersonalizedReason(cocktail, mbtiCode, mbtiInfo, plan, matchedTags, variantSeed) {
+  const shortdesc = trimEndingPunctuation(sanitizeQuote(mbtiInfo.shortdesc));
   const tagKeywords = buildTagKeywords(matchedTags, plan.focus_tags);
   const tagCopyText = buildTagCopyText(matchedTags, plan.focus_tags);
   const spotlight = cleanTitle(cocktail.desc_title);
   const descSnippet = getDescSnippet(cocktail.desc_body);
   const variables = {
-    sbtiCode,
-    sbtiName: sbtiInfo.name,
+    mbtiCode,
+    mbtiName: mbtiInfo.name,
     shortdesc,
     planTitle: plan.title,
     drink: cocktail.name,
@@ -582,15 +582,15 @@ function createPersonalizedReason(cocktail, sbtiCode, sbtiInfo, plan, matchedTag
   return composeReason(segments);
 }
 
-export function buildQuestions(questionData, sbtiMap) {
+export function buildQuestions(questionData, mbtiMap) {
   return questionData.map((question) => {
-    if (question.type !== 'sbti') {
+    if (question.type !== 'mbti') {
       return question;
     }
 
     return {
       ...question,
-      options: Object.entries(sbtiMap).map(([code, info]) => ({
+      options: Object.entries(mbtiMap).map(([code, info]) => ({
         text: `${code} - ${info.name}`,
         value: code
       }))
@@ -598,24 +598,24 @@ export function buildQuestions(questionData, sbtiMap) {
   });
 }
 
-export function calculateRecommendations({ sbtiCode, sbtiMap, cocktailsMap, answerPlanMap = {} }) {
-  const sbtiInfo = sbtiMap[sbtiCode];
+export function calculateRecommendations({ mbtiCode, mbtiMap, cocktailsMap, answerPlanMap = {} }) {
+  const mbtiInfo = mbtiMap[mbtiCode];
 
-  if (!sbtiInfo) {
-    throw new Error(`Unknown SBTI code: ${sbtiCode}`);
+  if (!mbtiInfo) {
+    throw new Error(`Unknown MBTI code: ${mbtiCode}`);
   }
 
   const cocktails = Object.values(cocktailsMap);
   const availableTags = new Set(cocktails.flatMap((item) => item.match_profile.tags));
-  const sbtiProfile = buildSbtiProfile(sbtiInfo, availableTags);
-  const plans = answerPlanMap[sbtiCode];
-  const selectedPlan = pickRandomPlan(Array.isArray(plans) ? plans : []) || createFallbackPlan(sbtiCode, sbtiInfo);
+  const mbtiProfile = buildMbtiProfile(mbtiInfo, availableTags);
+  const plans = answerPlanMap[mbtiCode];
+  const selectedPlan = pickRandomPlan(Array.isArray(plans) ? plans : []) || createFallbackPlan(mbtiCode, mbtiInfo);
   const planProfile = buildPlanProfile(selectedPlan, availableTags);
-  const sessionSeed = `${sbtiCode}:${selectedPlan.id}:${Math.random().toString(36).slice(2, 10)}`;
+  const sessionSeed = `${mbtiCode}:${selectedPlan.id}:${Math.random().toString(36).slice(2, 10)}`;
 
   const rankedCocktails = cocktails
     .map((cocktail) => {
-      const { totalScore, matchedTags } = scoreCocktail(cocktail, sbtiProfile, planProfile);
+      const { totalScore, matchedTags } = scoreCocktail(cocktail, mbtiProfile, planProfile);
 
       return {
         ...cocktail,
@@ -632,12 +632,12 @@ export function calculateRecommendations({ sbtiCode, sbtiMap, cocktailsMap, answ
         ...cocktail,
         rank: index + 1,
         displayMatch: getDisplayMatch(cocktail.totalScore),
-        reasonLabel: '你的 SBTI 专属推荐',
+        reasonLabel: '你的 MBTI 专属推荐',
         reasonHeading: selectedPlan.title,
         personalizedReason: createPersonalizedReason(
           cocktail,
-          sbtiCode,
-          sbtiInfo,
+          mbtiCode,
+          mbtiInfo,
           selectedPlan,
           cocktail.matchedTags,
           variantSeed
@@ -649,8 +649,8 @@ export function calculateRecommendations({ sbtiCode, sbtiMap, cocktailsMap, answ
     });
 
   return {
-    sbti: sbtiCode,
-    sbtiInfo,
+    mbti: mbtiCode,
+    mbtiInfo,
     selectedPlanTitle: selectedPlan.title,
     cocktails: rankedCocktails,
     topCocktail: rankedCocktails[0]

@@ -2,10 +2,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
 import './ResultPage.css';
 
-const characterImageModules = import.meta.glob(
-  '../../imgs/character/*.{png,jpg,jpeg,webp,avif}',
-  { eager: true, import: 'default' }
-);
 const drinkImageModules = import.meta.glob(
   '../../imgs/drinks/*.{png,jpg,jpeg,webp,avif}',
   { eager: true, import: 'default' }
@@ -23,20 +19,7 @@ function buildAssetMap(modules) {
   }, {});
 }
 
-function normalizeAssetKey(value = '') {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/!/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-}
-
-const characterImageMap = buildAssetMap(characterImageModules);
 const drinkImageMap = buildAssetMap(drinkImageModules);
-const characterImageAliasMap = {
-  drunk: 'drun-k'
-};
 
 function hashString(text = '') {
   let hash = 2166136261;
@@ -105,13 +88,6 @@ function createBurstParticles(seedSource, count = 22) {
   });
 }
 
-function resolveCharacterImage(sbtiCode) {
-  const normalizedCode = normalizeAssetKey(sbtiCode);
-  const assetKey = characterImageAliasMap[normalizedCode] || normalizedCode;
-
-  return characterImageMap[assetKey] || null;
-}
-
 function resolveDrinkImage(cocktail) {
   if (!cocktail) {
     return null;
@@ -166,6 +142,35 @@ function waitForImages(container) {
   );
 }
 
+function canvasToBlob(canvas) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) {
+        resolve(blob);
+        return;
+      }
+
+      reject(new Error('Failed to create poster blob.'));
+    }, 'image/png');
+  });
+}
+
+function canShareFiles(file) {
+  if (
+    !window.isSecureContext
+    || typeof navigator.share !== 'function'
+    || typeof navigator.canShare !== 'function'
+  ) {
+    return false;
+  }
+
+  try {
+    return navigator.canShare({ files: [file] });
+  } catch {
+    return false;
+  }
+}
+
 const ResultPage = ({ result, onRestart }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -173,6 +178,7 @@ const ResultPage = ({ result, onRestart }) => {
   const [isArtworkOpen, setIsArtworkOpen] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
+  const [exportPreviewUrl, setExportPreviewUrl] = useState('');
   const captureRef = useRef(null);
 
   useEffect(() => {
@@ -185,17 +191,20 @@ const ResultPage = ({ result, onRestart }) => {
 
   useEffect(() => {
     setIsDescriptionExpanded(false);
-  }, [result.sbti]);
+  }, [result.mbti]);
+
+  useEffect(() => () => {
+    if (exportPreviewUrl) {
+      URL.revokeObjectURL(exportPreviewUrl);
+    }
+  }, [exportPreviewUrl]);
 
   const currentCocktail = result.cocktails[currentIndex];
   const imageSrc = useMemo(
     () => resolveDrinkImage(currentCocktail),
     [currentCocktail]
   );
-  const characterImageSrc = useMemo(
-    () => resolveCharacterImage(result.sbti),
-    [result.sbti]
-  );
+  const characterImageSrc = null;
   const isLast = currentIndex === result.cocktails.length - 1;
   const isFirst = currentIndex === 0;
   const rankTone = currentCocktail.rank === 1
@@ -212,13 +221,23 @@ const ResultPage = ({ result, onRestart }) => {
       : `隐藏惊喜 No.${currentCocktail.rank}`;
   const frameKey = `${currentCocktail.id}-${currentIndex}`;
   const ambientParticles = useMemo(
-    () => createAmbientParticles(`${result.sbti}-result-atmosphere`),
-    [result.sbti]
+    () => createAmbientParticles(`${result.mbti}-result-atmosphere`),
+    [result.mbti]
   );
   const burstParticles = useMemo(
     () => createBurstParticles(frameKey),
     [frameKey]
   );
+
+  const closeExportPreview = () => {
+    setExportPreviewUrl((currentUrl) => {
+      if (currentUrl) {
+        URL.revokeObjectURL(currentUrl);
+      }
+
+      return '';
+    });
+  };
 
   const handleTouchStart = (event) => {
     setTouchStart(event.touches[0].clientX);
@@ -276,13 +295,48 @@ const ResultPage = ({ result, onRestart }) => {
           clonedDocument.body.classList.add('is-exporting-result');
         }
       });
-      const image = canvas.toDataURL('image/png');
+      const blob = await canvasToBlob(canvas);
+      const fileName = `stick-mood-result-${currentCocktail.id}.png`;
+      const file = new File([blob], fileName, { type: 'image/png' });
+      const objectUrl = URL.createObjectURL(blob);
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+
+      if (isTouchDevice && canShareFiles(file)) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: fileName
+          });
+          URL.revokeObjectURL(objectUrl);
+          return;
+        } catch (shareError) {
+          if (shareError?.name === 'AbortError') {
+            URL.revokeObjectURL(objectUrl);
+            return;
+          }
+        }
+      }
+
+      if (isTouchDevice) {
+        setExportPreviewUrl((currentUrl) => {
+          if (currentUrl) {
+            URL.revokeObjectURL(currentUrl);
+          }
+
+          return objectUrl;
+        });
+        return;
+      }
+
       const link = document.createElement('a');
 
-      link.download = `stick-mood-result-${currentCocktail.id}.png`;
-      link.href = image;
+      link.download = fileName;
+      link.href = objectUrl;
+      link.rel = 'noopener';
+      document.body.appendChild(link);
       link.click();
-      setIsSharing(false);
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     } catch (error) {
       setIsSharing(false);
       console.error('生成图片失败:', error);
@@ -351,11 +405,11 @@ const ResultPage = ({ result, onRestart }) => {
           <div className="mbti-intro-head">
             <div className="mbti-intro-copy">
               <div className="mbti-badge">
-                <span className="mbti-type">{result.sbti}</span>
-                <span className="mbti-name">{result.sbtiInfo.name}</span>
+                <span className="mbti-type">{result.mbti}</span>
+                <span className="mbti-name">{result.mbtiInfo.name}</span>
               </div>
 
-              <p className="mbti-shortdesc">{result.sbtiInfo.shortdesc}</p>
+              <p className="mbti-shortdesc">{result.mbtiInfo.shortdesc}</p>
             </div>
 
             <div className="mbti-portrait-shell">
@@ -363,11 +417,11 @@ const ResultPage = ({ result, onRestart }) => {
                 <img
                   className="mbti-portrait"
                   src={characterImageSrc}
-                  alt={`${result.sbti} portrait`}
+                  alt={`${result.mbti} portrait`}
                 />
               ) : (
                 <div className="mbti-portrait-placeholder" aria-hidden="true">
-                  <span>{result.sbti}</span>
+                  <span>{result.mbti}</span>
                 </div>
               )}
             </div>
@@ -380,7 +434,7 @@ const ResultPage = ({ result, onRestart }) => {
             aria-expanded={isDescriptionExpanded}
           >
             <p className={`mbti-description ${isDescriptionExpanded ? 'expanded' : ''}`}>
-              {result.sbtiInfo.desc}
+              {result.mbtiInfo.desc}
             </p>
             <span className="mbti-description-toggle">
               {isDescriptionExpanded ? '收起人格描述' : '点击展开人格描述'}

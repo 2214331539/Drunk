@@ -15,8 +15,8 @@ const HomePage = ({ onStart }) => {
           </h1>
 
           <p className="home-description">
-            用更轻松的方式，测出今天更适合你的那一杯。
-            6 个问题，换一杯微醺的酒。
+            用 5 个当下问题 + 1 个 MBTI，
+            换一杯更适合今天的微醺酒。
           </p>
         </div>
 

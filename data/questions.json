@@ -272,8 +272,8 @@
     },
     {
       "id": 6,
-      "question": "你的 SBTI 是？",
-      "type": "sbti",
+      "question": "你更接近哪种 MBTI？",
+      "type": "mbti",
       "options": []
     }
   ]

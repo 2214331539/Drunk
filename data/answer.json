@@ -1,948 +1,211 @@
 {
   "answers": {
-    "CTRL": [
+    "INFJ": [
       {
-        "id": "ctrl_control",
-        "title": "冷脸控场局",
-        "copy": "CTRL这类人点酒，不是在点饮料，是在给场子下命令。{drink}这杯天生带着{spotlight}的冷气，再叠上{tagKeywords}，像把“少废话，直接进入正题”装进了杯子里。它不负责卖萌，只负责替你稳住全桌空气。{pricePitch}",
-        "focus_tags": ["极简", "冷淡", "经典", "微苦"],
-        "avoid_tags": ["甜腻", "梦幻"],
+        "id": "infj_echo",
+        "title": "留白共鸣局",
+        "copy": "INFJ 更适合后劲慢慢展开的酒。{drink}把{tagKeywords}和{spotlight}摆在一起，像替你留出一个可以安静沉进去的夜晚。{pricePitch}",
+        "focus_tags": ["复杂", "治愈", "微苦", "独处"],
+        "avoid_tags": ["喧闹", "断电"],
         "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      },
-      {
-        "id": "ctrl_clean_cut",
-        "title": "精准收口局",
-        "copy": "CTRL人格喝酒，讲究的是效率、边界和结果。{drink}这种{spotlight}型选手，配上{tagKeywords}，像会议纪要里唯一那句能拍板的话。你不需要它热闹，你只需要它把今晚的基调订准。{pricePitch}",
-        "focus_tags": ["纯粹", "经典", "极简", "复杂"],
-        "avoid_tags": ["甜水", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour", "gin_tonic"]
-      },
-      {
-        "id": "ctrl_high_class",
-        "title": "高级感清场局",
-        "copy": "有些酒一上桌，就会自动把闲杂情绪请出房间。{drink}偏偏就是这种液体门禁，{tagKeywords}一起发力，配上{spotlight}的骨相，很适合CTRL把人和事都放回该在的位置。花钱点它，不像消费，像执行。{pricePitch}",
-        "focus_tags": ["冷淡", "纯粹", "微苦", "高酒精度"],
-        "avoid_tags": ["甜腻", "快乐水"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["gin_tonic", "long_island"]
-      }
-    ],
-    "ATM-er": [
-      {
-        "id": "atmer_self_reward",
-        "title": "自我犒赏局",
-        "copy": "ATM-er最离谱的地方，是总把别人照顾得服服帖帖，轮到自己却只剩一句“随便吧”。{drink}这种{spotlight}的杯子，配上{tagKeywords}，才像一场像样的内部报销。今晚这杯不是给世界的，是给你自己的。{pricePitch}",
-        "focus_tags": ["治愈", "奶香", "甜腻", "安神"],
-        "avoid_tags": ["刺激", "烈酒"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["white_russian"]
-      },
-      {
-        "id": "atmer_soft_landing",
-        "title": "软着陆回血局",
-        "copy": "ATM-er不是脆弱，只是替太多人扛过重量，身体和情绪都该有个像样的缓冲带。{drink}把{tagKeywords}慢慢铺开，再用{spotlight}把神经接住，像终于轮到你被温柔结算。{pricePitch}",
-        "focus_tags": ["治愈", "清爽", "低度数", "果味"],
-        "avoid_tags": ["断电", "浓烈"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito", "white_russian"]
-      },
-      {
-        "id": "atmer_low_pressure",
-        "title": "低压安慰局",
-        "copy": "有些人一疲惫，脸上写着累；ATM-er一疲惫，脸上写着“我还能再撑一下”。别撑了，{drink}这种{spotlight}型安慰剂，外面裹着{tagKeywords}，就是专门拿来给责任心降温的。{pricePitch}",
-        "focus_tags": ["安神", "奶香", "甜腻", "低度数"],
-        "avoid_tags": ["高酒精度", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["white_russian", "mojito"]
-      }
-    ],
-    "Dior-s": [
-      {
-        "id": "diors_cheap_thrill",
-        "title": "穷爽直给局",
-        "copy": "Dior-s点酒，主打一个不装，也不愿意为虚荣税买单。{drink}这种{spotlight}的配置，再加上{tagKeywords}，像用最少预算狠狠干出最痛快的一口。它不讲排场，它讲值。{pricePitch}",
-        "focus_tags": ["简单粗暴", "低成本", "直球", "爽快"],
-        "avoid_tags": ["复杂", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver", "cuba_libre"]
-      },
-      {
-        "id": "diors_flat_happy",
-        "title": "摆烂快乐局",
-        "copy": "Dior-s不是没有追求，是懒得配合这个世界装得很有追求。{drink}靠{tagKeywords}直接把气氛拉到“先爽再说”，而{spotlight}这一层设定，刚好适配你那种躺着也得快乐的倔劲。{pricePitch}",
-        "focus_tags": ["快乐水", "简单粗暴", "气泡", "爽快"],
-        "avoid_tags": ["梦幻", "复杂"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre"]
-      },
-      {
-        "id": "diors_reverse_kill",
-        "title": "低成本反杀局",
-        "copy": "真正的Dior-s逆袭，不是忽然变精英，而是把“花得少、喝得爽、还挺有梗”执行到底。{drink}这杯把{tagKeywords}全摆在明面上，配上{spotlight}的劲儿，像一句干脆利落的反击：钱没白花，人也没白活。{pricePitch}",
-        "focus_tags": ["低成本", "果味", "简单粗暴", "直球"],
-        "avoid_tags": ["高酒精度", "复杂"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver"]
-      }
-    ],
-    "BOSS": [
-      {
-        "id": "boss_command",
-        "title": "指挥桌面局",
-        "copy": "BOSS喝酒也像发指令，讲究的是一杯上桌，全场自动切到执行模式。{drink}这种{spotlight}的硬朗路数，再压上{tagKeywords}，像你替今晚签发的一份高效公文。它不是来讨好人的，它是来定调的。{pricePitch}",
-        "focus_tags": ["经典", "浓烈", "高酒精度", "复杂"],
-        "avoid_tags": ["奶香", "梦幻"],
-        "abv_target": "high",
         "sweetness_target": 2,
         "complexity_target": 3,
-        "fallback_ids": ["whiskey_sour", "margarita"]
-      },
-      {
-        "id": "boss_calm_power",
-        "title": "高压清醒局",
-        "copy": "别人喝酒是放松，BOSS喝酒更像一种体面而精确的减压。{drink}把{tagKeywords}和{spotlight}拧成一股绳，既有压场感，又不会显得狼狈。像你明明很累，还是把局面撑得很漂亮。{pricePitch}",
-        "focus_tags": ["经典", "微苦", "纯粹", "高酒精度"],
-        "avoid_tags": ["甜腻", "快乐水"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["gin_tonic", "whiskey_sour"]
-      },
-      {
-        "id": "boss_takeover",
-        "title": "体面拿下局",
-        "copy": "BOSS最适合的酒，不是嗓门大，而是控制力够狠。{drink}这种{spotlight}型选手，靠{tagKeywords}先把体面铺稳，再把锋利留到回味里。点它的感觉很像一句话：局我接了，后果我也收得住。{pricePitch}",
-        "focus_tags": ["浓烈", "经典", "刺激", "酸甜"],
-        "avoid_tags": ["治愈", "奶香"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 3,
-        "fallback_ids": ["margarita"]
-      }
-    ],
-    "THAN-K": [
-      {
-        "id": "thank_gentle_light",
-        "title": "温柔知足局",
-        "copy": "THAN-K这种人，连喝酒都像在给生活写感谢信。{drink}带着{spotlight}的轻盈，再把{tagKeywords}慢慢摊开，不会猛地把你拽走，只会让你忽然觉得今晚也挺值得。{pricePitch}",
-        "focus_tags": ["清爽", "果味", "低度数", "气泡"],
-        "avoid_tags": ["浓烈", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito", "tequila_sunrise"]
-      },
-      {
-        "id": "thank_daily_sun",
-        "title": "清爽发光局",
-        "copy": "THAN-K最迷人的地方，是总能把普通夜晚过成小型庆典。{drink}这杯拿{tagKeywords}做底，再把{spotlight}贴上来，像给心情开了一盏很柔和的补光灯。你不会被它击中，只会被它慢慢照亮。{pricePitch}",
-        "focus_tags": ["果味", "梦幻", "颜值高", "酸甜"],
-        "avoid_tags": ["烈酒", "微苦"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["tequila_sunrise", "blue_lagoon"]
-      },
-      {
-        "id": "thank_no_pressure",
-        "title": "日常好喝局",
-        "copy": "对THAN-K来说，最好的酒从来不是最狠的，而是最会让人松一口气的。{drink}把{tagKeywords}摆得很顺，再给{spotlight}留足空间，像生活终于愿意轻轻拍一拍你的肩。{pricePitch}",
-        "focus_tags": ["清爽", "治愈", "果味", "低度数"],
-        "avoid_tags": ["高酒精度", "断电"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito"]
-      }
-    ],
-    "OH-NO": [
-      {
-        "id": "ohno_safe_landing",
-        "title": "安全落地局",
-        "copy": "OH-NO的人生哲学很简单：事情可以不刺激，但最好别失控。{drink}这种{spotlight}的安全牌，再配上{tagKeywords}，像给情绪套上了防滑垫。它不会吓你一跳，只会让你放心地点头。{pricePitch}",
-        "focus_tags": ["经典", "低度数", "治愈", "极简"],
-        "avoid_tags": ["烈酒", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic", "screwdriver"]
-      },
-      {
-        "id": "ohno_risk_control",
-        "title": "规避风险局",
-        "copy": "当别人还在“要不要试试这个”时，OH-NO已经在脑内跑完三套事故预案。{drink}刚好符合这种谨慎美学，{tagKeywords}负责降低未知数，{spotlight}负责把边界感拉满。点它，很像给自己签了一份免责协议。{pricePitch}",
-        "focus_tags": ["极简", "经典", "微苦", "纯粹"],
-        "avoid_tags": ["抓马", "断电"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      },
-      {
-        "id": "ohno_easy_entry",
-        "title": "放心入口局",
-        "copy": "OH-NO不是扫兴，是不想把今晚喝成一次突发事故。{drink}用{tagKeywords}先把入口做得足够友好，再用{spotlight}留一点体面，很适合你这种连放松都要讲究安全半径的人。{pricePitch}",
-        "focus_tags": ["果味", "低成本", "低度数", "直球"],
-        "avoid_tags": ["高酒精度", "浓烈"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver", "mojito"]
-      }
-    ],
-    "GOGO": [
-      {
-        "id": "gogo_start_now",
-        "title": "立刻出发局",
-        "copy": "GOGO喝酒，最烦流程感，最好是一口下去就能直接进入今晚主线任务。{drink}这种{spotlight}型饮品，再加{tagKeywords}一起推背，像有人在你耳边说：别想了，直接爽。{pricePitch}",
-        "focus_tags": ["简单粗暴", "爽快", "气泡", "清爽"],
-        "avoid_tags": ["复杂", "纠结"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver", "cuba_libre"]
-      },
-      {
-        "id": "gogo_fresh_speed",
-        "title": "清爽加速局",
-        "copy": "GOGO像一双已经踩在踏板上的鞋，不需要预热，只需要风。{drink}靠{tagKeywords}把速度感先抬起来，再让{spotlight}把迟疑吹散，喝着就像整个人自动切到前进档。{pricePitch}",
-        "focus_tags": ["清爽", "气泡", "果味", "低度数"],
-        "avoid_tags": ["奶香", "复杂"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito"]
-      },
-      {
-        "id": "gogo_no_nonsense",
-        "title": "不废话开喝局",
-        "copy": "有些人点酒像做阅读理解，GOGO点酒像按启动键。{drink}把{tagKeywords}全放在明面上，外加{spotlight}这股干脆劲，喝起来没有绕路，只有抵达。{pricePitch}",
-        "focus_tags": ["直球", "简单粗暴", "低成本", "爽快"],
-        "avoid_tags": ["梦幻", "复杂"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver", "cuba_libre"]
-      }
-    ],
-    "SEXY": [
-      {
-        "id": "sexy_main_character",
-        "title": "出场即压场局",
-        "copy": "SEXY最适合的酒，必须和你一样，一上桌就能让周围空气自动调焦。{drink}这种{spotlight}的天选门面，再叠上{tagKeywords}，不是饮品，是社交场合的聚光灯。点它，像给今晚的主角补签了合同。{pricePitch}",
-        "focus_tags": ["颜值高", "出片", "梦幻", "果味"],
-        "avoid_tags": ["极简", "简单粗暴"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["blue_lagoon", "tequila_sunrise"]
-      },
-      {
-        "id": "sexy_camera_favor",
-        "title": "镜头偏爱局",
-        "copy": "有的人需要找角度，有的人自己就是角度。{drink}把{tagKeywords}和{spotlight}一起端上来，像专门为SEXY准备的镜头语言，连光线都会对你网开一面。喝它，不只是好看，是很会赢。{pricePitch}",
-        "focus_tags": ["出片", "颜值高", "酸甜", "梦幻"],
-        "avoid_tags": ["微苦", "低成本"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["tequila_sunrise", "blue_lagoon"]
-      },
-      {
-        "id": "sexy_party_focus",
-        "title": "氛围主角局",
-        "copy": "SEXY不需要别人给氛围，你本身就是氛围源头。{drink}借着{tagKeywords}把情绪往上抬，再用{spotlight}把视觉完成度拉满，很适合那种你什么都没做，全场却已经默认你最值得被看见的夜晚。{pricePitch}",
-        "focus_tags": ["梦幻", "颜值高", "气泡", "出片"],
-        "avoid_tags": ["纯粹", "极简"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["blue_lagoon"]
-      }
-    ],
-    "LOVE-R": [
-      {
-        "id": "lover_romance",
-        "title": "浪漫泛滥局",
-        "copy": "LOVE-R点酒，像在给今晚挑一段配乐，最好酸甜，最好梦幻，最好看起来一碰就会发生故事。{drink}这种{spotlight}的情绪容器，再配上{tagKeywords}，喝起来像电影终于进入最想哭的那一幕。{pricePitch}",
-        "focus_tags": ["梦幻", "酸甜", "治愈", "颜值高"],
-        "avoid_tags": ["极简", "冷淡"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["tequila_sunrise", "white_russian"]
-      },
-      {
-        "id": "lover_sour_sweet",
-        "title": "酸甜心事局",
-        "copy": "LOVE-R的厉害之处，在于连喝酒都能喝出一整条感情线。{drink}把{tagKeywords}一层层推开，再让{spotlight}替你留住回甘，像明知道会难过，还是愿意再爱一次。{pricePitch}",
-        "focus_tags": ["酸甜", "复杂", "纠结", "经典"],
-        "avoid_tags": ["简单粗暴", "直球"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour"]
-      },
-      {
-        "id": "lover_soft_movie",
-        "title": "治愈电影局",
-        "copy": "有些人需要酒精，LOVE-R更需要一个足够像梦的借口。{drink}拿{tagKeywords}把心情包好，再用{spotlight}把画面染得柔一点，很适合那种明明只是想喝一杯，最后却把自己喝成主角的夜晚。{pricePitch}",
-        "focus_tags": ["治愈", "奶香", "甜腻", "梦幻"],
-        "avoid_tags": ["烈酒", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["white_russian", "tequila_sunrise"]
-      }
-    ],
-    "MUM": [
-      {
-        "id": "mum_take_care",
-        "title": "先照顾自己局",
-        "copy": "MUM最容易犯的错，就是把全世界都哄好了，最后忘了自己也需要被抱一下。{drink}这种{spotlight}的柔软配置，再加上{tagKeywords}，像给过载的神经递上一条温热毛毯。今晚别再照顾别人了，先照顾你。{pricePitch}",
-        "focus_tags": ["治愈", "奶香", "安神", "甜腻"],
-        "avoid_tags": ["浓烈", "微苦"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["white_russian"]
-      },
-      {
-        "id": "mum_milk_hug",
-        "title": "奶香抱抱局",
-        "copy": "MUM这种人格，连崩溃都很安静，所以更需要一杯会主动来安抚你的酒。{drink}带着{tagKeywords}慢慢靠近，再用{spotlight}把整个人接住，像终于有人对你说：你先不用坚强。{pricePitch}",
-        "focus_tags": ["奶香", "治愈", "甜腻", "低度数"],
-        "avoid_tags": ["刺激", "高酒精度"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["white_russian", "mojito"]
-      },
-      {
-        "id": "mum_gentle_reset",
-        "title": "温柔回魂局",
-        "copy": "MUM真正需要的，不是再做一次情绪急救员，而是有东西把你温柔地放回自己怀里。{drink}用{tagKeywords}卸掉锋利，配上{spotlight}的气质，像深夜里终于轮到你的那一句“辛苦了”。{pricePitch}",
-        "focus_tags": ["治愈", "清爽", "果味", "低度数"],
-        "avoid_tags": ["烈酒", "复杂"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito", "white_russian"]
-      }
-    ],
-    "FAKE": [
-      {
-        "id": "fake_cold_mask",
-        "title": "冷面伪装局",
-        "copy": "FAKE不是没有情绪，是太懂得把情绪包装成得体版本。{drink}这种{spotlight}的冷面杯型，再配上{tagKeywords}，像一张做工极好的面具，既能挡住你，也能抬高你。它很适合被你选中，因为它和你一样，不爱说破。{pricePitch}",
-        "focus_tags": ["冷淡", "经典", "复杂", "纯粹"],
-        "avoid_tags": ["简单粗暴", "甜腻"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["gin_tonic", "long_island"]
-      },
-      {
-        "id": "fake_high_mask",
-        "title": "高级面具局",
-        "copy": "FAKE的体面，从来不是天生的，是一层层练出来的。{drink}把{tagKeywords}和{spotlight}叠在一起，喝起来像一句克制到近乎冷酷的社交台词：我很好，甚至好得无可挑剔。{pricePitch}",
-        "focus_tags": ["经典", "微苦", "冷淡", "复杂"],
-        "avoid_tags": ["快乐水", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["gin_tonic", "whiskey_sour"]
-      },
-      {
-        "id": "fake_shadow",
-        "title": "复杂低语局",
-        "copy": "如果说有些酒适合大声喧哗，那{drink}就更像适合FAKE那种静静把人看透的夜晚。{tagKeywords}让它有内容，{spotlight}让它有距离，喝着像把真心锁进暗格里，却偏偏更迷人。{pricePitch}",
-        "focus_tags": ["复杂", "微苦", "经典", "纠结"],
-        "avoid_tags": ["果味", "梦幻"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour"]
-      }
-    ],
-    "OJBK": [
-      {
-        "id": "ojbk_whatever",
-        "title": "随便都行局",
-        "copy": "OJBK说随便，往往不是没主见，是懒得把宝贵精力浪费在细枝末节上。{drink}这种{spotlight}的省心选手，外加{tagKeywords}，正适合你那种“别复杂，能快乐就行”的人生宗旨。{pricePitch}",
-        "focus_tags": ["简单粗暴", "快乐水", "低成本", "气泡"],
-        "avoid_tags": ["复杂", "纠结"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre", "screwdriver"]
-      },
-      {
-        "id": "ojbk_lazy_choice",
-        "title": "懒得选择局",
-        "copy": "对OJBK来说，最好的酒不是最惊艳的，是最不费脑子的。{drink}把{tagKeywords}全摊开，配上{spotlight}的直接，像你点单时最想听见的那句话：行，就它吧。{pricePitch}",
-        "focus_tags": ["低成本", "直球", "果味", "简单粗暴"],
-        "avoid_tags": ["高酒精度", "复杂"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver"]
-      },
-      {
-        "id": "ojbk_no_pressure",
-        "title": "无压力续杯局",
-        "copy": "OJBK的高级之处，在于什么都行，但最好别给自己添负担。{drink}用{tagKeywords}把门槛压低，再让{spotlight}兜住氛围，很适合那种不想认真、也不想扫兴的松弛时刻。{pricePitch}",
-        "focus_tags": ["快乐水", "气泡", "清爽", "低度数"],
-        "avoid_tags": ["浓烈", "微苦"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre", "mojito"]
-      }
-    ],
-    "MALO": [
-      {
-        "id": "malo_monkey_fun",
-        "title": "吗喽快活局",
-        "copy": "MALO最大的天赋，是在这个破副本里依然保留了原始级别的快乐反射。{drink}这种{spotlight}的简单乐子，再配上{tagKeywords}，像一键回到“不想做人，只想开心”的野生状态。{pricePitch}",
-        "focus_tags": ["快乐水", "简单粗暴", "爽快", "气泡"],
-        "avoid_tags": ["复杂", "冷淡"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre", "screwdriver"]
-      },
-      {
-        "id": "malo_low_cost_wild",
-        "title": "低成本撒野局",
-        "copy": "MALO喝酒，不追求文明，只追求痛快。{drink}拿{tagKeywords}做底，再给{spotlight}添一脚油门，像树上那只不肯进化的快乐生物，决定今晚继续对体面说不。{pricePitch}",
-        "focus_tags": ["低成本", "直球", "果味", "简单粗暴"],
-        "avoid_tags": ["高酒精度", "复杂"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver"]
-      },
-      {
-        "id": "malo_instinct",
-        "title": "原始开心局",
-        "copy": "世界让MALO学会了很多没必要的规矩，但身体会替你记得，什么叫真正的爽。{drink}把{tagKeywords}拧成一股劲，再让{spotlight}把快乐放大，喝起来像终于顺从了一次本能。{pricePitch}",
-        "focus_tags": ["清爽", "气泡", "果味", "快乐水"],
-        "avoid_tags": ["微苦", "纠结"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["mojito", "cuba_libre"]
-      }
-    ],
-    "JOKE-R": [
-      {
-        "id": "joker_laugh_pay",
-        "title": "笑着买单局",
-        "copy": "JOKE-R最会的，是把自己的心碎包装成大家都能笑着接住的段子。{drink}这种{spotlight}型气氛组，再叠上{tagKeywords}，刚好适合你一边活跃全场，一边偷偷给自己找个喘口气的借口。{pricePitch}",
-        "focus_tags": ["快乐水", "气泡", "刺激", "抓马"],
-        "avoid_tags": ["冷淡", "极简"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["cuba_libre", "long_island"]
-      },
-      {
-        "id": "joker_social_life",
-        "title": "社交续命局",
-        "copy": "JOKE-R不是天生不累，只是太熟练于把疲惫变成节目效果。{drink}靠{tagKeywords}把场面顶热，再让{spotlight}替你留住一点体面，很适合那种笑得最大声、心里却最想先醉的人。{pricePitch}",
-        "focus_tags": ["刺激", "高酒精度", "甜水", "快乐水"],
-        "avoid_tags": ["微苦", "纯粹"],
-        "abv_target": "high",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island"]
-      },
-      {
-        "id": "joker_noisy_cover",
-        "title": "热闹封口局",
-        "copy": "对JOKE-R来说，热闹很多时候不是快乐，是隔绝沉默的临时围墙。{drink}把{tagKeywords}摆得热闹漂亮，再加一层{spotlight}的戏剧感，像你给自己搭好的那块“先别认真”的防护板。{pricePitch}",
-        "focus_tags": ["抓马", "酸甜", "颜值高", "出片"],
-        "avoid_tags": ["冷淡", "安神"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["margarita", "tequila_sunrise"]
-      }
-    ],
-    "WOC!": [
-      {
-        "id": "woc_surprise",
-        "title": "一惊一乍局",
-        "copy": "WOC!最适合的酒，必须得有点声量，最好入口那秒就能在脑内自动配一句“卧槽”。{drink}这种{spotlight}的高反应杯型，再叠上{tagKeywords}，很适合你把情绪一下子点亮。{pricePitch}",
-        "focus_tags": ["刺激", "浓烈", "气泡", "直球"],
-        "avoid_tags": ["复杂", "温吞"],
-        "abv_target": "high",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["margarita", "cuba_libre"]
-      },
-      {
-        "id": "woc_direct",
-        "title": "直给醒神局",
-        "copy": "WOC!人格的精彩，在于情绪永远先到现场。{drink}把{tagKeywords}全扔到台面上，再用{spotlight}把刺激感顶满，喝着像生活又给你补了一次现场直击。{pricePitch}",
-        "focus_tags": ["直球", "简单粗暴", "刺激", "爽快"],
-        "avoid_tags": ["安神", "奶香"],
-        "abv_target": "high",
-        "sweetness_target": 3,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre", "margarita"]
-      },
-      {
-        "id": "woc_melon",
-        "title": "吃瓜续杯局",
-        "copy": "WOC!不一定要自己上场，但一定要在情绪最炸的时候端着对的那杯。{drink}借着{tagKeywords}让瓜更好吃，再让{spotlight}把戏剧张力吊起来，像把围观体验升级成沉浸式。{pricePitch}",
-        "focus_tags": ["抓马", "刺激", "酸甜", "经典"],
-        "avoid_tags": ["冷淡", "极简"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 3,
-        "fallback_ids": ["margarita"]
-      }
-    ],
-    "THIN-K": [
-      {
-        "id": "think_midnight_review",
-        "title": "深夜复盘局",
-        "copy": "THIN-K点酒，像给自己的脑内审判庭找一位沉默但靠谱的陪审员。{drink}这种{spotlight}的有内容选手，再叠上{tagKeywords}，喝起来像思绪终于被安置到了正确的抽屉里。{pricePitch}",
-        "focus_tags": ["复杂", "经典", "微苦", "冷淡"],
-        "avoid_tags": ["梦幻", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour", "gin_tonic"]
-      },
-      {
-        "id": "think_cool_brain",
-        "title": "冷脑微醺局",
-        "copy": "THIN-K不适合那种一上来就把人打散的酒，你更适合一杯能让思考保持形状的东西。{drink}靠{tagKeywords}把锋利和秩序留住，再让{spotlight}把情绪压低，刚好适合与你的大脑和平共处。{pricePitch}",
-        "focus_tags": ["冷淡", "极简", "微苦", "纯粹"],
-        "avoid_tags": ["甜腻", "抓马"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      },
-      {
-        "id": "think_meaningful",
-        "title": "有内容的杯子",
-        "copy": "THIN-K喝酒，不想被糊弄，也不想被娱乐。{drink}这种{spotlight}型饮品，靠{tagKeywords}把层次感慢慢抬出来，像一段值得被认真拆解的句子。你点它，不是为了热闹，是为了有点东西。{pricePitch}",
-        "focus_tags": ["复杂", "纠结", "酸甜", "经典"],
-        "avoid_tags": ["快乐水", "简单粗暴"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour"]
-      }
-    ],
-    "SHIT": [
-      {
-        "id": "shit_rant_and_do",
-        "title": "骂完继续干局",
-        "copy": "SHIT的神奇之处在于，嘴上把世界骂成筛子，手上却还是把局面收拾得明明白白。{drink}这杯靠{tagKeywords}把狠劲立住，再借{spotlight}给你一个合理的发泄出口，像把脏话酿成了生产力。{pricePitch}",
-        "focus_tags": ["浓烈", "微苦", "烈酒", "简单粗暴"],
-        "avoid_tags": ["甜腻", "奶香"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island", "margarita"]
-      },
-      {
-        "id": "shit_truth",
-        "title": "苦口真心局",
-        "copy": "SHIT不爱甜言蜜语，因为你见过太多糖衣下的烂账。{drink}拿{tagKeywords}把真相的棱角留住，再让{spotlight}撑起那股“我就是看不惯”的体面，很适合你边喝边嫌弃这个世界。{pricePitch}",
-        "focus_tags": ["微苦", "经典", "复杂", "浓烈"],
-        "avoid_tags": ["梦幻", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour", "margarita"]
-      },
-      {
-        "id": "shit_hard_reset",
-        "title": "烈性清醒局",
-        "copy": "有些人格需要安慰，SHIT需要的是一杯能把废话全部烧掉的液体。{drink}用{tagKeywords}把强度拉满，再加上{spotlight}这股不讲情面的劲，像今晚终于允许你对烂事翻个真正的白眼。{pricePitch}",
-        "focus_tags": ["高酒精度", "烈酒", "刺激", "断电"],
-        "avoid_tags": ["治愈", "甜水"],
-        "abv_target": "high",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island"]
-      }
-    ],
-    "ZZZZ": [
-      {
-        "id": "zzzz_fake_dead",
-        "title": "装死回魂局",
-        "copy": "ZZZZ不是没感觉，是感觉太多，于是干脆对世界开启省电模式。{drink}这种{spotlight}的低压杯型，再带上{tagKeywords}，像给灵魂按下一次软重启。你不用满血复活，能回魂一点就很好。{pricePitch}",
-        "focus_tags": ["奶香", "治愈", "安神", "低度数"],
-        "avoid_tags": ["刺激", "气泡"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["white_russian", "mojito"]
-      },
-      {
-        "id": "zzzz_low_energy",
-        "title": "低耗能局",
-        "copy": "ZZZZ喝酒最重要的，不是多好玩，而是别太费劲。{drink}把{tagKeywords}铺得足够柔，再用{spotlight}把刺激感压低，很适合那种你只想轻轻掉线一会儿的夜晚。{pricePitch}",
-        "focus_tags": ["低度数", "清爽", "治愈", "果味"],
-        "avoid_tags": ["高酒精度", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito"]
-      },
-      {
-        "id": "zzzz_soft_sleep",
-        "title": "软绵着陆局",
-        "copy": "世界催你醒着，ZZZZ只想找个理由慢一点。{drink}用{tagKeywords}把人从边缘拽回来，再让{spotlight}提供一层柔软缓冲，像终于允许自己不必马上有精神。{pricePitch}",
-        "focus_tags": ["安神", "甜腻", "奶香", "治愈"],
-        "avoid_tags": ["直球", "抓马"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["white_russian"]
-      }
-    ],
-    "POOR": [
-      {
-        "id": "poor_worth_it",
-        "title": "每一块都值局",
-        "copy": "POOR不是舍不得花钱，是对“值不值”这件事有近乎残酷的判断力。{drink}这种{spotlight}的高性价比选手，再加上{tagKeywords}，很像一笔被你亲自审核通过的精明支出。{pricePitch}",
-        "focus_tags": ["极简", "低成本", "纯粹", "经典"],
-        "avoid_tags": ["复杂", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic", "screwdriver"]
-      },
-      {
-        "id": "poor_clean",
-        "title": "极简不亏局",
-        "copy": "POOR最懂得，真正昂贵的不是价格，是那些花出去却没有回报的失望。{drink}靠{tagKeywords}把有效内容都留住，再让{spotlight}把虚头巴脑统统裁掉，像一杯被精简到只剩重点的答案。{pricePitch}",
-        "focus_tags": ["极简", "冷淡", "纯粹", "微苦"],
-        "avoid_tags": ["梦幻", "甜水"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      },
-      {
-        "id": "poor_focus",
-        "title": "专注投入局",
-        "copy": "POOR的资源从来不多，所以你更不肯把力气浪费在没意义的地方。{drink}这杯拿{tagKeywords}和{spotlight}一起发力，喝起来干净、明确、不啰嗦，很适合你那种把欲望压缩成一束光的状态。{pricePitch}",
-        "focus_tags": ["低成本", "直球", "果味", "纯粹"],
-        "avoid_tags": ["抓马", "复杂"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 1,
-        "fallback_ids": ["screwdriver", "gin_tonic"]
-      }
-    ],
-    "MONK": [
-      {
-        "id": "monk_quiet",
-        "title": "清净断念局",
-        "copy": "MONK不是喝不得酒，是不想让酒把自己拽进更俗的欲望里。{drink}这种{spotlight}的清瘦杯型，再叠上{tagKeywords}，像把喧闹隔在门外，只留下刚刚好的自处空间。{pricePitch}",
-        "focus_tags": ["极简", "冷淡", "微苦", "纯粹"],
-        "avoid_tags": ["甜腻", "抓马"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic", "mojito"]
-      },
-      {
-        "id": "monk_solo",
-        "title": "极简自处局",
-        "copy": "MONK适合的不是那种热闹到失真的酒，而是一杯能让心绪慢慢归位的东西。{drink}把{tagKeywords}轻轻摆开，再让{spotlight}替你压低整个夜晚的噪点，像修行路上的一小段偏安。{pricePitch}",
-        "focus_tags": ["极简", "清爽", "低度数", "气泡"],
-        "avoid_tags": ["高酒精度", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 1,
-        "fallback_ids": ["mojito", "gin_tonic"]
-      },
-      {
-        "id": "monk_cool",
-        "title": "冷感修行局",
-        "copy": "MONK真正的高级，在于你不是没欲望，你只是有本事把欲望驯服。{drink}这杯把{tagKeywords}压得很稳，再用{spotlight}留住距离感，喝起来像替世俗世界关了一扇门。{pricePitch}",
-        "focus_tags": ["冷淡", "经典", "微苦", "极简"],
-        "avoid_tags": ["梦幻", "甜水"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      }
-    ],
-    "IMSB": [
-      {
-        "id": "imsb_timid",
-        "title": "胆小试探局",
-        "copy": "IMSB最擅长的事，就是在冲动和自我怀疑之间反复横跳。{drink}这种{spotlight}的过渡型选手，配上{tagKeywords}，像给你一条不必一次走太远的情绪缓坡。先点它，至少不算输。{pricePitch}",
-        "focus_tags": ["治愈", "酸甜", "低度数", "纠结"],
-        "avoid_tags": ["出片", "高酒精度"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["white_russian", "whiskey_sour"]
-      },
-      {
-        "id": "imsb_self_rescue",
-        "title": "酸甜自救局",
-        "copy": "IMSB不需要被强行打鸡血，你更需要一杯能陪你把内耗慢慢喝顺的酒。{drink}拿{tagKeywords}先把刺磨圆，再让{spotlight}给你一点情绪上的台阶，很适合今晚这种想迈出去又怕摔跤的时候。{pricePitch}",
-        "focus_tags": ["酸甜", "复杂", "纠结", "经典"],
-        "avoid_tags": ["刺激", "浓烈"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour"]
-      },
-      {
-        "id": "imsb_courage",
-        "title": "需要一点勇气局",
-        "copy": "IMSB的心里住着两个声音，一个说冲，一个说算了。{drink}这杯把{tagKeywords}和{spotlight}缝在一起，不会把你吓退，也足够给你一点迈步的胆量。不是非得赢，先别总是对自己下手就行。{pricePitch}",
-        "focus_tags": ["治愈", "微苦", "经典", "酸甜"],
-        "avoid_tags": ["抓马", "刺激"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 2,
         "fallback_ids": ["whiskey_sour", "white_russian"]
       }
     ],
-    "SOLO": [
+    "INFP": [
       {
-        "id": "solo_wall",
-        "title": "独处护城河局",
-        "copy": "SOLO不是不想被爱，是太怕再失去，于是干脆先把全世界挡在外面。{drink}这种{spotlight}的独处型杯子，再叠上{tagKeywords}，像你给自己建好的那圈安静护城河。它不会冒犯你，只会陪你。{pricePitch}",
-        "focus_tags": ["冷淡", "微苦", "经典", "纯粹"],
-        "avoid_tags": ["社交", "快乐水"],
+        "id": "infp_dream",
+        "title": "浪漫慢热局",
+        "copy": "INFP 往往会被有情绪层次的酒打动。{drink}把{tagKeywords}慢慢铺开，再用{spotlight}把画面感补齐，很适合今晚想温柔一点的时候。{pricePitch}",
+        "focus_tags": ["浪漫", "梦幻", "酸甜", "治愈"],
+        "avoid_tags": ["高酒精度", "冷淡"],
+        "abv_target": "medium",
+        "sweetness_target": 4,
+        "complexity_target": 2,
+        "fallback_ids": ["tequila_sunrise", "white_russian"]
+      }
+    ],
+    "ENFJ": [
+      {
+        "id": "enfj_warmth",
+        "title": "温暖带场局",
+        "copy": "ENFJ 适合那种自己喝舒服、也能把别人状态带顺的酒。{drink}用{tagKeywords}把气氛托起来，再让{spotlight}把体面感补足。{pricePitch}",
+        "focus_tags": ["治愈", "气泡", "出片", "果味"],
+        "avoid_tags": ["冷淡", "断电"],
+        "abv_target": "medium",
+        "sweetness_target": 3,
+        "complexity_target": 2,
+        "fallback_ids": ["mojito", "tequila_sunrise"]
+      }
+    ],
+    "ENFP": [
+      {
+        "id": "enfp_spark",
+        "title": "灵感上桌局",
+        "copy": "ENFP 很难拒绝一杯有新鲜感的酒。{drink}拿{tagKeywords}把快乐和惊喜一起推上来，再借{spotlight}让今晚更有记忆点。{pricePitch}",
+        "focus_tags": ["梦幻", "出片", "快乐水", "气泡"],
+        "avoid_tags": ["冷淡", "无趣"],
+        "abv_target": "medium",
+        "sweetness_target": 4,
+        "complexity_target": 2,
+        "fallback_ids": ["blue_lagoon", "cuba_libre"]
+      }
+    ],
+    "INTJ": [
+      {
+        "id": "intj_precision",
+        "title": "克制锋芒局",
+        "copy": "INTJ 偏爱的通常不是最热闹的酒，而是结构成立、收口干净的那杯。{drink}把{tagKeywords}压得很稳，再让{spotlight}替你把完成度拉满。{pricePitch}",
+        "focus_tags": ["极简", "经典", "微苦", "纯粹"],
+        "avoid_tags": ["甜腻", "花里胡哨"],
+        "abv_target": "medium",
+        "sweetness_target": 2,
+        "complexity_target": 2,
+        "fallback_ids": ["gin_tonic", "whiskey_sour"]
+      }
+    ],
+    "INTP": [
+      {
+        "id": "intp_curious",
+        "title": "有内容再聊局",
+        "copy": "INTP 更容易被有层次和可讨论空间的酒吸引。{drink}把{tagKeywords}和{spotlight}放在同一杯里，正好够你边喝边拆解它为什么成立。{pricePitch}",
+        "focus_tags": ["复杂", "经典", "微苦", "冷淡"],
+        "avoid_tags": ["甜腻", "无趣"],
+        "abv_target": "medium",
+        "sweetness_target": 2,
+        "complexity_target": 3,
+        "fallback_ids": ["gin_tonic", "whiskey_sour"]
+      }
+    ],
+    "ENTJ": [
+      {
+        "id": "entj_command",
+        "title": "掌控定调局",
+        "copy": "ENTJ 适合一上桌就能把基调订好的酒。{drink}用{tagKeywords}先立住强度，再让{spotlight}把压场感补足，省得你替酒单做多余解释。{pricePitch}",
+        "focus_tags": ["高酒精度", "经典", "浓烈", "纯粹"],
+        "avoid_tags": ["奶香", "甜水"],
+        "abv_target": "high",
+        "sweetness_target": 2,
+        "complexity_target": 3,
+        "fallback_ids": ["margarita", "whiskey_sour"]
+      }
+    ],
+    "ENTP": [
+      {
+        "id": "entp_twist",
+        "title": "反差上头局",
+        "copy": "ENTP 很吃那种有转折感的酒。{drink}把{tagKeywords}拧出一点反差，再用{spotlight}让它不只是好喝，还足够有话题。{pricePitch}",
+        "focus_tags": ["刺激", "复杂", "酸甜", "气泡"],
+        "avoid_tags": ["平淡", "温吞"],
+        "abv_target": "medium",
+        "sweetness_target": 3,
+        "complexity_target": 3,
+        "fallback_ids": ["margarita", "blue_lagoon"]
+      }
+    ],
+    "ISFJ": [
+      {
+        "id": "isfj_safe",
+        "title": "软着陆安慰局",
+        "copy": "ISFJ 更适合会把情绪稳稳接住的酒。{drink}靠{tagKeywords}先把入口做柔，再借{spotlight}留住那种妥帖、安心、不费力的舒服感。{pricePitch}",
+        "focus_tags": ["治愈", "奶香", "安神", "安全感"],
+        "avoid_tags": ["刺激", "断电"],
+        "abv_target": "low",
+        "sweetness_target": 4,
+        "complexity_target": 1,
+        "fallback_ids": ["white_russian", "mojito"]
+      }
+    ],
+    "ISFP": [
+      {
+        "id": "isfp_aesthetic",
+        "title": "审美当下局",
+        "copy": "ISFP 很容易被一杯酒的体感和画面同时击中。{drink}把{tagKeywords}端得很漂亮，再让{spotlight}把情绪抬起来，刚好适合今晚只想认真感受一下。{pricePitch}",
+        "focus_tags": ["颜值高", "梦幻", "果味", "酸甜"],
+        "avoid_tags": ["粗糙", "烈酒"],
+        "abv_target": "medium",
+        "sweetness_target": 4,
+        "complexity_target": 2,
+        "fallback_ids": ["tequila_sunrise", "blue_lagoon"]
+      }
+    ],
+    "ESFJ": [
+      {
+        "id": "esfj_host",
+        "title": "热闹不失体面局",
+        "copy": "ESFJ 适合那种既容易分享、又能把关系拉近的酒。{drink}把{tagKeywords}摆得很顺，再让{spotlight}把场子的好感度一起拉高。{pricePitch}",
+        "focus_tags": ["气泡", "果味", "治愈", "出片"],
+        "avoid_tags": ["冷淡", "独处"],
+        "abv_target": "medium",
+        "sweetness_target": 3,
+        "complexity_target": 2,
+        "fallback_ids": ["mojito", "cuba_libre"]
+      }
+    ],
+    "ESFP": [
+      {
+        "id": "esfp_live",
+        "title": "现场快乐局",
+        "copy": "ESFP 喜欢一眼就能进入状态的酒。{drink}靠{tagKeywords}把即时快乐推上来，再让{spotlight}把存在感补满，这杯天生就很适合热场。{pricePitch}",
+        "focus_tags": ["快乐水", "出片", "颜值高", "气泡"],
+        "avoid_tags": ["冷淡", "深沉"],
+        "abv_target": "medium",
+        "sweetness_target": 4,
+        "complexity_target": 1,
+        "fallback_ids": ["blue_lagoon", "cuba_libre"]
+      }
+    ],
+    "ISTJ": [
+      {
+        "id": "istj_reliable",
+        "title": "稳准不踩雷局",
+        "copy": "ISTJ 更容易信服那些完成度很高的经典解法。{drink}把{tagKeywords}收得很利落，再用{spotlight}证明它为什么值得被反复点单。{pricePitch}",
+        "focus_tags": ["经典", "纯粹", "极简", "微苦"],
+        "avoid_tags": ["花里胡哨", "抓马"],
         "abv_target": "medium",
         "sweetness_target": 2,
         "complexity_target": 1,
         "fallback_ids": ["gin_tonic", "whiskey_sour"]
-      },
+      }
+    ],
+    "ISTP": [
       {
-        "id": "solo_defense",
-        "title": "冷感防御局",
-        "copy": "SOLO适合的酒，最好别太热情。{drink}靠{tagKeywords}把边界感立起来，再让{spotlight}把情绪压到足够体面，像你明明满身伤口，却还是把自己收拾得干净利落。{pricePitch}",
-        "focus_tags": ["极简", "冷淡", "微苦", "纯粹"],
-        "avoid_tags": ["甜腻", "梦幻"],
+        "id": "istp_direct",
+        "title": "干脆出手局",
+        "copy": "ISTP 适合不拖泥带水的酒。{drink}把{tagKeywords}放在明面上，再借{spotlight}把锋利感立住，入口就能把路数讲清楚。{pricePitch}",
+        "focus_tags": ["直球", "极简", "纯粹", "刺激"],
+        "avoid_tags": ["甜腻", "拖泥带水"],
         "abv_target": "medium",
         "sweetness_target": 2,
         "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      },
-      {
-        "id": "solo_midnight",
-        "title": "深夜独饮局",
-        "copy": "如果说有一种酒天生适合深夜独处，那它大概就该是{drink}。{tagKeywords}让它有沉默的内容，{spotlight}让它有不必解释的体面，很像SOLO那句没说出口的“我自己也能熬过去”。{pricePitch}",
-        "focus_tags": ["复杂", "微苦", "纠结", "经典"],
-        "avoid_tags": ["出片", "果味"],
-        "abv_target": "medium",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["whiskey_sour"]
+        "fallback_ids": ["gin_tonic", "margarita"]
       }
     ],
-    "FUCK": [
+    "ESTJ": [
       {
-        "id": "fuck_raw",
-        "title": "生猛开喝局",
-        "copy": "FUCK人格不适合那些绕来绕去的酒，你要的是入口就有态度，回味还带点野性的东西。{drink}这种{spotlight}的狠角色，再叠上{tagKeywords}，像把“别废话”三个字直接兑进了酒精里。{pricePitch}",
-        "focus_tags": ["刺激", "浓烈", "高酒精度", "烈酒"],
-        "avoid_tags": ["奶香", "治愈"],
+        "id": "estj_result",
+        "title": "结果导向局",
+        "copy": "ESTJ 通常不需要酒单讲故事，只需要选对。{drink}用{tagKeywords}把效率和强度一起拉起来，再让{spotlight}把那种稳准狠的气质坐实。{pricePitch}",
+        "focus_tags": ["经典", "浓烈", "高酒精度", "直球"],
+        "avoid_tags": ["梦幻", "甜腻"],
         "abv_target": "high",
         "sweetness_target": 2,
         "complexity_target": 2,
-        "fallback_ids": ["margarita", "long_island"]
-      },
-      {
-        "id": "fuck_direct_hit",
-        "title": "烈性直球局",
-        "copy": "FUCK的魅力，在于你从不愿意把情绪包成礼貌版本。{drink}把{tagKeywords}全打在正面，再让{spotlight}把存在感拉到很满，点它像当众把忍了很久的那口气狠狠干出来。{pricePitch}",
-        "focus_tags": ["直球", "刺激", "浓烈", "高酒精度"],
-        "avoid_tags": ["梦幻", "清爽"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 1,
-        "fallback_ids": ["margarita", "screwdriver"]
-      },
-      {
-        "id": "fuck_now",
-        "title": "不爽就点局",
-        "copy": "有些人喝酒为了社交，FUCK喝酒更像给灵魂松绑。{drink}这种{spotlight}型的痛快选手，配上{tagKeywords}，很适合那种你已经不想解释，只想立刻进入状态的晚上。{pricePitch}",
-        "focus_tags": ["高酒精度", "断电", "刺激", "烈酒"],
-        "avoid_tags": ["低度数", "安神"],
-        "abv_target": "high",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island", "margarita"]
+        "fallback_ids": ["margarita", "whiskey_sour"]
       }
     ],
-    "DEAD": [
+    "ESTP": [
       {
-        "id": "dead_blackout",
-        "title": "断电失焦局",
-        "copy": "DEAD不是真的想死，只是对很多热闹已经彻底失去兴趣。{drink}这种{spotlight}的失重型液体，再叠上{tagKeywords}，像替你把多余感受都暂时静音。它不负责治愈，它只负责让你没那么吵。{pricePitch}",
-        "focus_tags": ["断电", "高酒精度", "冷淡", "烈酒"],
-        "avoid_tags": ["治愈", "梦幻"],
+        "id": "estp_action",
+        "title": "立刻进入状态局",
+        "copy": "ESTP 适合入口就有动作的酒。{drink}把{tagKeywords}和{spotlight}一起往前推，很适合那种你不想慢慢铺垫、只想直接把气氛点燃的晚上。{pricePitch}",
+        "focus_tags": ["刺激", "爽快", "高酒精度", "气泡"],
+        "avoid_tags": ["温吞", "复杂"],
         "abv_target": "high",
         "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island", "gin_tonic"]
-      },
-      {
-        "id": "dead_void",
-        "title": "冷感虚无局",
-        "copy": "DEAD适合的酒，最好像一块干净、冷静、没什么废话的黑色玻璃。{drink}拿{tagKeywords}把温度拉低，再让{spotlight}把距离感撑起来，像你终于允许自己对世界少回应一点。{pricePitch}",
-        "focus_tags": ["冷淡", "极简", "微苦", "纯粹"],
-        "avoid_tags": ["甜腻", "出片"],
-        "abv_target": "medium",
-        "sweetness_target": 2,
         "complexity_target": 1,
-        "fallback_ids": ["gin_tonic"]
-      },
-      {
-        "id": "dead_replace_will",
-        "title": "酒精代替意志局",
-        "copy": "当DEAD连意志力都懒得开机，酒就得承担一点机械运转的职责。{drink}把{tagKeywords}拧成一股够直接的力量，再配上{spotlight}，像你给自己接上的一根临时电源线。{pricePitch}",
-        "focus_tags": ["高酒精度", "烈酒", "刺激", "甜水"],
-        "avoid_tags": ["清爽", "低度数"],
-        "abv_target": "high",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island"]
-      }
-    ],
-    "IMFW": [
-      {
-        "id": "imfw_hold",
-        "title": "被接住局",
-        "copy": "IMFW最缺的从来不是道理，而是一点不会刺伤自己的安全感。{drink}这种{spotlight}的保护壳，再配上{tagKeywords}，像把整个人轻轻放进一床能呼吸的被子里。今晚这杯，不是让你逞强，是让你被接住。{pricePitch}",
-        "focus_tags": ["治愈", "甜腻", "奶香", "安神"],
-        "avoid_tags": ["刺激", "微苦"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["white_russian", "tequila_sunrise"]
-      },
-      {
-        "id": "imfw_soft_guard",
-        "title": "甜口自保局",
-        "copy": "IMFW不是脆，是太容易认真，所以更需要一杯入口就站在你这边的酒。{drink}把{tagKeywords}铺得足够软，再让{spotlight}把世界的尖锐隔开，像替你先挡掉一点风。{pricePitch}",
-        "focus_tags": ["甜腻", "果味", "梦幻", "治愈"],
-        "avoid_tags": ["烈酒", "复杂"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["tequila_sunrise", "white_russian"]
-      },
-      {
-        "id": "imfw_low_pressure",
-        "title": "低压安慰局",
-        "copy": "有些夜晚，IMFW不需要被鼓励，只需要被允许安静地丧一会儿。{drink}用{tagKeywords}把门槛降下来，再借{spotlight}留一点温柔余地，很适合那种只想慢慢把自己哄回来的时候。{pricePitch}",
-        "focus_tags": ["治愈", "低度数", "果味", "清爽"],
-        "avoid_tags": ["高酒精度", "刺激"],
-        "abv_target": "low",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["mojito", "white_russian"]
-      }
-    ],
-    "HHHH": [
-      {
-        "id": "hhhh_bubble",
-        "title": "傻乐冒泡局",
-        "copy": "HHHH不是简单快乐，是明明脑回路很奇怪，却还能把日子笑出声的珍稀物种。{drink}这种{spotlight}的快乐载体，再加上{tagKeywords}，像把“哈哈哈哈”做成了会起泡的饮料。{pricePitch}",
-        "focus_tags": ["快乐水", "气泡", "清爽", "果味"],
-        "avoid_tags": ["微苦", "复杂"],
-        "abv_target": "low",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre", "mojito"]
-      },
-      {
-        "id": "hhhh_keep_smiling",
-        "title": "快乐续命局",
-        "copy": "HHHH这种人，连喝酒都该像补充一点欢快电量。{drink}把{tagKeywords}一股脑儿推上来，再让{spotlight}把心情撑亮，很适合那种没什么大道理，只想继续开心的晚上。{pricePitch}",
-        "focus_tags": ["快乐水", "简单粗暴", "爽快", "气泡"],
-        "avoid_tags": ["冷淡", "纠结"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 1,
-        "fallback_ids": ["cuba_libre"]
-      },
-      {
-        "id": "hhhh_light_show",
-        "title": "轻盈出片局",
-        "copy": "HHHH并不总是需要高浓度情绪，有时候一杯足够轻盈、足够好看、足够会发光的酒就够了。{drink}靠{tagKeywords}把快乐做得更具体，再用{spotlight}把场景感拉满，像笑声自己长出了颜色。{pricePitch}",
-        "focus_tags": ["果味", "气泡", "出片", "颜值高"],
-        "avoid_tags": ["烈酒", "微苦"],
-        "abv_target": "medium",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["blue_lagoon", "tequila_sunrise"]
-      }
-    ],
-    "DRUNK": [
-      {
-        "id": "drunk_must_hit",
-        "title": "今夜必须上头局",
-        "copy": "DRUNK最适合的酒，必须得有种一开场就不打算留退路的狠劲。{drink}这种{spotlight}型选手，再叠上{tagKeywords}，像你给今晚签下的免责条款：既然要喝，那就别半途而废。{pricePitch}",
-        "focus_tags": ["高酒精度", "断电", "烈酒", "刺激"],
-        "avoid_tags": ["低度数", "安神"],
-        "abv_target": "high",
-        "sweetness_target": 3,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island", "margarita"]
-      },
-      {
-        "id": "drunk_blackout",
-        "title": "断片预备局",
-        "copy": "DRUNK喝酒不是为了浅尝辄止，是为了让理智体面地下班。{drink}拿{tagKeywords}把酒精存在感顶满，再让{spotlight}把后劲藏得漂亮，像一场早就蓄谋好的失控演习。{pricePitch}",
-        "focus_tags": ["断电", "高酒精度", "甜水", "烈酒"],
-        "avoid_tags": ["清爽", "果味"],
-        "abv_target": "high",
-        "sweetness_target": 4,
-        "complexity_target": 2,
-        "fallback_ids": ["long_island"]
-      },
-      {
-        "id": "drunk_liquor_belief",
-        "title": "烈酒本命局",
-        "copy": "有的人喝酒是体验，DRUNK喝酒更像朝圣。{drink}把{tagKeywords}和{spotlight}一起拧成一股滚烫的冲劲，入口那秒就像在对全世界宣布：今夜我偏要痛快。{pricePitch}",
-        "focus_tags": ["烈酒", "浓烈", "刺激", "经典"],
-        "avoid_tags": ["治愈", "奶香"],
-        "abv_target": "high",
-        "sweetness_target": 2,
-        "complexity_target": 3,
-        "fallback_ids": ["margarita", "long_island"]
+        "fallback_ids": ["margarita", "cuba_libre"]
       }
     ]
   }
