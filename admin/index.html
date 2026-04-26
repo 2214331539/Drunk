@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#142126" />
+    <title>Drunk 核销台</title>
+    <link rel="manifest" href="/admin/manifest.webmanifest" />
+    <link rel="stylesheet" href="/admin/src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Drunk Admin</p>
+          <h1>核销台</h1>
+        </div>
+        <span id="serviceStatus" class="status-pill">连接中</span>
+      </header>
+
+      <section class="api-panel">
+        <label for="apiBase">后端地址</label>
+        <div class="api-row">
+          <input id="apiBase" autocomplete="off" spellcheck="false" />
+          <button id="saveApiBase" type="button">保存</button>
+        </div>
+      </section>
+
+      <section class="scanner-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Scan</p>
+            <h2>扫码核销</h2>
+          </div>
+          <button id="refreshOrders" type="button" class="icon-button" aria-label="刷新订单">↻</button>
+        </div>
+
+        <div class="video-shell">
+          <video id="scanVideo" playsinline muted></video>
+          <div class="scan-frame" aria-hidden="true"></div>
+          <p id="scannerHint">点击开始扫码，允许摄像头权限后对准 H5 生成的二维码。</p>
+        </div>
+
+        <div class="scanner-actions">
+          <button id="startScan" type="button" class="primary-action">开始扫码</button>
+          <button id="stopScan" type="button">停止</button>
+        </div>
+
+        <div class="manual-row">
+          <input id="manualToken" placeholder="手动输入核销码" autocomplete="off" spellcheck="false" />
+          <button id="manualLookup" type="button">查询</button>
+        </div>
+      </section>
+
+      <section id="redeemPanel" class="redeem-panel is-hidden" aria-live="polite">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Current</p>
+            <h2 id="redeemDrinkName">待核销酒品</h2>
+          </div>
+          <span id="redeemStatus" class="status-pill">待核销</span>
+        </div>
+
+        <dl class="detail-list">
+          <div>
+            <dt>酒品品类</dt>
+            <dd id="redeemCategory">-</dd>
+          </div>
+          <div>
+            <dt>下单时间</dt>
+            <dd id="redeemOrderedAt">-</dd>
+          </div>
+          <div>
+            <dt>核销码</dt>
+            <dd id="redeemCode">-</dd>
+          </div>
+        </dl>
+
+        <button id="confirmRedeem" type="button" class="primary-action">确认核销</button>
+        <p id="redeemMessage" class="message"></p>
+      </section>
+
+      <section class="orders-panel">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Records</p>
+            <h2>全部订单</h2>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div><span id="statTotal">0</span><small>全部</small></div>
+          <div><span id="statPending">0</span><small>待核销</small></div>
+          <div><span id="statRedeemed">0</span><small>已核销</small></div>
+        </div>
+
+        <div id="ordersList" class="orders-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="/admin/src/main.js"></script>
+  </body>
+</html>

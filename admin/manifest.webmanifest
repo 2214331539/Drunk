@@ -1,0 +1,8 @@
+{
+  "name": "Drunk 核销台",
+  "short_name": "Drunk Admin",
+  "start_url": "/admin/",
+  "display": "standalone",
+  "background_color": "#fff8ee",
+  "theme_color": "#142126"
+}

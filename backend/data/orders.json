@@ -1,0 +1,37 @@
+[
+  {
+    "id": "9590f99b-2d2a-455c-b0f3-07a73b6306d3",
+    "token": "C37238A4DEFF1B9070",
+    "shortCode": "C372-38A4-DEFF",
+    "qrPayload": "DRUNK_ORDER:C37238A4DEFF1B9070",
+    "status": "pending",
+    "drink": {
+      "id": "whiskey_sour",
+      "name": "威士忌酸",
+      "englishName": "Whiskey Sour",
+      "category": "威士忌 (Whiskey)",
+      "baseLiquor": "威士忌 (Whiskey)",
+      "priceText": "**",
+      "matchScore": 98,
+      "rank": 1,
+      "tags": [
+        "复杂",
+        "微苦",
+        "经典"
+      ],
+      "selectedPlanId": "infj_echo"
+    },
+    "recommendation": {
+      "mbti": "INFJ",
+      "mbtiName": "提倡者",
+      "selectedPlanTitle": "留白共鸣局",
+      "reasonHeading": "留白共鸣局",
+      "reasonLabel": "你的 MBTI 专属推荐"
+    },
+    "channel": "h5-result-page",
+    "orderedAt": "2026-04-26T16:14:12.596Z",
+    "redeemedAt": null,
+    "redeemedBy": null,
+    "redeemedDevice": null
+  }
+]

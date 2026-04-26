@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
+import { createDrinkOrder } from '../utils/orderApi';
+import { createQrSvg } from '../utils/qrCode';
 import './ResultPage.css';
 
 const drinkImageModules = import.meta.glob(
@@ -171,6 +173,19 @@ function canShareFiles(file) {
   }
 }
 
+function formatDateTime(value) {
+  if (!value) {
+    return '-';
+  }
+
+  return new Intl.DateTimeFormat('zh-CN', {
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit'
+  }).format(new Date(value));
+}
+
 const ResultPage = ({ result, onRestart }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -178,6 +193,10 @@ const ResultPage = ({ result, onRestart }) => {
   const [isArtworkOpen, setIsArtworkOpen] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
+  const [isOrdering, setIsOrdering] = useState(false);
+  const [ordersByDrinkId, setOrdersByDrinkId] = useState({});
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [orderError, setOrderError] = useState('');
   const [exportPreviewUrl, setExportPreviewUrl] = useState('');
   const captureRef = useRef(null);
 
@@ -193,6 +212,10 @@ const ResultPage = ({ result, onRestart }) => {
     setIsDescriptionExpanded(false);
   }, [result.mbti]);
 
+  useEffect(() => {
+    setOrderError('');
+  }, [currentIndex]);
+
   useEffect(() => () => {
     if (exportPreviewUrl) {
       URL.revokeObjectURL(exportPreviewUrl);
@@ -200,9 +223,14 @@ const ResultPage = ({ result, onRestart }) => {
   }, [exportPreviewUrl]);
 
   const currentCocktail = result.cocktails[currentIndex];
+  const currentOrder = ordersByDrinkId[currentCocktail.id];
   const imageSrc = useMemo(
     () => resolveDrinkImage(currentCocktail),
     [currentCocktail]
+  );
+  const currentOrderQr = useMemo(
+    () => (currentOrder?.qrPayload ? createQrSvg(currentOrder.qrPayload) : ''),
+    [currentOrder?.qrPayload]
   );
   const characterImageSrc = null;
   const isLast = currentIndex === result.cocktails.length - 1;
@@ -338,8 +366,36 @@ const ResultPage = ({ result, onRestart }) => {
       link.remove();
       window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     } catch (error) {
-      setIsSharing(false);
       console.error('生成图片失败:', error);
+    } finally {
+      setIsSharing(false);
+    }
+  };
+
+  const handleOrder = async () => {
+    if (currentOrder) {
+      setIsOrderModalOpen(true);
+      return;
+    }
+
+    setIsOrdering(true);
+    setOrderError('');
+
+    try {
+      const payload = await createDrinkOrder({
+        cocktail: currentCocktail,
+        result
+      });
+
+      setOrdersByDrinkId((currentOrders) => ({
+        ...currentOrders,
+        [currentCocktail.id]: payload.order
+      }));
+      setIsOrderModalOpen(true);
+    } catch (error) {
+      setOrderError(error.message || '下单失败，请稍后再试');
+    } finally {
+      setIsOrdering(false);
     }
   };
 
@@ -554,10 +610,17 @@ const ResultPage = ({ result, onRestart }) => {
           <button className="action-button secondary" onClick={onRestart}>
             再测一次
           </button>
-          <button className="action-button primary" onClick={handleShare} disabled={isSharing}>
+          <button className="action-button secondary" onClick={handleShare} disabled={isSharing}>
             {isSharing ? '生成中...' : '保存这张海报'}
           </button>
+          <button className="action-button primary" onClick={handleOrder} disabled={isOrdering}>
+            {isOrdering ? '下单中...' : currentOrder ? '查看核销码' : '下单生成码'}
+          </button>
         </div>
+
+        {orderError && (
+          <p className="order-error" role="alert">{orderError}</p>
+        )}
       </div>
 
       {isArtworkOpen && (
@@ -579,6 +642,60 @@ const ResultPage = ({ result, onRestart }) => {
             </button>
 
             {renderPosterStage('expanded')}
+          </div>
+        </div>
+      )}
+
+      {isOrderModalOpen && currentOrder && (
+        <div
+          className="order-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label="订单核销二维码"
+          onClick={() => setIsOrderModalOpen(false)}
+        >
+          <div className="order-panel" onClick={(event) => event.stopPropagation()}>
+            <button
+              type="button"
+              className="order-close"
+              onClick={() => setIsOrderModalOpen(false)}
+              aria-label="关闭核销码"
+            >
+              ×
+            </button>
+
+            <div className="order-panel-head">
+              <span className="order-kicker">到店核销</span>
+              <h2>{currentOrder.drink.name}</h2>
+              <p>到店后向商家出示二维码，由商家使用 admin app 扫码核销。</p>
+            </div>
+
+            <div
+              className="order-qr"
+              dangerouslySetInnerHTML={{ __html: currentOrderQr }}
+            />
+
+            <div className="order-code">
+              <span>核销码</span>
+              <strong>{currentOrder.shortCode}</strong>
+            </div>
+
+            <div className="order-detail-grid">
+              <div>
+                <span>酒品品类</span>
+                <strong>{currentOrder.drink.category}</strong>
+              </div>
+              <div>
+                <span>下单时间</span>
+                <strong>{formatDateTime(currentOrder.orderedAt)}</strong>
+              </div>
+              <div>
+                <span>订单状态</span>
+                <strong>{currentOrder.status === 'redeemed' ? '已核销' : '待核销'}</strong>
+              </div>
+            </div>
+
+            <p className="order-note">二维码只用于到店核销，不包含支付信息。</p>
           </div>
         </div>
       )}
